@@ -22,11 +22,12 @@
                     android:id="@+id/toolbarFragmentHome"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
                     android:background="@color/primary99"
+                    app:layout_collapseMode="pin"
                     app:menu="@menu/home_toolbar_menu"
                     app:navigationIcon="@drawable/ic_round_menu_24"
-                    app:title="@string/devices" />
+                    app:title="@string/devices"
+                    app:titleCentered="true" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 

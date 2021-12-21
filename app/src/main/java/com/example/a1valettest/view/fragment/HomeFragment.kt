@@ -56,18 +56,20 @@ class HomeFragment : Fragment() {
     private fun getDevices() {
         val deviceContents = mutableListOf<DeviceContent>()
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.getDeviceContent.collect {
-                    deviceContents.addAll(it.devices)
-                }
-            }
-        }
-
         homeAdapter = HomeAdapter(deviceContentList = deviceContents)
 
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.getDeviceContent.collect {
+                it.devices?.let { deviceContentList ->
+                    deviceContents.clear()
+                    deviceContents.addAll(deviceContentList)
+                    homeAdapter.notifyDataSetChanged()
+                }
+            }
         }
 
     }

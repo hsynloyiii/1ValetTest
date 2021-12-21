@@ -9,15 +9,40 @@
         android:id="@+id/homeFragment"
         android:name="com.example.a1valettest.view.fragment.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_deviceDetailFragment"
+            app:destination="@id/deviceDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myDevicesFragment"
         android:name="com.example.a1valettest.view.fragment.MyDevicesFragment"
         android:label="fragment_my_devices"
-        tools:layout="@layout/fragment_my_devices" />
+        tools:layout="@layout/fragment_my_devices">
+        <action
+            android:id="@+id/action_myDevicesFragment_to_deviceDetailFragment"
+            app:destination="@id/deviceDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.a1valettest.view.fragment.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/deviceDetailFragment"
+        android:name="com.example.a1valettest.view.fragment.DeviceDetailFragment"
+        android:label="fragment_device_detail"
+        tools:layout="@layout/fragment_device_detail">
+        <argument
+            android:name="deviceName"
+            android:defaultValue="DeviceName"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_deviceDetailFragment_to_myDevicesFragment"
+            app:destination="@id/myDevicesFragment" />
+        <action
+            android:id="@+id/action_deviceDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

@@ -1,11 +1,16 @@
 package com.example.a1valettest.viewmodel
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation.findNavController
+import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.model.DeviceResponse
 import com.example.a1valettest.repository.HomeRepository
+import com.example.a1valettest.view.fragment.HomeFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,8 +20,9 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
     val getDeviceContent = flow {
         emit(homeRepository.fetchDeviceContent())
     }
-        .catch { e ->
-            print(e.message)
-        }
-
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            initialValue = DeviceResponse(devices = null)
+        )
 }

@@ -49,6 +49,7 @@
     <!-- Collapsing Toolbar -->
     <style name="Base.Widget.Material3.CollapsingToolbar" parent="Widget.Material3.CollapsingToolbar">
         <item name="collapsedTitleTextAppearance">@style/collapsedTitleTextAppearance</item>
+        <item name="collapsedTitleGravity">center</item>
         <item name="expandedTitleTextAppearance">@style/expandedTitleTextAppearance</item>
         <item name="expandedTitleMarginStart">@dimen/m3_appbar_expanded_title_margin_horizontal
         </item>

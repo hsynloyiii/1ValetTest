@@ -34,7 +34,7 @@ class HomeRepository @Inject constructor(
                         id = "2",
                         os = "Android 11",
                         status = "Available",
-                        price = 800,
+                        price = 700,
                         currency = "USD",
                         isFavorite = false,
                         imageUrl = "https://toppng.com/uploads/preview/samsung-galaxy-a50-samsung-galaxy-a50-2019-11562961823yplum8mlj9.png",
@@ -47,7 +47,7 @@ class HomeRepository @Inject constructor(
                         id = "3",
                         os = "Android 12",
                         status = "Available",
-                        price = 800,
+                        price = 555,
                         currency = "USD",
                         isFavorite = false,
                         imageUrl = "https://cdn.vodafone.co.uk/en/assets/images/desktop/Samsung_Galaxy_A12_black-full-product-front-600.png",
@@ -60,7 +60,7 @@ class HomeRepository @Inject constructor(
                         id = "4",
                         os = "Android 12",
                         status = "Available",
-                        price = 800,
+                        price = 720,
                         currency = "USD",
                         isFavorite = false,
                         imageUrl = "https://i2.wp.com/mobilize.com.pk/wp-content/uploads/2021/04/mi-11-lite.png?fit=600%2C600&ssl=1",
@@ -73,7 +73,7 @@ class HomeRepository @Inject constructor(
                         id = "5",
                         os = "Android 12",
                         status = "Available",
-                        price = 800,
+                        price = 900,
                         currency = "USD",
                         isFavorite = false,
                         imageUrl = "https://i01.appmifile.com/webfile/globalimg/products/pc/mi-11-ultra/pc-specs-header.png",
@@ -86,7 +86,59 @@ class HomeRepository @Inject constructor(
                         id = "6",
                         os = "Android 12",
                         status = "Available",
-                        price = 800,
+                        price = 1100,
+                        currency = "USD",
+                        isFavorite = false,
+                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
+                        title = "Samsung Note 21 Ultra",
+                        description = ""
+                    )
+                )
+                add(
+                    DeviceContent(
+                        id = "6",
+                        os = "Android 12",
+                        status = "Available",
+                        price = 1100,
+                        currency = "USD",
+                        isFavorite = false,
+                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
+                        title = "Samsung Note 21 Ultra",
+                        description = ""
+                    )
+                )
+                add(
+                    DeviceContent(
+                        id = "6",
+                        os = "Android 12",
+                        status = "Available",
+                        price = 1100,
+                        currency = "USD",
+                        isFavorite = false,
+                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
+                        title = "Samsung Note 21 Ultra",
+                        description = ""
+                    )
+                )
+                add(
+                    DeviceContent(
+                        id = "6",
+                        os = "Android 12",
+                        status = "Available",
+                        price = 1100,
+                        currency = "USD",
+                        isFavorite = false,
+                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
+                        title = "Samsung Note 21 Ultra",
+                        description = ""
+                    )
+                )
+                add(
+                    DeviceContent(
+                        id = "6",
+                        os = "Android 12",
+                        status = "Available",
+                        price = 1100,
                         currency = "USD",
                         isFavorite = false,
                         imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
