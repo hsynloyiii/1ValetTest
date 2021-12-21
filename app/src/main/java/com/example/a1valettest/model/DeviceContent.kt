@@ -19,7 +19,7 @@ data class DeviceContent(
 
     companion object {
         @JvmStatic
-        @BindingAdapter("url")
+        @BindingAdapter("imageFromUrl")
         fun bindImage(image: AppCompatImageView, url: String) = Glide
             .with(image.context)
             .load(url)

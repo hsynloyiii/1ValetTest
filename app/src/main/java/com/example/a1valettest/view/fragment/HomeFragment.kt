@@ -43,7 +43,17 @@ class HomeFragment : Fragment() {
 
         enterTransition = MaterialFadeThrough()
 
+        getDevices()
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        handleToolbar()
+    }
+
+    private fun getDevices() {
         val deviceContents = mutableListOf<DeviceContent>()
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -60,9 +70,11 @@ class HomeFragment : Fragment() {
             adapter = homeAdapter
         }
 
-
-
-        return binding.root
     }
 
+    private fun handleToolbar() {
+        binding.toolbarFragmentHome.setNavigationOnClickListener {
+            activity?.findViewById<DrawerLayout>(R.id.mainDrawerLayout)?.open()
+        }
+    }
 }

@@ -4,22 +4,22 @@
 
     <!-- Navigation View-->
     <style name="Base.Widget.Material3.NavigationView" parent="Widget.Material3.NavigationView">
-<!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NavigationView</item>-->
+        <!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NavigationView</item>-->
         <item name="itemIconTint">@color/navigation_item_color</item>
         <item name="itemTextColor">@color/navigation_item_color</item>
         <item name="itemShapeFillColor">@color/navigation_item_background_color</item>
     </style>
 
-<!--    <style name="ThemeOverlay.App.NavigationView" parent="">-->
-<!--        <item name="colorSecondaryContainer">@color/shrine_theme_light_secondaryContainer</item>-->
-<!--        <item name="colorOnSecondaryContainer">@color/shrine_theme_light_onSecondaryContainer</item>-->
-<!--        <item name="colorTertiaryContainer">@color/shrine_theme_light_tertiaryContainer</item>-->
-<!--        <item name="colorOnTertiaryContainer">@color/shrine_theme_light_onTertiaryContainer</item>-->
-<!--        <item name="colorSurface">@color/shrine_theme_light_surface</item>-->
-<!--        <item name="colorOnSurface">@color/shrine_theme_light_onSurface</item>-->
-<!--        <item name="colorOnSurfaceVariant">@color/shrine_theme_light_onSurfaceVariant</item>-->
-<!--        <item name="colorOutline">@color/shrine_theme_light_outline</item>-->
-<!--    </style>-->
+    <!--    <style name="ThemeOverlay.App.NavigationView" parent="">-->
+    <!--        <item name="colorSecondaryContainer">@color/shrine_theme_light_secondaryContainer</item>-->
+    <!--        <item name="colorOnSecondaryContainer">@color/shrine_theme_light_onSecondaryContainer</item>-->
+    <!--        <item name="colorTertiaryContainer">@color/shrine_theme_light_tertiaryContainer</item>-->
+    <!--        <item name="colorOnTertiaryContainer">@color/shrine_theme_light_onTertiaryContainer</item>-->
+    <!--        <item name="colorSurface">@color/shrine_theme_light_surface</item>-->
+    <!--        <item name="colorOnSurface">@color/shrine_theme_light_onSurface</item>-->
+    <!--        <item name="colorOnSurfaceVariant">@color/shrine_theme_light_onSurfaceVariant</item>-->
+    <!--        <item name="colorOutline">@color/shrine_theme_light_outline</item>-->
+    <!--    </style>-->
 
 
     <!-- Card View-->
@@ -28,7 +28,8 @@
         <item name="android:stateListAnimator" tools:ignore="NewApi">
             @animator/m3_card_state_list_anim
         </item>
-        <item name="cardElevation">@dimen/m3_sys_elevation_level3</item>
+        <item name="shapeAppearanceOverlay">@style/Base.ShapeAppearanceOverlay.Material3.CardView</item>
+        <item name="cardElevation">@dimen/m3_sys_elevation_level2</item>
         <item name="cardForegroundColor">@null</item>
         <item name="cardBackgroundColor">@color/white</item>
         <item name="rippleColor">@color/card_ripple_color</item>
@@ -38,10 +39,48 @@
         <item name="checkedIcon">@null</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="cardCornerRadius">16dp</item>
+    </style>
+
+    <style name="Base.ShapeAppearanceOverlay.Material3.CardView" parent="">
+        <item name="cornerSize">8dp</item>
     </style>
 
 
+    <!-- Collapsing Toolbar -->
+    <style name="Base.Widget.Material3.CollapsingToolbar" parent="Widget.Material3.CollapsingToolbar">
+        <item name="collapsedTitleTextAppearance">@style/collapsedTitleTextAppearance</item>
+        <item name="expandedTitleTextAppearance">@style/expandedTitleTextAppearance</item>
+        <item name="expandedTitleMarginStart">@dimen/m3_appbar_expanded_title_margin_horizontal
+        </item>
+        <item name="elevation">@dimen/m3_sys_elevation_level4</item>
+        <item name="android:background">@color/primary99</item>
+        <item name="expandedTitleMarginEnd">@dimen/m3_appbar_expanded_title_margin_horizontal</item>
+        <item name="expandedTitleMarginBottom">@dimen/m3_appbar_expanded_title_margin_bottom</item>
+        <item name="extraMultilineHeightEnabled">true</item>
+        <item name="forceApplySystemWindowInsetTop">true</item>
+        <item name="titleCollapseMode">fade</item>
+        <item name="statusBarScrim">@null</item>
+        <item name="scrimAnimationDuration">@integer/app_bar_elevation_anim_duration</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="scrimVisibleHeightTrigger">@dimen/m3_appbar_scrim_height_trigger_medium</item>
+    </style>
+
+    <style name="collapsedTitleTextAppearance">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="expandedTitleTextAppearance">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <!-- AppBarLayout -->
+    <style name="Base.Widget.Material3.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+        <item name="liftOnScroll">true</item>
+<!--        <item name="elevation">8dp</item>-->
+<!--        <item name="android:elevation">8dp</item>-->
+<!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
+    </style>
 
 
 </resources>
