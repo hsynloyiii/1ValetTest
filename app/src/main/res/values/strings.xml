@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">1ValetTest</string>
+    <string name="main">Main</string>
+    <string name="home">Home</string>
+    <string name="setting">Setting</string>
+    <string name="my_devices">My Devices</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

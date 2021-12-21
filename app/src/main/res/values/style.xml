@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <!-- Navigation View-->
+    <style name="Base.Widget.Material3.NavigationView" parent="Widget.Material3.NavigationView">
+<!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NavigationView</item>-->
+        <item name="itemIconTint">@color/navigation_item_color</item>
+        <item name="itemTextColor">@color/navigation_item_color</item>
+        <item name="itemShapeFillColor">@color/navigation_item_background_color</item>
+    </style>
+
+<!--    <style name="ThemeOverlay.App.NavigationView" parent="">-->
+<!--        <item name="colorSecondaryContainer">@color/shrine_theme_light_secondaryContainer</item>-->
+<!--        <item name="colorOnSecondaryContainer">@color/shrine_theme_light_onSecondaryContainer</item>-->
+<!--        <item name="colorTertiaryContainer">@color/shrine_theme_light_tertiaryContainer</item>-->
+<!--        <item name="colorOnTertiaryContainer">@color/shrine_theme_light_onTertiaryContainer</item>-->
+<!--        <item name="colorSurface">@color/shrine_theme_light_surface</item>-->
+<!--        <item name="colorOnSurface">@color/shrine_theme_light_onSurface</item>-->
+<!--        <item name="colorOnSurfaceVariant">@color/shrine_theme_light_onSurfaceVariant</item>-->
+<!--        <item name="colorOutline">@color/shrine_theme_light_outline</item>-->
+<!--    </style>-->
+
+
+    <!-- Card View-->
+    <style name="Base.Widget.Material3.CardView" parent="Widget.Material3.CardView.Filled">
+        <item name="enforceMaterialTheme">true</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">
+            @animator/m3_card_state_list_anim
+        </item>
+        <item name="cardElevation">@dimen/m3_sys_elevation_level3</item>
+        <item name="cardForegroundColor">@null</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="rippleColor">@color/card_ripple_color</item>
+        <item name="strokeColor">@color/m3_card_stroke_color</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="checkedIconTint">@color/black</item>
+        <item name="checkedIcon">@null</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="cardCornerRadius">16dp</item>
+    </style>
+
+
+
+
+</resources>
