@@ -1,31 +1,19 @@
 package com.example.a1valettest.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
-import com.example.a1valettest.model.DeviceContent
-import com.example.a1valettest.utils.toast
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MyDevicesFragment : Fragment() {
@@ -57,20 +45,19 @@ class MyDevicesFragment : Fragment() {
     }
 
     private fun getMyDevices() {
-        val myDevicesContent = mutableListOf<DeviceContent>()
-
-        myDevicesAdapter = MyDevicesAdapter(deviceContentList = myDevicesContent)
+        myDevicesAdapter = MyDevicesAdapter()
 
         binding.recyclerViewFragmentMyDevices.apply {
             adapter = myDevicesAdapter
         }
 
         deviceDatabaseViewModel.getDevices.observe(viewLifecycleOwner) {
-            myDevicesContent.addAll(it)
-            Log.i("TestLogForDatabase", myDevicesContent.toString())
+            myDevicesAdapter.differMyDeviceContent.apply {
+                submitList(it)
 
-            if (myDevicesContent.isNotEmpty())
-                binding.textEmptyMyDeviceList.visibility = GONE
+                if (currentList.isNotEmpty())
+                    binding.textEmptyMyDeviceList.visibility = GONE
+            }
         }
 
     }
@@ -82,9 +69,9 @@ class MyDevicesFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        getMyDevices()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        getMyDevices()
+//    }
 
 }

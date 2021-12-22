@@ -12,18 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.a1valettest.R
 import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.viewmodel.HomeViewModel
-import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -33,8 +28,6 @@ class HomeFragment : Fragment() {
     private lateinit var homeAdapter: HomeAdapter
 
     private val homeViewModel by viewModels<HomeViewModel>()
-
-    private lateinit var deviceContents: MutableList<DeviceContent>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,9 +50,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getDevices() {
-        deviceContents = mutableListOf()
-
-        homeAdapter = HomeAdapter(deviceContentList = deviceContents)
+        homeAdapter = HomeAdapter()
 
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter
@@ -70,8 +61,7 @@ class HomeFragment : Fragment() {
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collect {
                     it.devices?.let { deviceContentList ->
-                        deviceContents.clear()
-                        deviceContents.addAll(deviceContentList)
+                        homeAdapter.differDeviceContent.submitList(deviceContentList)
                     }
                 }
         }
@@ -110,10 +100,10 @@ class HomeFragment : Fragment() {
 
     private fun filterDeviceContentList(text: String) {
         val newList = arrayListOf<DeviceContent>()
-        deviceContents.forEach {
-            if (it.title.lowercase(Locale.getDefault()).contains(text))
-                newList.add(it)
-        }
-        homeAdapter.filterList(filteredList = newList)
+//        deviceContents.forEach {
+//            if (it.title.lowercase(Locale.getDefault()).contains(text))
+//                newList.add(it)
+//        }
+//        homeAdapter.filterList(filteredList = newList)
     }
 }

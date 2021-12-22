@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.navOptions
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewHomeBinding
@@ -15,8 +15,18 @@ import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.utils.interfaces.OnClick
 import com.example.a1valettest.view.fragment.HomeFragmentDirections
 
-class HomeAdapter(private var deviceContentList: List<DeviceContent>) :
+class HomeAdapter :
     RecyclerView.Adapter<HomeAdapter.ViewHolder>(), OnClick.HomeAdapter {
+
+    private val differCallBack = object : DiffUtil.ItemCallback<DeviceContent>() {
+        override fun areItemsTheSame(oldItem: DeviceContent, newItem: DeviceContent): Boolean =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: DeviceContent, newItem: DeviceContent): Boolean =
+            oldItem == newItem
+    }
+
+    val differDeviceContent = AsyncListDiffer(this, differCallBack)
 
     inner class ViewHolder(val binding: ItemRecyclerviewHomeBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -33,12 +43,12 @@ class HomeAdapter(private var deviceContentList: List<DeviceContent>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
-            deviceContent = deviceContentList[position]
+            deviceContent = differDeviceContent.currentList[position]
             onClick = this@HomeAdapter
         }
     }
 
-    override fun getItemCount(): Int = deviceContentList.size
+    override fun getItemCount(): Int = differDeviceContent.currentList.size
 
     override fun navigateToDetail(
         view: View,
@@ -60,8 +70,8 @@ class HomeAdapter(private var deviceContentList: List<DeviceContent>) :
         )
     }
 
-    fun filterList(filteredList: List<DeviceContent>) {
-        deviceContentList = filteredList
-        notifyDataSetChanged()
-    }
+//    fun filterList(filteredList: List<DeviceContent>) {
+//        deviceContentList = filteredList
+//        notifyDataSetChanged()
+//    }
 }
