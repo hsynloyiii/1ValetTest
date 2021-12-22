@@ -43,14 +43,13 @@ class HomeFragment : Fragment() {
 
         enterTransition = MaterialFadeThrough()
 
-        getDevices()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
+        getDevices()
     }
 
     private fun getDevices() {
