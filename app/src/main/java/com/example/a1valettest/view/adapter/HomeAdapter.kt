@@ -15,7 +15,7 @@ import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.utils.interfaces.OnClick
 import com.example.a1valettest.view.fragment.HomeFragmentDirections
 
-class HomeAdapter(private val deviceContentList: List<DeviceContent>) :
+class HomeAdapter(private var deviceContentList: List<DeviceContent>) :
     RecyclerView.Adapter<HomeAdapter.ViewHolder>(), OnClick.HomeAdapter {
 
     inner class ViewHolder(val binding: ItemRecyclerviewHomeBinding) :
@@ -60,5 +60,8 @@ class HomeAdapter(private val deviceContentList: List<DeviceContent>) :
         )
     }
 
-
+    fun filterList(filteredList: List<DeviceContent>) {
+        deviceContentList = filteredList
+        notifyDataSetChanged()
+    }
 }

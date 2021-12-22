@@ -10,6 +10,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
 class MyDevicesFragment : Fragment() {
 
     private lateinit var binding: FragmentMyDevicesBinding
-    private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
+    private val deviceDatabaseViewModel by activityViewModels<DeviceDatabaseViewModel>()
 
     private lateinit var myDevicesAdapter: MyDevicesAdapter
 
@@ -45,12 +46,13 @@ class MyDevicesFragment : Fragment() {
             false
         )
 
+        getMyDevices()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getMyDevices()
         handleToolbar()
     }
 
@@ -63,24 +65,16 @@ class MyDevicesFragment : Fragment() {
             adapter = myDevicesAdapter
         }
 
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                deviceDatabaseViewModel.getDevices.collectLatest { deviceContentList ->
-//                    myDevicesContent.clear()
-//                    myDevicesContent.addAll(deviceContentList)
-//                    Log.i("TestLogForDatabase", myDevicesContent.toString())
-//                }
-            deviceDatabaseViewModel.getDevices.observe(viewLifecycleOwner) {
-                myDevicesContent.clear()
-                myDevicesContent.addAll(it)
-                Log.i("TestLogForDatabase", myDevicesContent.toString())
+        deviceDatabaseViewModel.getDevices.observe(viewLifecycleOwner) {
+            myDevicesContent.addAll(it)
+            Log.i("TestLogForDatabase", myDevicesContent.toString())
 
-                if (myDevicesContent.isNotEmpty())
-                    binding.textEmptyMyDeviceList.visibility = GONE
-            }
-//        }
-//        }
+            if (myDevicesContent.isNotEmpty())
+                binding.textEmptyMyDeviceList.visibility = GONE
+        }
+
     }
+
 
     private fun handleToolbar() {
         binding.toolbarFragmentMyDevices.setNavigationOnClickListener {
@@ -88,13 +82,9 @@ class MyDevicesFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        getMyDevices()
-    }
-
     override fun onResume() {
         super.onResume()
         getMyDevices()
     }
+
 }

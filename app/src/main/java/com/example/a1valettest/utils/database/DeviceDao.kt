@@ -3,6 +3,7 @@ package com.example.a1valettest.utils.database
 import androidx.room.*
 import com.example.a1valettest.model.DeviceContent
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Dao
 interface DeviceDao {

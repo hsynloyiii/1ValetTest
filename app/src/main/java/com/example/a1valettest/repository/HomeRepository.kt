@@ -4,7 +4,6 @@ import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.DeviceResponse
 import com.example.a1valettest.utils.MainDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -96,53 +95,53 @@ class HomeRepository @Inject constructor(
                 )
                 add(
                     DeviceContent(
-                        id = "6",
+                        id = "7",
                         os = "Android 12",
                         status = "Available",
-                        price = 1100,
+                        price = 199,
                         currency = "USD",
                         isFavorite = false,
-                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
-                        title = "Samsung Note 21 Ultra",
+                        imageUrl = "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/phones/p-smart-2021/list-img/green-list.png",
+                        title = "Huawei P Smart 2021",
                         description = ""
                     )
                 )
                 add(
                     DeviceContent(
-                        id = "6",
+                        id = "8",
                         os = "Android 12",
                         status = "Available",
-                        price = 1100,
+                        price = 269,
                         currency = "USD",
                         isFavorite = false,
-                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
-                        title = "Samsung Note 21 Ultra",
+                        imageUrl = "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/list-image/phones/p40-pro/p40-pro-silver.png",
+                        title = "Huawei P40 Pro",
                         description = ""
                     )
                 )
                 add(
                     DeviceContent(
-                        id = "6",
+                        id = "9",
                         os = "Android 12",
                         status = "Available",
-                        price = 1100,
+                        price = 899,
                         currency = "USD",
                         isFavorite = false,
-                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
-                        title = "Samsung Note 21 Ultra",
+                        imageUrl = "https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/article_images/2021/10/google-pixel-6-and-6-pro-render.png",
+                        title = "Google Pixel 6 Pro",
                         description = ""
                     )
                 )
                 add(
                     DeviceContent(
-                        id = "6",
+                        id = "10",
                         os = "Android 12",
                         status = "Available",
-                        price = 1100,
+                        price = 903,
                         currency = "USD",
                         isFavorite = false,
-                        imageUrl = "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzsheua-thumb-368888073",
-                        title = "Samsung Note 21 Ultra",
+                        imageUrl = "https://static-www.o2.co.uk/sites/default/files/sony-xperia-1-III-sku-header-300721.png",
+                        title = "Sony Xperia 1",
                         description = ""
                     )
                 )

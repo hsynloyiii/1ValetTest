@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) : ViewModel() {
 
-    // We guess that we are fetching from internet so we follow the rest with multi-threading
+    // We guess that we are fetching from internet so we follow the rest with coroutine and flow
     val getDeviceContent = flow {
         emit(homeRepository.fetchDeviceContent())
     }

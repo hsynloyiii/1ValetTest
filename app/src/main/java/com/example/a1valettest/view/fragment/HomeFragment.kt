@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.a1valettest.R
@@ -20,6 +22,8 @@ import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -29,6 +33,8 @@ class HomeFragment : Fragment() {
     private lateinit var homeAdapter: HomeAdapter
 
     private val homeViewModel by viewModels<HomeViewModel>()
+
+    private lateinit var deviceContents: MutableList<DeviceContent>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +57,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getDevices() {
-        val deviceContents = mutableListOf<DeviceContent>()
+        deviceContents = mutableListOf()
 
         homeAdapter = HomeAdapter(deviceContentList = deviceContents)
 
@@ -60,18 +66,54 @@ class HomeFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.getDeviceContent.collect {
-                it.devices?.let { deviceContentList ->
-                    deviceContents.clear()
-                    deviceContents.addAll(deviceContentList)
+            homeViewModel.getDeviceContent
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect {
+                    it.devices?.let { deviceContentList ->
+                        deviceContents.clear()
+                        deviceContents.addAll(deviceContentList)
+                    }
                 }
-            }
         }
     }
 
     private fun handleToolbar() {
-        binding.toolbarFragmentHome.setNavigationOnClickListener {
-            activity?.findViewById<DrawerLayout>(R.id.mainDrawerLayout)?.open()
+        binding.toolbarFragmentHome.apply {
+            setNavigationOnClickListener {
+                activity?.findViewById<DrawerLayout>(R.id.mainDrawerLayout)?.open()
+            }
+
+            val menuItem = menu.findItem(R.id.search)
+            val searchView = menuItem.actionView as SearchView
+            searchView.apply {
+                queryHint = "Search devices"
+                setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean = false
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        filterDeviceContentList(text = newText!!)
+                        return false
+                    }
+                })
+            }
+
+//            setOnMenuItemClickListener {
+//                when (it.itemId) {
+//                    R.id.search -> {
+//                        true
+//                    }
+//                    else -> false
+//                }
+//            }
         }
+    }
+
+    private fun filterDeviceContentList(text: String) {
+        val newList = arrayListOf<DeviceContent>()
+        deviceContents.forEach {
+            if (it.title.lowercase(Locale.getDefault()).contains(text))
+                newList.add(it)
+        }
+        homeAdapter.filterList(filteredList = newList)
     }
 }

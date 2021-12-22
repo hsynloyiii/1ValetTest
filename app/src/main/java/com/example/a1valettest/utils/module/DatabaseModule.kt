@@ -14,6 +14,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
 
+
     @Singleton
     @Provides
     fun provideDeviceDatabase(@ApplicationContext context: Context): DeviceDataBase =

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -26,7 +27,7 @@ class DeviceDetailFragment : Fragment() {
     private lateinit var binding: FragmentDeviceDetailBinding
 
     private val args by navArgs<DeviceDetailFragmentArgs>()
-    private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
+    private val deviceDatabaseViewModel by activityViewModels<DeviceDatabaseViewModel>()
 
     private lateinit var deviceContent: DeviceContent
 
@@ -67,12 +68,12 @@ class DeviceDetailFragment : Fragment() {
                         val favoriteDevice = menu.findItem(R.id.favoriteDevice)
                         if (!deviceContent.isFavorite) {
                             deviceContent.isFavorite = !deviceContent.isFavorite
+                            deviceDatabaseViewModel.insertDevice(deviceContent = deviceContent)
                             favoriteDevice.icon = ResourcesCompat.getDrawable(
                                 resources,
                                 R.drawable.ic_round_star_24,
                                 null
                             )
-                            deviceDatabaseViewModel.insertDevice(deviceContent = deviceContent)
                         } else {
                             context?.alert(
                                 title = "Are you sure ?",
