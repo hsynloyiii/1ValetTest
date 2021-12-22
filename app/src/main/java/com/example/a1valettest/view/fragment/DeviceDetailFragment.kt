@@ -68,21 +68,20 @@ class DeviceDetailFragment : Fragment() {
                 when (it.itemId) {
                     R.id.favoriteDevice -> {
                         deviceContent.isFavorite = !deviceContent.isFavorite
-                        menu.findItem(R.id.favoriteDevice).apply {
-                            icon =
-                                if (deviceContent.isFavorite)
-                                    ResourcesCompat.getDrawable(
-                                        resources,
-                                        R.drawable.ic_round_star_24,
-                                        null
-                                    )
-                                else
-                                    ResourcesCompat.getDrawable(
-                                        resources,
-                                        R.drawable.ic_round_star_outline_24,
-                                        null
-                                    )
-                        }
+                        menu.findItem(R.id.favoriteDevice).icon =
+                            if (deviceContent.isFavorite)
+                                ResourcesCompat.getDrawable(
+                                    resources,
+                                    R.drawable.ic_round_star_24,
+                                    null
+                                )
+                            else
+                                ResourcesCompat.getDrawable(
+                                    resources,
+                                    R.drawable.ic_round_star_outline_24,
+                                    null
+                                )
+
 //                        deviceDatabaseViewModel.insertDevice(deviceContent = deviceContent)
                         true
                     }
@@ -90,17 +89,15 @@ class DeviceDetailFragment : Fragment() {
                 }
             }
 
-            menu.findItem(R.id.favoriteDevice).apply {
-                icon =
-                    if (args.deviceContent?.isFavorite!!)
-                        ResourcesCompat.getDrawable(resources, R.drawable.ic_round_star_24, null)
-                    else
-                        ResourcesCompat.getDrawable(
-                            resources,
-                            R.drawable.ic_round_star_outline_24,
-                            null
-                        )
-            }
+            menu.findItem(R.id.favoriteDevice).icon =
+                if (args.deviceContent?.isFavorite!!)
+                    ResourcesCompat.getDrawable(resources, R.drawable.ic_round_star_24, null)
+                else
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.ic_round_star_outline_24,
+                        null
+                    )
         }
     }
 
