@@ -3,6 +3,8 @@ package com.example.a1valettest.utils.module
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.repository.HomeRepository
 import com.example.a1valettest.utils.MainDispatchers
+import com.example.a1valettest.utils.database.DeviceDao
+import com.example.a1valettest.utils.database.DeviceDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +22,14 @@ class HomeModule {
     @Singleton
     @Provides
     fun provideHomeRepository(
-        @MainDispatchers mainDispatchers: CoroutineDispatcher
+        @MainDispatchers mainDispatchers: CoroutineDispatcher,
+        deviceDataBase: DeviceDataBase,
+        deviceDao: DeviceDao
     ): HomeRepository =
-        HomeRepository(mainDispatchers = mainDispatchers)
+        HomeRepository(
+            mainDispatchers = mainDispatchers,
+            deviceDataBase = deviceDataBase,
+            deviceDao = deviceDao
+        )
 
 }

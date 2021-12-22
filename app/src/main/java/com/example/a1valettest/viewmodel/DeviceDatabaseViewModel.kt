@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.repository.DeviceDatabaseRepository
 import com.example.a1valettest.utils.IODispatchers
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,13 +22,17 @@ class DeviceDatabaseViewModel @Inject constructor(
     @IODispatchers private val ioDispatchers: CoroutineDispatcher
 ) : ViewModel() {
 
-    fun insertDevice(deviceContent: DeviceContent?) = viewModelScope.launch {
-        deviceDatabaseRepository.insertDevice(deviceContent = deviceContent)
+    fun insertToMyDevice(myDeviceContent: MyDeviceContent?) = viewModelScope.launch {
+        deviceDatabaseRepository.insertToMyDevice(myDeviceContent = myDeviceContent)
+    }
+
+    fun updateDeviceContent(deviceContent: DeviceContent?) = viewModelScope.launch(ioDispatchers) {
+        deviceDatabaseRepository.updateDevice(deviceContent = deviceContent)
     }
 
     val getDevices = deviceDatabaseRepository.getDevices.asLiveData(ioDispatchers)
 
-    fun deleteDevice(deviceContent: DeviceContent?) = viewModelScope.launch(ioDispatchers) {
-        deviceDatabaseRepository.deleteDevice(deviceContent = deviceContent)
+    fun deleteDevice(myDeviceContent: MyDeviceContent?) = viewModelScope.launch(ioDispatchers) {
+        deviceDatabaseRepository.deleteDevice(myDeviceContent = myDeviceContent)
     }
 }

@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.transition.TransitionInflater
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentDeviceDetailBinding
 import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.alert
 import com.example.a1valettest.utils.snackBar
-import com.example.a1valettest.utils.toast
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -68,7 +66,24 @@ class DeviceDetailFragment : Fragment() {
                         val favoriteDevice = menu.findItem(R.id.favoriteDevice)
                         if (!deviceContent.isFavorite) {
                             deviceContent.isFavorite = !deviceContent.isFavorite
-                            deviceDatabaseViewModel.insertDevice(deviceContent = deviceContent)
+
+                            deviceContent.apply {
+                                val myDeviceContent = MyDeviceContent(
+                                    id,
+                                    os,
+                                    status,
+                                    price,
+                                    currency,
+                                    isFavorite,
+                                    imageUrl,
+                                    title,
+                                    description
+                                )
+
+                                deviceDatabaseViewModel.insertToMyDevice(myDeviceContent = myDeviceContent)
+                            }
+                            deviceDatabaseViewModel.updateDeviceContent(deviceContent = deviceContent)
+                            binding.root.snackBar(msg = "It successfully added to your list")
                             favoriteDevice.icon = ResourcesCompat.getDrawable(
                                 resources,
                                 R.drawable.ic_round_star_24,
@@ -82,7 +97,20 @@ class DeviceDetailFragment : Fragment() {
                                 positiveButtonAction = { dialog ->
                                     deviceContent.isFavorite = !deviceContent.isFavorite
                                     binding.root.snackBar(msg = "It successfully removed from your list")
-                                    deviceDatabaseViewModel.deleteDevice(deviceContent = deviceContent)
+                                    deviceContent.apply {
+                                        val myDeviceContent = MyDeviceContent(
+                                            id,
+                                            os,
+                                            status,
+                                            price,
+                                            currency,
+                                            isFavorite,
+                                            imageUrl,
+                                            title,
+                                            description
+                                        )
+                                        deviceDatabaseViewModel.deleteDevice(myDeviceContent = myDeviceContent)
+                                    }
                                     favoriteDevice.icon = ResourcesCompat.getDrawable(
                                         resources,
                                         R.drawable.ic_round_star_outline_24,

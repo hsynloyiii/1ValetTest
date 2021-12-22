@@ -10,8 +10,8 @@ import com.bumptech.glide.Glide
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "deviceContent")
-data class DeviceContent(
+@Entity(tableName = "myDeviceContent")
+data class MyDeviceContent(
     val id: String,
     val os: String,
     val status: String,
@@ -23,13 +23,3 @@ data class DeviceContent(
     val title: String,
     val description: String
 ): Parcelable
-
-@BindingAdapter("imageFromUrl")
-fun AppCompatImageView.bindImage(url: String) = Glide
-    .with(this.context)
-    .load(url)
-    .into(this)
-
-@BindingAdapter("customPrice")
-fun AppCompatTextView.bindPriceWithSymbol(price: Int) =
-    "$price$".also { this.text = it }

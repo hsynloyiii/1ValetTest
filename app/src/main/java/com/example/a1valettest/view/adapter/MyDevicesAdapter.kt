@@ -12,17 +12,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewMyDevicesBinding
 import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.interfaces.OnClick
 import com.example.a1valettest.view.fragment.MyDevicesFragmentDirections
 
 class MyDevicesAdapter :
     RecyclerView.Adapter<MyDevicesAdapter.ViewHolder>(), OnClick.MyDeviceAdapter {
 
-    private val differCallBack = object : DiffUtil.ItemCallback<DeviceContent>() {
-        override fun areItemsTheSame(oldItem: DeviceContent, newItem: DeviceContent): Boolean =
+    private val differCallBack = object : DiffUtil.ItemCallback<MyDeviceContent>() {
+        override fun areItemsTheSame(oldItem: MyDeviceContent, newItem: MyDeviceContent): Boolean =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: DeviceContent, newItem: DeviceContent): Boolean =
+        override fun areContentsTheSame(
+            oldItem: MyDeviceContent,
+            newItem: MyDeviceContent
+        ): Boolean =
             oldItem == newItem
     }
 
@@ -42,7 +46,23 @@ class MyDevicesAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
-            deviceContent = differMyDeviceContent.currentList[position]
+
+            val myDeviceContent = differMyDeviceContent.currentList[position]
+
+            val deviceContentConverted =
+                DeviceContent(
+                    myDeviceContent.id,
+                    myDeviceContent.os,
+                    myDeviceContent.status,
+                    myDeviceContent.price,
+                    myDeviceContent.currency,
+                    myDeviceContent.isFavorite,
+                    myDeviceContent.imageUrl,
+                    myDeviceContent.title,
+                    myDeviceContent.description
+                )
+
+            deviceContent = deviceContentConverted
             onClick = this@MyDevicesAdapter
         }
     }

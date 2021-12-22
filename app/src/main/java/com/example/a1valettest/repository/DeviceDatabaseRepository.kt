@@ -2,6 +2,7 @@ package com.example.a1valettest.repository
 
 import androidx.room.withTransaction
 import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.database.DeviceDao
 import com.example.a1valettest.utils.database.DeviceDataBase
 import javax.inject.Inject
@@ -11,13 +12,17 @@ class DeviceDatabaseRepository @Inject constructor(
     private val deviceDao: DeviceDao
 ) {
 
-    suspend fun insertDevice(deviceContent: DeviceContent?) =
+    suspend fun insertToMyDevice(myDeviceContent: MyDeviceContent?) =
         deviceDataBase.withTransaction {
-            deviceDao.insertDevice(deviceContent = deviceContent)
+            deviceDao.insertToMyDevice(myDeviceContent = myDeviceContent)
         }
 
-    val getDevices = deviceDao.getAllDevices()
+    val getDevices = deviceDao.getAllMyDevices(isFavorite = true)
 
-    suspend fun deleteDevice(deviceContent: DeviceContent?) =
-        deviceDao.deleteDevice(deviceContent = deviceContent)
+    suspend fun deleteDevice(myDeviceContent: MyDeviceContent?) =
+        deviceDao.deleteDevice(myDeviceContent = myDeviceContent)
+
+    suspend fun updateDevice(deviceContent: DeviceContent?) =
+        deviceDao.updateDeviceContent(deviceContent = deviceContent)
+
 }

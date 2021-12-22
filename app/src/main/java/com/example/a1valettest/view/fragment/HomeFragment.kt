@@ -61,13 +61,13 @@ class HomeFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.getDeviceContent
+            homeViewModel.getAllDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collect {
-                    it.devices?.let { deviceContentList ->
-                        newDeviceContentList = deviceContentList.toMutableList()
+//                    it.devices?.let { deviceContentList ->
+                        newDeviceContentList = it.toMutableList()
                         homeAdapter.differDeviceContent.submitList(newDeviceContentList)
-                    }
+//                    }
                 }
         }
     }

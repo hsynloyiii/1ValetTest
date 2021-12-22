@@ -4,9 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.model.DeviceResponse
+import com.example.a1valettest.model.MyDeviceContent
 
-@Database(entities = [DeviceContent::class], version = 1, exportSchema = false)
+@Database(
+    entities = [DeviceContent::class,MyDeviceContent::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class DeviceDataBase : RoomDatabase() {
 
     abstract fun deviceDao(): DeviceDao
