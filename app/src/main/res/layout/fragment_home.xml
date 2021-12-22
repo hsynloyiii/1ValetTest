@@ -20,9 +20,7 @@
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbarFragmentHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/primary99"
+                    style="@style/Base.Widget.Material3.Toolbar"
                     app:layout_collapseMode="pin"
                     app:menu="@menu/home_toolbar_menu"
                     app:navigationIcon="@drawable/ic_round_menu_24"

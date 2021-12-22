@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <data>
+
+        <variable
+            name="deviceContent"
+            type="com.example.a1valettest.model.DeviceContent" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/primary99"
         tools:context=".view.fragment.DeviceDetailFragment">
 
-        <TextView
-            android:id="@+id/textViewTest"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/hello_blank_fragment"
-            android:textAlignment="center" />
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
-    </FrameLayout>
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbarFragmentDeviceDetail"
+                style="@style/Base.Widget.Material3.Toolbar"
+                app:menu="@menu/device_detail_toolbar_menu"
+                app:navigationIcon="@drawable/ic_round_back_24"
+                app:title="@{deviceContent.title}"
+                android:elevation="4dp"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

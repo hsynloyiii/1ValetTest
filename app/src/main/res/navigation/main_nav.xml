@@ -34,9 +34,9 @@
         android:label="fragment_device_detail"
         tools:layout="@layout/fragment_device_detail">
         <argument
-            android:name="deviceName"
-            android:defaultValue="DeviceName"
-            app:argType="string"
+            android:name="deviceContent"
+            android:defaultValue="@null"
+            app:argType="com.example.a1valettest.model.DeviceContent"
             app:nullable="true" />
         <action
             android:id="@+id/action_deviceDetailFragment_to_myDevicesFragment"

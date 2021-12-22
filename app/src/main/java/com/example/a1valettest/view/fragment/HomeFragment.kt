@@ -67,7 +67,6 @@ class HomeFragment : Fragment() {
                 it.devices?.let { deviceContentList ->
                     deviceContents.clear()
                     deviceContents.addAll(deviceContentList)
-                    homeAdapter.notifyDataSetChanged()
                 }
             }
         }

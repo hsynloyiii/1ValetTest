@@ -11,7 +11,7 @@ interface DeviceDao {
     fun getAllDevices(): Flow<List<DeviceContent>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDevice(deviceContent: DeviceContent)
+    suspend fun insertDevice(deviceContent: DeviceContent?)
 
     @Delete
     suspend fun deleteDevice(deviceContent: DeviceContent)

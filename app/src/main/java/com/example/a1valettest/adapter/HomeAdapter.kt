@@ -38,7 +38,7 @@ class HomeAdapter(private val deviceContentList: List<DeviceContent>) :
 
     override fun navigateToDetail(view: View, deviceContent: DeviceContent) {
         val action = HomeFragmentDirections
-            .actionHomeFragmentToDeviceDetailFragment(deviceName = deviceContent.title)
+            .actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent)
 
         findNavController(view).navigate(action)
     }

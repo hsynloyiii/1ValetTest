@@ -3,16 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/ic_round_search_24.xml" value="0.23981481481481481" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/activity_main.xml" value="0.275" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_device_detail.xml" value="0.275" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_my_devices.xml" value="0.275" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/item_recyclerview_home.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/menu/home_toolbar_menu.xml" value="0.275" />
+        <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/drawable/ic_round_back_24.xml" value="0.2169230769230769" />
+        <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/drawable/ic_round_star_24.xml" value="0.2169230769230769" />
+        <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/drawable/ic_round_star_outline_24.xml" value="0.2169230769230769" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/fragment_device_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/item_recyclerview_home.xml" value="0.25" />
+        <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/menu/device_detail_toolbar_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.20416666666666666" />
       </map>
     </option>

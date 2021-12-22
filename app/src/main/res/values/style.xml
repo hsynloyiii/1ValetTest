@@ -83,5 +83,11 @@
 <!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
     </style>
 
+    <!-- MaterialToolbar -->
+    <style name="Base.Widget.Material3.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/primary99</item>
+    </style>
 
 </resources>

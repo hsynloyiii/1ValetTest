@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/favoriteDevice"
+        android:contentDescription="@string/favorite"
+        android:icon="@drawable/ic_round_star_outline_24"
+        android:title="@string/favorite"
+        app:showAsAction="ifRoom" />
+
+</menu>
