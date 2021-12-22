@@ -69,9 +69,4 @@ class MyDevicesFragment : Fragment() {
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        getMyDevices()
-//    }
-
 }

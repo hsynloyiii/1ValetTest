@@ -70,8 +70,4 @@ class HomeAdapter :
         )
     }
 
-//    fun filterList(filteredList: List<DeviceContent>) {
-//        deviceContentList = filteredList
-//        notifyDataSetChanged()
-//    }
 }

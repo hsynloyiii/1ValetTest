@@ -18,7 +18,9 @@ import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -28,6 +30,8 @@ class HomeFragment : Fragment() {
     private lateinit var homeAdapter: HomeAdapter
 
     private val homeViewModel by viewModels<HomeViewModel>()
+
+    private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +65,8 @@ class HomeFragment : Fragment() {
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collect {
                     it.devices?.let { deviceContentList ->
-                        homeAdapter.differDeviceContent.submitList(deviceContentList)
+                        newDeviceContentList = deviceContentList.toMutableList()
+                        homeAdapter.differDeviceContent.submitList(newDeviceContentList)
                     }
                 }
         }
@@ -99,11 +104,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun filterDeviceContentList(text: String) {
-        val newList = arrayListOf<DeviceContent>()
-//        deviceContents.forEach {
-//            if (it.title.lowercase(Locale.getDefault()).contains(text))
-//                newList.add(it)
-//        }
-//        homeAdapter.filterList(filteredList = newList)
+        val newList = mutableListOf<DeviceContent>()
+        newDeviceContentList.forEach {
+            if (it.title.lowercase(Locale.getDefault()).contains(text))
+                newList.add(it)
+        }
+//        val newList = homeAdapter.differDeviceContent.currentList.filter { it.title == text }
+        homeAdapter.differDeviceContent.submitList(newList)
     }
 }
