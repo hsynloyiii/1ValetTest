@@ -6,7 +6,17 @@ import com.example.a1valettest.model.DeviceContent
 interface OnClick {
 
     interface HomeAdapter {
-        fun navigateToDetail(view: View, deviceContent: DeviceContent)
+        fun navigateToDetail(
+            view: View,
+            deviceContent: DeviceContent
+        )
+    }
+
+    interface MyDeviceAdapter {
+        fun navigateToDetail(
+            view: View,
+            deviceContent: DeviceContent
+        )
     }
 
 }

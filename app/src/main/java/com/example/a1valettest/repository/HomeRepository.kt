@@ -12,7 +12,7 @@ class HomeRepository @Inject constructor(
     @MainDispatchers private val mainDispatchers: CoroutineDispatcher
 ) {
 
-    // We guess that we are fetching from internet so we follow the rest with multi-threading
+    // We guess that we are fetching from internet so we follow the rest with coroutine and flow
     suspend fun fetchDeviceContent(): DeviceResponse {
         val devices = withContext(mainDispatchers) {
             buildList {

@@ -1,4 +1,4 @@
-package com.example.a1valettest.adapter
+package com.example.a1valettest.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewHomeBinding
@@ -19,7 +21,7 @@ class HomeAdapter(private val deviceContentList: List<DeviceContent>) :
     inner class ViewHolder(val binding: ItemRecyclerviewHomeBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapter.ViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
@@ -29,17 +31,34 @@ class HomeAdapter(private val deviceContentList: List<DeviceContent>) :
             )
         )
 
-    override fun onBindViewHolder(holder: HomeAdapter.ViewHolder, position: Int) {
-        holder.binding.deviceContent = deviceContentList[position]
-        holder.binding.onClick = this
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.binding.apply {
+            deviceContent = deviceContentList[position]
+            onClick = this@HomeAdapter
+        }
     }
 
     override fun getItemCount(): Int = deviceContentList.size
 
-    override fun navigateToDetail(view: View, deviceContent: DeviceContent) {
+    override fun navigateToDetail(
+        view: View,
+        deviceContent: DeviceContent
+    ) {
         val action = HomeFragmentDirections
             .actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent)
 
-        findNavController(view).navigate(action)
+        findNavController(view).navigate(
+            action,
+            navOptions {
+                anim {
+                    enter = R.anim.slide_in_right
+                    exit = R.anim.scale_out
+                    popEnter = R.anim.scale_in
+                    popExit = R.anim.slide_out_right
+                }
+            }
+        )
     }
+
+
 }

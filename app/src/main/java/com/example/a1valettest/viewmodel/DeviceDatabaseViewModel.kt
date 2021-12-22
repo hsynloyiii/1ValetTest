@@ -1,6 +1,7 @@
 package com.example.a1valettest.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.repository.DeviceDatabaseRepository
@@ -20,5 +21,9 @@ class DeviceDatabaseViewModel @Inject constructor(
         deviceDatabaseRepository.insertDevice(deviceContent = deviceContent)
     }
 
-    val getDevices = deviceDatabaseRepository.getDevices
+    val getDevices = deviceDatabaseRepository.getDevices.asLiveData(ioDispatchers)
+
+    fun deleteDevice(deviceContent: DeviceContent?) = viewModelScope.launch(ioDispatchers) {
+        deviceDatabaseRepository.deleteDevice(deviceContent = deviceContent)
+    }
 }

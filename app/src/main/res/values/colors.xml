@@ -17,5 +17,9 @@
 
     <color name="secondary">#5D5C71</color>
 
+    <color name="red">#FF1100</color>
+    <color name="redRipple">#FFD1CE</color>
+
     <color name="gray">#8d8d8d</color>
+    <color name="grayRipple">#E6E6E6</color>
 </resources>

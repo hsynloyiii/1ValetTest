@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="deviceContent"
             type="com.example.a1valettest.model.DeviceContent" />
@@ -13,7 +12,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary99"
+        android:background="@color/white"
         tools:context=".view.fragment.DeviceDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -24,13 +23,30 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbarFragmentDeviceDetail"
                 style="@style/Base.Widget.Material3.Toolbar"
+                android:elevation="4dp"
+                android:transitionName="device_name"
                 app:menu="@menu/device_detail_toolbar_menu"
                 app:navigationIcon="@drawable/ic_round_back_24"
-                app:title="@{deviceContent.title}"
-                android:elevation="4dp"/>
+                app:title="@{deviceContent.title}" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewDevice"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="8dp"
+                android:transitionName="device_image"
+                app:imageFromUrl="@{deviceContent.imageUrl}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

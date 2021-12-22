@@ -90,4 +90,57 @@
         <item name="android:background">@color/primary99</item>
     </style>
 
+
+    <!-- Material AlertDialog -->
+    <style name="Base.Widget.Material3.MaterialAlertDialog" parent="MaterialAlertDialog.Material3">
+        <item name="android:background">@color/white</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.MaterialAlertDialog.Material3
+        </item>
+        <item name="materialAlertDialogTitleTextStyle">@style/Base.MaterialAlertDialog.Material3.Title.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/Base.MaterialAlertDialog.Material3.Body.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Base.MaterialAlertDialog.Material3.PositiveButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Base.MaterialAlertDialog.Material3.NegativeButton</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialAlertDialog.Material3" parent="">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="Base.MaterialAlertDialog.Material3.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="Base.MaterialAlertDialog.Material3.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Base.MaterialAlertDialog.Material3.PositiveButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="rippleColor">@color/redRipple</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="Base.MaterialAlertDialog.Material3.NegativeButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="rippleColor">@color/grayRipple</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
 </resources>

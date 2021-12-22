@@ -14,6 +14,6 @@ interface DeviceDao {
     suspend fun insertDevice(deviceContent: DeviceContent?)
 
     @Delete
-    suspend fun deleteDevice(deviceContent: DeviceContent)
+    suspend fun deleteDevice(deviceContent: DeviceContent?)
 
 }

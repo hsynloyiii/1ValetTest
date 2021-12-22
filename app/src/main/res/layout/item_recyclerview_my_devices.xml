@@ -10,8 +10,7 @@
 
         <variable
             name="onClick"
-            type="com.example.a1valettest.utils.interfaces.OnClick.HomeAdapter" />
-
+            type="com.example.a1valettest.utils.interfaces.OnClick.MyDeviceAdapter" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

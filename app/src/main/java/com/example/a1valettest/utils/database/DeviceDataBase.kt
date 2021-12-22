@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.a1valettest.model.DeviceContent
 
-@Database(entities = [DeviceContent::class], version = 1)
+@Database(entities = [DeviceContent::class], version = 1, exportSchema = false)
 abstract class DeviceDataBase : RoomDatabase() {
 
     abstract fun deviceDao(): DeviceDao

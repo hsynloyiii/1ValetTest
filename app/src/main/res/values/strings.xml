@@ -11,4 +11,6 @@
 
     <string name="generic_price">Price is $</string>
     <string name="favorite">favorite</string>
+    <string name="emptyMyDeviceListError">You don\'t have any favorite device yet</string>
+
 </resources>

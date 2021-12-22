@@ -3,7 +3,6 @@ package com.example.a1valettest.view.fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
@@ -11,13 +10,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentDeviceDetailBinding
 import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.utils.alert
+import com.example.a1valettest.utils.snackBar
 import com.example.a1valettest.utils.toast
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class DeviceDetailFragment : Fragment() {
@@ -45,8 +46,6 @@ class DeviceDetailFragment : Fragment() {
 
         binding.deviceContent = deviceContent
 
-        deviceContent.isFavorite = false
-
         return binding.root
     }
 
@@ -59,30 +58,39 @@ class DeviceDetailFragment : Fragment() {
         binding.toolbarFragmentDeviceDetail.apply {
 
             setNavigationOnClickListener {
-                val action = DeviceDetailFragmentDirections
-                    .actionDeviceDetailFragmentToHomeFragment()
-                findNavController().navigate(action)
+                findNavController().popBackStack()
             }
 
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.favoriteDevice -> {
-                        deviceContent.isFavorite = !deviceContent.isFavorite
-                        menu.findItem(R.id.favoriteDevice).icon =
-                            if (deviceContent.isFavorite)
-                                ResourcesCompat.getDrawable(
-                                    resources,
-                                    R.drawable.ic_round_star_24,
-                                    null
-                                )
-                            else
-                                ResourcesCompat.getDrawable(
-                                    resources,
-                                    R.drawable.ic_round_star_outline_24,
-                                    null
-                                )
-
-//                        deviceDatabaseViewModel.insertDevice(deviceContent = deviceContent)
+                        val favoriteDevice = menu.findItem(R.id.favoriteDevice)
+                        if (!deviceContent.isFavorite) {
+                            deviceContent.isFavorite = !deviceContent.isFavorite
+                            favoriteDevice.icon = ResourcesCompat.getDrawable(
+                                resources,
+                                R.drawable.ic_round_star_24,
+                                null
+                            )
+                            deviceDatabaseViewModel.insertDevice(deviceContent = deviceContent)
+                        } else {
+                            context?.alert(
+                                title = "Are you sure ?",
+                                message = "this action will remove the current device from your favorite devices",
+                                positiveButtonText = "Remove",
+                                positiveButtonAction = { dialog ->
+                                    deviceContent.isFavorite = !deviceContent.isFavorite
+                                    binding.root.snackBar(msg = "It successfully removed from your list")
+                                    deviceDatabaseViewModel.deleteDevice(deviceContent = deviceContent)
+                                    favoriteDevice.icon = ResourcesCompat.getDrawable(
+                                        resources,
+                                        R.drawable.ic_round_star_outline_24,
+                                        null
+                                    )
+                                    dialog.cancel()
+                                }
+                            )
+                        }
                         true
                     }
                     else -> false
@@ -98,6 +106,7 @@ class DeviceDetailFragment : Fragment() {
                         R.drawable.ic_round_star_outline_24,
                         null
                     )
+
         }
     }
 

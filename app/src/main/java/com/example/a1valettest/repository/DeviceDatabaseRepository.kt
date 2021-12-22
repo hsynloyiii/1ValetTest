@@ -12,4 +12,7 @@ class DeviceDatabaseRepository @Inject constructor(
         deviceDao.insertDevice(deviceContent = deviceContent)
 
     val getDevices = deviceDao.getAllDevices()
+
+    suspend fun deleteDevice(deviceContent: DeviceContent?) =
+        deviceDao.deleteDevice(deviceContent = deviceContent)
 }

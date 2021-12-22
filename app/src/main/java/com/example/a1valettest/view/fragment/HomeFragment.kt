@@ -12,7 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.a1valettest.R
-import com.example.a1valettest.adapter.HomeAdapter
+import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.viewmodel.HomeViewModel
@@ -41,8 +41,6 @@ class HomeFragment : Fragment() {
             false
         )
 
-        enterTransition = MaterialFadeThrough()
-
         return binding.root
     }
 
@@ -69,7 +67,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun handleToolbar() {
