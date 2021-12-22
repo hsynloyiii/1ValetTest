@@ -22,12 +22,13 @@ class DeviceDatabaseViewModel @Inject constructor(
     @IODispatchers private val ioDispatchers: CoroutineDispatcher
 ) : ViewModel() {
 
-    fun insertToMyDevice(myDeviceContent: MyDeviceContent?) = viewModelScope.launch {
-        deviceDatabaseRepository.insertToMyDevice(myDeviceContent = myDeviceContent)
-    }
-
     fun updateDeviceContent(deviceContent: DeviceContent?) = viewModelScope.launch(ioDispatchers) {
         deviceDatabaseRepository.updateDevice(deviceContent = deviceContent)
+    }
+
+    // MyDevices
+    fun insertToMyDevice(myDeviceContent: MyDeviceContent?) = viewModelScope.launch {
+        deviceDatabaseRepository.insertToMyDevice(myDeviceContent = myDeviceContent)
     }
 
     val getDevices = deviceDatabaseRepository.getDevices.asLiveData(ioDispatchers)

@@ -13,6 +13,7 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewMyDevicesBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
+import com.example.a1valettest.utils.convertToDeviceContent
 import com.example.a1valettest.utils.interfaces.OnClick
 import com.example.a1valettest.view.fragment.MyDevicesFragmentDirections
 
@@ -49,20 +50,7 @@ class MyDevicesAdapter :
 
             val myDeviceContent = differMyDeviceContent.currentList[position]
 
-            val deviceContentConverted =
-                DeviceContent(
-                    myDeviceContent.id,
-                    myDeviceContent.os,
-                    myDeviceContent.status,
-                    myDeviceContent.price,
-                    myDeviceContent.currency,
-                    myDeviceContent.isFavorite,
-                    myDeviceContent.imageUrl,
-                    myDeviceContent.title,
-                    myDeviceContent.description
-                )
-
-            deviceContent = deviceContentConverted
+            deviceContent = myDeviceContent.convertToDeviceContent()
             onClick = this@MyDevicesAdapter
         }
     }

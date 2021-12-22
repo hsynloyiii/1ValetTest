@@ -12,17 +12,21 @@ class DeviceDatabaseRepository @Inject constructor(
     private val deviceDao: DeviceDao
 ) {
 
+    // Update current favorite state of specific item in AllDevices
+    suspend fun updateDevice(deviceContent: DeviceContent?) =
+        deviceDao.updateDeviceContent(deviceContent = deviceContent)
+
+
+    // MyDevices
+    val getDevices = deviceDao.getAllMyDevices(isFavorite = true)
+
     suspend fun insertToMyDevice(myDeviceContent: MyDeviceContent?) =
         deviceDataBase.withTransaction {
             deviceDao.insertToMyDevice(myDeviceContent = myDeviceContent)
         }
 
-    val getDevices = deviceDao.getAllMyDevices(isFavorite = true)
-
     suspend fun deleteDevice(myDeviceContent: MyDeviceContent?) =
         deviceDao.deleteDevice(myDeviceContent = myDeviceContent)
 
-    suspend fun updateDevice(deviceContent: DeviceContent?) =
-        deviceDao.updateDeviceContent(deviceContent = deviceContent)
 
 }

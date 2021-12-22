@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 @Dao
 interface DeviceDao {
 
+    // AllDevices
     @Query("SELECT * FROM deviceContent")
     fun getAllDevices(): Flow<List<DeviceContent>>
 
@@ -19,6 +20,8 @@ interface DeviceDao {
     @Update
     suspend fun updateDeviceContent(deviceContent: DeviceContent?)
 
+
+    // MyDevices
     @Query("SELECT * FROM myDeviceContent WHERE isFavorite = :isFavorite")
     fun getAllMyDevices(isFavorite: Boolean): Flow<List<MyDeviceContent>>
 

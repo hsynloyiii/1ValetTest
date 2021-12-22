@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.a1valettest.R
+import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.model.MyDeviceContent
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -38,3 +40,28 @@ fun Context.alert(
         }
         .setCancelable(false)
         .show()
+
+
+fun DeviceContent.convertToMyDeviceContent() = MyDeviceContent(
+    this.id,
+    this.os,
+    this.status,
+    this.price,
+    this.currency,
+    this.isFavorite,
+    this.imageUrl,
+    this.title,
+    this.description
+)
+
+fun MyDeviceContent.convertToDeviceContent() = DeviceContent(
+    this.id,
+    this.os,
+    this.status,
+    this.price,
+    this.currency,
+    this.isFavorite,
+    this.imageUrl,
+    this.title,
+    this.description
+)

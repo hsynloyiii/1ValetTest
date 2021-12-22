@@ -13,6 +13,7 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
+import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +35,7 @@ class MyDevicesFragment : Fragment() {
             false
         )
 
-        getMyDevices()
+        enterTransition = MaterialFadeThrough()
 
         return binding.root
     }
@@ -42,6 +43,7 @@ class MyDevicesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
+        getMyDevices()
     }
 
     private fun getMyDevices() {

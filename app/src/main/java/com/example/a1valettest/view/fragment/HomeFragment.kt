@@ -17,6 +17,7 @@ import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.viewmodel.HomeViewModel
+import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -44,6 +45,9 @@ class HomeFragment : Fragment() {
             false
         )
 
+//        enterTransition = MaterialFadeThrough()
+//        exitTransition = MaterialFadeThrough()
+
         return binding.root
     }
 
@@ -64,10 +68,8 @@ class HomeFragment : Fragment() {
             homeViewModel.getAllDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collect {
-//                    it.devices?.let { deviceContentList ->
-                        newDeviceContentList = it.toMutableList()
-                        homeAdapter.differDeviceContent.submitList(newDeviceContentList)
-//                    }
+                    newDeviceContentList = it.toMutableList()
+                    homeAdapter.differDeviceContent.submitList(newDeviceContentList)
                 }
         }
     }
