@@ -66,14 +66,14 @@ class DeviceDetailFragment : Fragment() {
                     R.id.favoriteDevice -> {
                         val favoriteDevice = menu.findItem(R.id.favoriteDevice)
                         if (!deviceContent.isFavorite) {
-                            deviceContent.isFavorite = !deviceContent.isFavorite
+                            deviceContent.isFavorite = true
 
 
                             deviceDatabaseViewModel.insertToMyDevice(
                                 myDeviceContent = deviceContent.convertToMyDeviceContent()
                             )
 
-                            deviceDatabaseViewModel.updateDeviceContent(deviceContent = deviceContent)
+                            updateDeviceContent(deviceContent = deviceContent)
 
                             binding.root.snackBar(msg = "It successfully added to your list")
 
@@ -89,9 +89,11 @@ class DeviceDetailFragment : Fragment() {
                                 positiveButtonText = "Remove",
                                 positiveButtonAction = { dialog ->
 
-                                    deviceContent.isFavorite = !deviceContent.isFavorite
+                                    deviceContent.isFavorite = false
 
                                     binding.root.snackBar(msg = "It successfully removed from your list")
+
+                                    updateDeviceContent(deviceContent = deviceContent)
 
                                     deviceDatabaseViewModel.deleteDevice(
                                         myDeviceContent = deviceContent.convertToMyDeviceContent()
@@ -126,6 +128,8 @@ class DeviceDetailFragment : Fragment() {
         }
     }
 
+    private fun updateDeviceContent(deviceContent: DeviceContent) =
+        deviceDatabaseViewModel.updateDeviceContent(deviceContent = deviceContent)
 
 }
 

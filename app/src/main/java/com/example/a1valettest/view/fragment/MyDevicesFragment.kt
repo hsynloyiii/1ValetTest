@@ -1,6 +1,7 @@
 package com.example.a1valettest.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MyDevicesFragment : Fragment() {
@@ -53,13 +59,18 @@ class MyDevicesFragment : Fragment() {
             adapter = myDevicesAdapter
         }
 
-        deviceDatabaseViewModel.getDevices.observe(viewLifecycleOwner) {
-            myDevicesAdapter.differMyDeviceContent.apply {
-                submitList(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            deviceDatabaseViewModel.getDevices
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect {
+                    myDevicesAdapter.differMyDeviceContent.apply {
+                        submitList(it)
 
-                if (currentList.isNotEmpty())
-                    binding.textEmptyMyDeviceList.visibility = GONE
-            }
+                        if (currentList.isNotEmpty())
+                            binding.textEmptyMyDeviceList.visibility = GONE
+                    }
+                    Log.i("TestMyDeviceFragment", it.toString())
+                }
         }
 
     }

@@ -31,7 +31,12 @@ class DeviceDatabaseViewModel @Inject constructor(
         deviceDatabaseRepository.insertToMyDevice(myDeviceContent = myDeviceContent)
     }
 
-    val getDevices = deviceDatabaseRepository.getDevices.asLiveData(ioDispatchers)
+    val getDevices = deviceDatabaseRepository.getDevices
+        .shareIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            replay = 1
+        )
 
     fun deleteDevice(myDeviceContent: MyDeviceContent?) = viewModelScope.launch(ioDispatchers) {
         deviceDatabaseRepository.deleteDevice(myDeviceContent = myDeviceContent)
