@@ -5,20 +5,46 @@
     <!-- Navigation View-->
     <style name="Base.Widget.Material3.NavigationView" parent="Widget.Material3.NavigationView">
         <!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NavigationView</item>-->
+        <item name="menu">@menu/navigation_drawer_menu</item>
+        <item name="android:background">@color/primary99</item>
         <item name="itemIconTint">@color/navigation_item_color</item>
         <item name="itemTextColor">@color/navigation_item_color</item>
-        <item name="itemShapeFillColor">@color/navigation_item_background_color</item>
+        <item name="drawerLayoutCornerSize">16dp</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:maxWidth">320dp</item>
+        <item name="itemShapeAppearanceOverlay">
+            @style/Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
+        </item>
+        <item name="itemShapeAppearance">
+            @style/Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
+        </item>
+        <item name="itemBackground">@drawable/navigation_drawer_background</item>
+        <item name="itemShapeInsetStart">0dp</item>
+        <item name="itemVerticalPadding">12dp</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="itemIconPadding">22dp</item>
+        <item name="itemIconSize">26dp</item>
+        <item name="subheaderColor">@color/gray</item>
+    </style>
+
+    <style name="Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator" parent="">
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    <style name="NavigationItemTransparentRipple">
+        <item name="android:colorControlHighlight">@android:color/transparent</item>
     </style>
 
     <!--    <style name="ThemeOverlay.App.NavigationView" parent="">-->
-    <!--        <item name="colorSecondaryContainer">@color/shrine_theme_light_secondaryContainer</item>-->
-    <!--        <item name="colorOnSecondaryContainer">@color/shrine_theme_light_onSecondaryContainer</item>-->
-    <!--        <item name="colorTertiaryContainer">@color/shrine_theme_light_tertiaryContainer</item>-->
-    <!--        <item name="colorOnTertiaryContainer">@color/shrine_theme_light_onTertiaryContainer</item>-->
-    <!--        <item name="colorSurface">@color/shrine_theme_light_surface</item>-->
-    <!--        <item name="colorOnSurface">@color/shrine_theme_light_onSurface</item>-->
-    <!--        <item name="colorOnSurfaceVariant">@color/shrine_theme_light_onSurfaceVariant</item>-->
-    <!--        <item name="colorOutline">@color/shrine_theme_light_outline</item>-->
+    <!--        <item name="colorSecondaryContainer">@color/secondary</item>-->
+    <!--        <item name="colorOnSecondaryContainer">@color/secondary</item>-->
+    <!--        <item name="colorTertiaryContainer">@color/secondary</item>-->
+    <!--        <item name="colorOnTertiaryContainer">@color/secondary</item>-->
+    <!--        <item name="colorSurface">@color/secondary</item>-->
+    <!--        <item name="colorOnSurface">@color/secondary</item>-->
+    <!--        <item name="colorOnSurfaceVariant">@color/secondary</item>-->
+    <!--        <item name="colorOutline">@color/secondary</item>-->
     <!--    </style>-->
 
 
@@ -28,7 +54,8 @@
         <item name="android:stateListAnimator" tools:ignore="NewApi">
             @animator/m3_card_state_list_anim
         </item>
-        <item name="shapeAppearanceOverlay">@style/Base.ShapeAppearanceOverlay.Material3.CardView</item>
+        <item name="shapeAppearanceOverlay">@style/Base.ShapeAppearanceOverlay.Material3.CardView
+        </item>
         <item name="cardElevation">@dimen/m3_sys_elevation_level2</item>
         <item name="cardForegroundColor">@null</item>
         <item name="cardBackgroundColor">@color/white</item>
@@ -78,9 +105,9 @@
     <!-- AppBarLayout -->
     <style name="Base.Widget.Material3.AppBarLayout" parent="Widget.Material3.AppBarLayout">
         <item name="liftOnScroll">true</item>
-<!--        <item name="elevation">8dp</item>-->
-<!--        <item name="android:elevation">8dp</item>-->
-<!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
+        <!--        <item name="elevation">8dp</item>-->
+        <!--        <item name="android:elevation">8dp</item>-->
+        <!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
     </style>
 
     <!-- MaterialToolbar -->
@@ -97,10 +124,18 @@
         <item name="shapeAppearanceOverlay">
             @style/ShapeAppearanceOverlay.MaterialAlertDialog.Material3
         </item>
-        <item name="materialAlertDialogTitleTextStyle">@style/Base.MaterialAlertDialog.Material3.Title.Text</item>
-        <item name="materialAlertDialogBodyTextStyle">@style/Base.MaterialAlertDialog.Material3.Body.Text</item>
-        <item name="buttonBarPositiveButtonStyle">@style/Base.MaterialAlertDialog.Material3.PositiveButton</item>
-        <item name="buttonBarNegativeButtonStyle">@style/Base.MaterialAlertDialog.Material3.NegativeButton</item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/Base.MaterialAlertDialog.Material3.Title.Text
+        </item>
+        <item name="materialAlertDialogBodyTextStyle">
+            @style/Base.MaterialAlertDialog.Material3.Body.Text
+        </item>
+        <item name="buttonBarPositiveButtonStyle">
+            @style/Base.MaterialAlertDialog.Material3.PositiveButton
+        </item>
+        <item name="buttonBarNegativeButtonStyle">
+            @style/Base.MaterialAlertDialog.Material3.NegativeButton
+        </item>
     </style>
 
     <style name="ShapeAppearanceOverlay.MaterialAlertDialog.Material3" parent="">

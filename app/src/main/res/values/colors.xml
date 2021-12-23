@@ -22,4 +22,5 @@
 
     <color name="gray">#8d8d8d</color>
     <color name="grayRipple">#E6E6E6</color>
+    <color name="grayStatusBar">#F6F6F6</color>
 </resources>

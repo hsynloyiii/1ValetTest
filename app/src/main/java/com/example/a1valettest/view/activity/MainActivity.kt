@@ -10,6 +10,12 @@ import com.example.a1valettest.databinding.ActivityMainBinding
 import androidx.customview.widget.ViewDragHelper
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.reflect.Field
+import android.view.WindowManager
+
+import android.os.Build
+import android.view.Window
+import androidx.core.view.WindowCompat
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,41 +24,24 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        window.setFlags(
+//            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+//            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+//        )
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setContentView(binding.root)
 
         binding.lifecycleOwner = this
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
         binding.mainNavigationView.apply {
             setupWithNavController(navController = navHostFragment.navController)
 
             setCheckedItem(R.id.homeFragment)
         }
-
-
-
-
-        val mDragger: Field = binding.mainDrawerLayout.javaClass.getDeclaredField(
-            "mRightDragger"
-        ) //mRightDragger for right obviously
-
-        mDragger.isAccessible = true
-        val draggerObj = mDragger
-            .get(binding.mainDrawerLayout)
-
-        val mEdgeSize: Field = draggerObj.javaClass.getDeclaredField(
-            "mEdgeSize"
-        )
-        mEdgeSize.isAccessible = true
-        val edge: Int = mEdgeSize.getInt(draggerObj)
-
-        mEdgeSize.setInt(
-            draggerObj,
-            edge * 5
-        ) //optimal value as for me, you may set any constant in dp
-
 
     }
 }

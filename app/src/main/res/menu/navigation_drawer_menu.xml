@@ -6,11 +6,10 @@
         android:title="@string/main">
 
         <menu>
-
             <item
                 android:id="@+id/homeFragment"
                 android:checkable="true"
-                android:icon="@drawable/ic_round_home_24"
+                android:icon="@drawable/ic_outline_home_24"
                 android:title="@string/home" />
             <item
                 android:id="@+id/myDevicesFragment"
@@ -20,7 +19,7 @@
             <item
                 android:id="@+id/settingFragment"
                 android:checkable="true"
-                android:icon="@drawable/ic_round_settings_24"
+                android:icon="@drawable/ic_outline_settings_24"
                 android:title="@string/setting" />
 
         </menu>
