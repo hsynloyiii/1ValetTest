@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
@@ -18,6 +21,7 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
+import com.example.a1valettest.utils.toast
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import com.google.android.material.transition.MaterialFadeThrough
@@ -59,31 +63,28 @@ class MyDevicesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        viewLifecycleOwner.lifecycleScope.launch {
-            delay(300)
-            getMyDevices()
-        }
+        getMyDevices()
     }
 
-    private suspend fun getMyDevices() {
+    private fun getMyDevices() {
         binding.recyclerViewFragmentMyDevices.apply {
             adapter = myDevicesAdapter
         }
 
-        deviceDatabaseViewModel.getDevices
-            .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .collect {
-                newMyDeviceContentList = it.toMutableList()
-                myDevicesAdapter.differMyDeviceContent.apply {
-                    submitList(newMyDeviceContentList)
+        viewLifecycleOwner.lifecycleScope.launch {
+            deviceDatabaseViewModel.getDevices
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect {
+                    newMyDeviceContentList = it.toMutableList()
+                    myDevicesAdapter.differMyDeviceContent.apply {
+                        submitList(newMyDeviceContentList)
 
-                    if (currentList.isNotEmpty())
-                        binding.textEmptyMyDeviceList.visibility = GONE
+                        if (newMyDeviceContentList.isEmpty())
+                            binding.textEmptyMyDeviceList.visibility = VISIBLE
+                    }
+                    Log.i("TestMyDeviceFragment", it.toString())
                 }
-                Log.i("TestMyDeviceFragment", it.toString())
-            }
-
-
+        }
     }
 
 
@@ -96,11 +97,36 @@ class MyDevicesFragment : Fragment() {
 
             val menuItem = menu.findItem(R.id.search)
             val searchView = menuItem.actionView as SearchView
+
+
+
             searchView.apply {
                 queryHint = "Search devices"
+
+                binding.apply {
+                    setOnSearchClickListener {
+                        appBarLayoutFragmentMyDevices.setExpanded(false, true)
+
+                        val anim = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                        anim.setAnimationListener(null)
+                        menu.forEach {
+                            it.actionView.startAnimation(anim)
+                        }
+                    }
+
+                    setOnQueryTextFocusChangeListener { v, hasFocus ->
+                        val fullyExpanded: Boolean =
+                            (appBarLayoutFragmentMyDevices.height - appBarLayoutFragmentMyDevices.bottom) == 0
+                        if (!hasFocus) {
+                            if (fullyExpanded) {
+                                appBarLayoutFragmentMyDevices.setExpanded(true, true)
+                            }
+                        }
+                    }
+                }
+
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean = false
-
                     override fun onQueryTextChange(newText: String?): Boolean {
                         filterDeviceContentList(text = newText!!)
                         return false

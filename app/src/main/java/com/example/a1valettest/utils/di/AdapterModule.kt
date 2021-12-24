@@ -1,4 +1,4 @@
-package com.example.a1valettest.utils.module
+package com.example.a1valettest.utils.di
 
 import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.view.adapter.MyDevicesAdapter

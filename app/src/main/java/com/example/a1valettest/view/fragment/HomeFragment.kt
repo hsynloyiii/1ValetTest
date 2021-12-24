@@ -18,13 +18,17 @@ import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.viewmodel.HomeViewModel
-import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
+import android.annotation.SuppressLint
+import android.view.animation.AnimationUtils
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.forEach
+import com.example.a1valettest.utils.toast
+import kotlinx.coroutines.flow.collect
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -59,25 +63,27 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        viewLifecycleOwner.lifecycleScope.launch {
-            delay(300)
-            getDevices()
-        }
+        getDevices()
+
     }
 
-    private suspend fun getDevices() {
+    private fun getDevices() {
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter
         }
 
-        homeViewModel.getAllDevices
-            .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .collect {
-                newDeviceContentList = it.toMutableList()
-                homeAdapter.differDeviceContent.submitList(newDeviceContentList)
-            }
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            homeViewModel.getAllDevices
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect {
+                    newDeviceContentList = it.toMutableList()
+                    homeAdapter.differDeviceContent.submitList(newDeviceContentList)
+                }
+        }
     }
 
+    @SuppressLint("SoonBlockedPrivateApi")
     private fun handleToolbar() {
         binding.toolbarFragmentHome.apply {
             setNavigationOnClickListener {
@@ -86,8 +92,36 @@ class HomeFragment : Fragment() {
 
             val menuItem = menu.findItem(R.id.search)
             val searchView = menuItem.actionView as SearchView
+
             searchView.apply {
                 queryHint = "Search devices"
+
+                binding.apply {
+                    setOnSearchClickListener {
+                        appBarLayoutFragmentHome.setExpanded(false, true)
+                        //                        val toolbarLayoutParams =
+//                            binding.collapsing.layoutParams as AppBarLayout.LayoutParams
+//                        toolbarLayoutParams.scrollFlags =
+//                            AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
+//                        binding.collapsing.layoutParams = toolbarLayoutParams
+                        val anim = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                        anim.setAnimationListener(null)
+                        menu.forEach {
+                            it.actionView.startAnimation(anim)
+                        }
+                    }
+
+                    setOnQueryTextFocusChangeListener { v, hasFocus ->
+                        val fullyExpanded: Boolean =
+                            (appBarLayoutFragmentHome.height - appBarLayoutFragmentHome.bottom) == 0
+                        if (!hasFocus) {
+                            if (fullyExpanded) {
+                                appBarLayoutFragmentHome.setExpanded(true, true)
+                            }
+                        }
+                    }
+                }
+
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean = false
 

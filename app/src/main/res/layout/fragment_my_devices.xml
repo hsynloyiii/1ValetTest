@@ -10,6 +10,7 @@
         tools:context=".view.fragment.MyDevicesFragment">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayoutFragmentMyDevices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -38,7 +39,7 @@
             android:textColor="@color/gray"
             android:textSize="14sp"
             android:layout_gravity="center"
-            android:visibility="visible"
+            android:visibility="gone"
             android:text="@string/emptyMyDeviceListError"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/imageViewDevice" />
@@ -47,7 +48,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFragmentMyDevices"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />

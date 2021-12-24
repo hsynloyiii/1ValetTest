@@ -1,4 +1,4 @@
-package com.example.a1valettest.utils
+package com.example.a1valettest.utils.di
 
 import javax.inject.Qualifier
 

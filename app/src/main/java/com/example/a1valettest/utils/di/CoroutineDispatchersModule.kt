@@ -1,9 +1,5 @@
-package com.example.a1valettest.utils.module
+package com.example.a1valettest.utils.di
 
-import com.example.a1valettest.utils.DefaultDispatchers
-import com.example.a1valettest.utils.IODispatchers
-import com.example.a1valettest.utils.MainDispatchers
-import com.example.a1valettest.utils.MainImmediateDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

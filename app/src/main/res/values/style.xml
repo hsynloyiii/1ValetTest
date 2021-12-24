@@ -105,6 +105,7 @@
     <!-- AppBarLayout -->
     <style name="Base.Widget.Material3.AppBarLayout" parent="Widget.Material3.AppBarLayout">
         <item name="liftOnScroll">true</item>
+        <item name="android:background">@color/primary99</item>
         <!--        <item name="elevation">8dp</item>-->
         <!--        <item name="android:elevation">8dp</item>-->
         <!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
@@ -178,4 +179,15 @@
         <item name="android:layout_marginTop">0dp</item>
     </style>
 
+
+    <!-- SearchView Style -->
+    <style name="Base.Widget.SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:maxWidth">10000dp</item>
+        <item name="queryBackground">@color/primary99</item>
+        <item name="submitBackground">@color/primary99</item>
+        <item name="searchHintIcon">@null</item>
+    </style>
+    <style name="Custom.Widget.AppCompat.AutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textCursorDrawable">@drawable/search_cursor</item>
+    </style>
 </resources>

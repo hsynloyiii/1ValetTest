@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.21944444444444444" />
+        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/ic_round_menu_24.xml" value="0.21944444444444444" />
         <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/navigation_drawer_background.xml" value="0.21944444444444444" />
+        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/search_cursor.xml" value="0.21944444444444444" />
         <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/activity_main.xml" value="0.17685185185185184" />
         <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_device_detail.xml" value="0.2751433038040646" />
         <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_home.xml" value="0.8" />

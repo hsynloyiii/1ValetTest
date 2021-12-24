@@ -3,11 +3,10 @@ package com.example.a1valettest.repository
 import androidx.room.withTransaction
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.DeviceResponse
-import com.example.a1valettest.utils.MainDispatchers
+import com.example.a1valettest.utils.di.MainDispatchers
 import com.example.a1valettest.utils.database.DeviceDao
 import com.example.a1valettest.utils.database.DeviceDataBase
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

@@ -1,10 +1,10 @@
 package com.example.a1valettest
 
 import android.os.AsyncTask
-import com.example.a1valettest.utils.DefaultDispatchers
-import com.example.a1valettest.utils.IODispatchers
-import com.example.a1valettest.utils.MainDispatchers
-import com.example.a1valettest.utils.module.CoroutineDispatchersModule
+import com.example.a1valettest.utils.di.DefaultDispatchers
+import com.example.a1valettest.utils.di.IODispatchers
+import com.example.a1valettest.utils.di.MainDispatchers
+import com.example.a1valettest.utils.di.CoroutineDispatchersModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
