@@ -1,5 +1,7 @@
 package com.example.a1valettest.view.fragment
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,10 +25,10 @@ import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 import android.annotation.SuppressLint
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
-import com.example.a1valettest.utils.toast
 import kotlinx.coroutines.flow.collect
 
 
@@ -111,7 +113,7 @@ class HomeFragment : Fragment() {
                         }
                     }
 
-                    setOnQueryTextFocusChangeListener { v, hasFocus ->
+                    setOnQueryTextFocusChangeListener { _, hasFocus ->
                         val fullyExpanded: Boolean =
                             (appBarLayoutFragmentHome.height - appBarLayoutFragmentHome.bottom) == 0
                         if (!hasFocus) {
@@ -135,10 +137,28 @@ class HomeFragment : Fragment() {
     }
 
     private fun filterDeviceContentList(text: String) {
+
+        val bindingNoResult = binding.layoutSearchNoResult
+
         val newList = mutableListOf<DeviceContent>()
         newDeviceContentList.forEach {
             if (it.title.lowercase(Locale.getDefault()).contains(text))
                 newList.add(it)
+        }
+        bindingNoResult.linearNoResult.apply {
+            if (newList.isEmpty()) {
+                visibility = VISIBLE
+                ValueAnimator.ofFloat(0.92f, 1f).apply {
+                    duration = 300
+
+                    addUpdateListener {
+                        scaleX = it.animatedValue as Float
+                        scaleY = it.animatedValue as Float
+                    }
+                    start()
+                }
+            } else
+                visibility = GONE
         }
         homeAdapter.differDeviceContent.submitList(newList)
     }

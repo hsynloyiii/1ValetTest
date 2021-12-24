@@ -5,6 +5,7 @@ import com.example.a1valettest.model.DeviceContent
 
 interface OnClick {
 
+    // As we might add specific fun into specific Class , divide them into different interfaces
     interface HomeAdapter {
         fun navigateToDetail(
             view: View,

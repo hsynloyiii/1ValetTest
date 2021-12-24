@@ -44,6 +44,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/imageViewDevice" />
 
+        <include
+            android:id="@+id/layoutSearchNoResult"
+            layout="@layout/layout_search_no_result"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFragmentMyDevices"

@@ -3,8 +3,10 @@ package com.example.a1valettest.view.fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -78,11 +80,12 @@ class DeviceDetailFragment : Fragment() {
 
                             binding.root.snackBar(msg = "It successfully added to your list")
 
-                            favoriteDevice.icon = ResourcesCompat.getDrawable(
-                                resources,
-                                R.drawable.ic_round_star_24,
-                                null
+
+                            changeFavoriteIcon(
+                                item = favoriteDevice,
+                                id = R.drawable.ic_round_star_24
                             )
+
                         } else {
                             context?.alert(
                                 title = "Are you sure ?",
@@ -92,18 +95,17 @@ class DeviceDetailFragment : Fragment() {
 
                                     deviceContent.isFavorite = false
 
-                                    binding.root.snackBar(msg = "It successfully removed from your list")
-
                                     updateDeviceContent(deviceContent = deviceContent)
 
                                     deviceDatabaseViewModel.deleteDevice(
                                         myDeviceContent = deviceContent.convertToMyDeviceContent()
                                     )
 
-                                    favoriteDevice.icon = ResourcesCompat.getDrawable(
-                                        resources,
-                                        R.drawable.ic_round_star_outline_24,
-                                        null
+                                    binding.root.snackBar(msg = "It successfully removed from your list")
+
+                                    changeFavoriteIcon(
+                                        item = favoriteDevice,
+                                        id = R.drawable.ic_round_star_outline_24
                                     )
 
                                     dialog.cancel()
@@ -128,6 +130,13 @@ class DeviceDetailFragment : Fragment() {
 
         }
     }
+
+    private fun changeFavoriteIcon(item: MenuItem, @DrawableRes id: Int) =
+        ResourcesCompat.getDrawable(
+            resources,
+            id,
+            null
+        ).also { item.icon = it }
 
     private fun updateDeviceContent(deviceContent: DeviceContent) =
         deviceDatabaseViewModel.updateDeviceContent(deviceContent = deviceContent)

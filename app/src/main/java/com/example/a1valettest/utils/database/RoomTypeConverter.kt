@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.example.a1valettest.model.DeviceContent
 import org.json.JSONObject
 
+
 class RoomTypeConverter {
 
     @TypeConverter
@@ -18,6 +19,7 @@ class RoomTypeConverter {
             put("imageUrl", deviceContent.imageUrl)
             put("title", deviceContent.title)
             put("description", deviceContent.description)
+            put("company", deviceContent.company)
         }.toString()
 
     @TypeConverter
@@ -32,7 +34,8 @@ class RoomTypeConverter {
             isFavorite = json.getBoolean("isFavorite"),
             imageUrl = json.getString("imageUrl"),
             title = json.getString("title"),
-            description = json.getString("description")
+            description = json.getString("description"),
+            company = json.getString("company")
         )
     }
 

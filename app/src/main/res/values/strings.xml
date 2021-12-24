@@ -12,5 +12,9 @@
     <string name="generic_price">Price is $</string>
     <string name="favorite">favorite</string>
     <string name="emptyMyDeviceListError">You don\'t have any favorite device yet</string>
+    <string name="noResult">No results</string>
+    <string name="price">Price</string>
+    <string name="status">Status</string>
+    <string name="os">OS</string>
 
 </resources>

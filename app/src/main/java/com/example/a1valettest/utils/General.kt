@@ -53,7 +53,8 @@ fun DeviceContent.convertToMyDeviceContent() = MyDeviceContent(
     this.isFavorite,
     this.imageUrl,
     this.title,
-    this.description
+    this.description,
+    this.company
 )
 
 fun MyDeviceContent.convertToDeviceContent() = DeviceContent(
@@ -65,7 +66,8 @@ fun MyDeviceContent.convertToDeviceContent() = DeviceContent(
     this.isFavorite,
     this.imageUrl,
     this.title,
-    this.description
+    this.description,
+    this.company
 )
 
 
