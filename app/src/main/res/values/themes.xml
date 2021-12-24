@@ -18,7 +18,7 @@
 <!--        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>-->
 
 
-        <!-- Customize your theme here. -->
+        <!-- Customize our theme here. -->
         <item name="navigationViewStyle">@style/Base.Widget.Material3.NavigationView</item>
         <item name="cardViewStyle">@style/Base.Widget.Material3.CardView</item>
         <item name="collapsingToolbarLayoutStyle">@style/Base.Widget.Material3.CollapsingToolbar</item>

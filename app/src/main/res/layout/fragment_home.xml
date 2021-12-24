@@ -6,7 +6,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary99"
+        android:background="@color/white"
         tools:context=".view.fragment.HomeFragment">
 
         <com.google.android.material.appbar.AppBarLayout

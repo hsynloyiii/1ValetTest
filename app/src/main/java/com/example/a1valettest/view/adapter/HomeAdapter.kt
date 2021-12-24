@@ -14,8 +14,9 @@ import com.example.a1valettest.databinding.ItemRecyclerviewHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.utils.interfaces.OnClick
 import com.example.a1valettest.view.fragment.HomeFragmentDirections
+import javax.inject.Inject
 
-class HomeAdapter :
+class HomeAdapter @Inject constructor():
     RecyclerView.Adapter<HomeAdapter.ViewHolder>(), OnClick.HomeAdapter {
 
     private val differCallBack = object : DiffUtil.ItemCallback<DeviceContent>() {

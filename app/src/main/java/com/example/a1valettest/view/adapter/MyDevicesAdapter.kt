@@ -16,8 +16,9 @@ import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.convertToDeviceContent
 import com.example.a1valettest.utils.interfaces.OnClick
 import com.example.a1valettest.view.fragment.MyDevicesFragmentDirections
+import javax.inject.Inject
 
-class MyDevicesAdapter :
+class MyDevicesAdapter @Inject constructor() :
     RecyclerView.Adapter<MyDevicesAdapter.ViewHolder>(), OnClick.MyDeviceAdapter {
 
     private val differCallBack = object : DiffUtil.ItemCallback<MyDeviceContent>() {

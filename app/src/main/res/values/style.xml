@@ -6,10 +6,10 @@
     <style name="Base.Widget.Material3.NavigationView" parent="Widget.Material3.NavigationView">
         <!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NavigationView</item>-->
         <item name="menu">@menu/navigation_drawer_menu</item>
-        <item name="android:background">@color/primary99</item>
+        <item name="android:background">@color/white</item>
         <item name="itemIconTint">@color/navigation_item_color</item>
         <item name="itemTextColor">@color/navigation_item_color</item>
-        <item name="drawerLayoutCornerSize">16dp</item>
+        <item name="drawerLayoutCornerSize">0dp</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:maxWidth">320dp</item>
         <item name="itemShapeAppearanceOverlay">

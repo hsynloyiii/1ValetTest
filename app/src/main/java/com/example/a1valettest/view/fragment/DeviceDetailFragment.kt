@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.a1valettest.R
@@ -26,7 +27,7 @@ class DeviceDetailFragment : Fragment() {
     private lateinit var binding: FragmentDeviceDetailBinding
 
     private val args by navArgs<DeviceDetailFragmentArgs>()
-    private val deviceDatabaseViewModel by activityViewModels<DeviceDatabaseViewModel>()
+    private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 
     private lateinit var deviceContent: DeviceContent
 

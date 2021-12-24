@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
@@ -19,16 +20,19 @@ import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.viewmodel.HomeViewModel
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private lateinit var homeAdapter: HomeAdapter
+    @Inject
+    lateinit var homeAdapter: HomeAdapter
 
     private val homeViewModel by viewModels<HomeViewModel>()
 
@@ -38,6 +42,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        WindowCompat.setDecorFitsSystemWindows(activity?.window!!, false)
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_home,
@@ -45,8 +50,8 @@ class HomeFragment : Fragment() {
             false
         )
 
-//        enterTransition = MaterialFadeThrough()
 //        exitTransition = MaterialFadeThrough()
+//        allowReturnTransitionOverlap
 
         return binding.root
     }
@@ -54,24 +59,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        getDevices()
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(300)
+            getDevices()
+        }
     }
 
-    private fun getDevices() {
-        homeAdapter = HomeAdapter()
-
+    private suspend fun getDevices() {
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.getAllDevices
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-                .collect {
-                    newDeviceContentList = it.toMutableList()
-                    homeAdapter.differDeviceContent.submitList(newDeviceContentList)
-                }
-        }
+        homeViewModel.getAllDevices
+            .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+            .collect {
+                newDeviceContentList = it.toMutableList()
+                homeAdapter.differDeviceContent.submitList(newDeviceContentList)
+            }
     }
 
     private fun handleToolbar() {
@@ -93,15 +97,6 @@ class HomeFragment : Fragment() {
                     }
                 })
             }
-
-//            setOnMenuItemClickListener {
-//                when (it.itemId) {
-//                    R.id.search -> {
-//                        true
-//                    }
-//                    else -> false
-//                }
-//            }
         }
     }
 
@@ -111,7 +106,6 @@ class HomeFragment : Fragment() {
             if (it.title.lowercase(Locale.getDefault()).contains(text))
                 newList.add(it)
         }
-//        val newList = homeAdapter.differDeviceContent.currentList.filter { it.title == text }
         homeAdapter.differDeviceContent.submitList(newList)
     }
 }

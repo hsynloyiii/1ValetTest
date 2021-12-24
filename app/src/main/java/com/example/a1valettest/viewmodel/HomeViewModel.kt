@@ -18,14 +18,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) : ViewModel() {
 
     // We guess that we are fetching from internet so we follow the rest with coroutine and flow
-//    val getDeviceContent = flow {
-//        emit(homeRepository.fetchDeviceContent())
-//    }
-//        .stateIn(
-//            viewModelScope,
-//            SharingStarted.WhileSubscribed(5000),
-//            initialValue = DeviceResponse(devices = null)
-//        )
 
     init {
         viewModelScope.launch {
