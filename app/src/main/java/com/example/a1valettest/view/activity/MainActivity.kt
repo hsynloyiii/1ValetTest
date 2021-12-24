@@ -4,17 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ActivityMainBinding
-import androidx.customview.widget.ViewDragHelper
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.reflect.Field
-import android.view.WindowManager
 
-import android.os.Build
-import android.view.Window
 import androidx.core.view.WindowCompat
+import androidx.navigation.ui.setupWithNavController
 
 
 @AndroidEntryPoint
@@ -34,10 +29,12 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
         binding.mainNavigationView.apply {
-            setupWithNavController(navController = navHostFragment.navController)
-
             setCheckedItem(R.id.homeFragment)
+
+            setupWithNavController(navController = navHostFragment.navController)
         }
 
     }
+
+
 }

@@ -10,7 +10,6 @@
         <item name="itemIconTint">@color/navigation_item_color</item>
         <item name="itemTextColor">@color/navigation_item_color</item>
         <item name="drawerLayoutCornerSize">0dp</item>
-        <item name="android:fitsSystemWindows">true</item>
         <item name="android:maxWidth">320dp</item>
         <item name="itemShapeAppearanceOverlay">
             @style/Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator

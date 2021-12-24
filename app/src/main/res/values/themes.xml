@@ -25,6 +25,7 @@
         <item name="appBarLayoutStyle">@style/Base.Widget.Material3.AppBarLayout</item>
         <item name="searchViewStyle">@style/Base.Widget.SearchView</item>
         <item name="autoCompleteTextViewStyle">@style/Custom.Widget.AppCompat.AutoCompleteTextView</item>
+
     </style>
 
 </resources>
