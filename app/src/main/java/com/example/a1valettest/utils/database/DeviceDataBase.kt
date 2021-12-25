@@ -36,7 +36,6 @@ abstract class DeviceDataBase : RoomDatabase() {
                 instance
             }
         }
-
     }
 
 }

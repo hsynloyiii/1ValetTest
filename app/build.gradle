@@ -16,6 +16,8 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+        // Replace com.example.android.dagger with your class path.
+        testInstrumentationRunner = "com.example.a1valettest.CustomTestRunner"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,9 +39,10 @@ android {
         dataBinding true
         viewBinding true
     }
-    hilt {
-        enableTransformForLocalTests = true
-    }
+//    hilt {
+//        enableTransformForLocalTests = true
+//    }
+
 }
 
 dependencies {
@@ -132,5 +135,12 @@ dependencies {
     kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
     // ...with Java.
     testAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.38.1")
+
+    // For instrumented tests.
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin.
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    // ...with Java.
+    androidTestAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.38.1")
 
 }
