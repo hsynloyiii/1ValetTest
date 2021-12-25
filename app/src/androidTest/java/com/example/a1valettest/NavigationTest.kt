@@ -13,13 +13,28 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.Truth.assertWithMessage
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
+import org.junit.Before
+import org.junit.Rule
+import org.robolectric.annotation.Config
 
-
+@HiltAndroidTest
+@Config(application = HiltTestApplication::class)
 @RunWith(AndroidJUnit4::class)
 class NavigationTest {
 
+    @get:Rule
+    var hiltAndroidRule = HiltAndroidRule(this)
+
+    @Before
+    fun init() {
+        hiltAndroidRule.inject()
+    }
+
     @Test
-    fun testNavigationToDeviceDetailScreen()  {
+    fun testNavigationToDeviceDetailScreen() {
         val navController = TestNavHostController(
             context = ApplicationProvider.getApplicationContext()
         )
