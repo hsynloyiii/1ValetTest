@@ -17,6 +17,7 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentDeviceDetailBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
+import com.example.a1valettest.utils.BaseFragment
 import com.example.a1valettest.utils.alert
 import com.example.a1valettest.utils.convertToMyDeviceContent
 import com.example.a1valettest.utils.snackBar
@@ -24,36 +25,44 @@ import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DeviceDetailFragment : Fragment() {
-
-    private lateinit var binding: FragmentDeviceDetailBinding
+class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.fragment_device_detail) {
 
     private val args by navArgs<DeviceDetailFragmentArgs>()
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 
     private lateinit var deviceContent: DeviceContent
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_device_detail,
-            container,
-            false
-        )
+//    override fun onCreateView(
+//        inflater: LayoutInflater, container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//
+//
+//        return binding.root
+//    }
+
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//
+//
+//
+//        return this.root
+//    }
+
+    override fun FragmentDeviceDetailBinding.initialize(savedInstanceState: Bundle?) {
         args.deviceContent?.let {
             deviceContent = it
         }
-
-        binding.deviceContent = deviceContent
-
-        return binding.root
+        this.deviceContent = deviceContent
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         handleToolbar()
     }
 

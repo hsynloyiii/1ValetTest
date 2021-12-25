@@ -28,13 +28,12 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
 import androidx.core.view.forEach
+import com.example.a1valettest.utils.BaseFragment
 import kotlinx.coroutines.flow.collect
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-
-    private lateinit var binding: FragmentHomeBinding
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     @Inject
     lateinit var homeAdapter: HomeAdapter
@@ -43,29 +42,10 @@ class HomeFragment : Fragment() {
 
     private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        WindowCompat.setDecorFitsSystemWindows(activity?.window!!, false)
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_home,
-            container,
-            false
-        )
-
-//        exitTransition = MaterialFadeThrough()
-//        allowReturnTransitionOverlap
-
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
         getDevices()
-
     }
 
     private fun getDevices() {

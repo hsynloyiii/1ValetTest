@@ -20,6 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
 import com.example.a1valettest.model.MyDeviceContent
+import com.example.a1valettest.utils.BaseFragment
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,9 +30,8 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MyDevicesFragment : Fragment() {
+class MyDevicesFragment : BaseFragment<FragmentMyDevicesBinding>(R.layout.fragment_my_devices) {
 
-    private lateinit var binding: FragmentMyDevicesBinding
 
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 
@@ -39,22 +39,6 @@ class MyDevicesFragment : Fragment() {
     lateinit var myDevicesAdapter: MyDevicesAdapter
 
     private lateinit var newMyDeviceContentList: MutableList<MyDeviceContent>
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_my_devices,
-            container,
-            false
-        )
-
-//        enterTransition = MaterialFadeThrough()
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
