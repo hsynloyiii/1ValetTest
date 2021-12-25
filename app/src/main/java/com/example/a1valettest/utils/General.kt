@@ -5,13 +5,11 @@ import android.content.DialogInterface
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.AsyncListDiffer
 import com.example.a1valettest.R
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
 
 fun Context.toast(msg: String) = Toast.makeText(
     this,

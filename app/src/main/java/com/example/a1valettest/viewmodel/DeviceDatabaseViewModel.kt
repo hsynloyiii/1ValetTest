@@ -24,7 +24,7 @@ class DeviceDatabaseViewModel @Inject constructor(
     }
 
     // MyDevices
-    fun insertToMyDevice(myDeviceContent: MyDeviceContent?) = viewModelScope.launch {
+    fun insertToMyDevice(myDeviceContent: MyDeviceContent?) = viewModelScope.launch(ioDispatchers) {
         deviceDatabaseRepository.insertToMyDevice(myDeviceContent = myDeviceContent)
     }
 

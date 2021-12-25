@@ -3,25 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.21944444444444444" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/ic_round_menu_24.xml" value="0.21944444444444444" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/navigation_drawer_background.xml" value="0.21944444444444444" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/drawable/search_cursor.xml" value="0.21944444444444444" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/activity_main.xml" value="0.17685185185185184" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_device_detail.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/fragment_my_devices.xml" value="0.2" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/item_recyclerview_home.xml" value="0.275" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/item_recyclerview_my_devices.xml" value="0.275" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/layout/layout_search_no_result.xml" value="0.275" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/menu/home_toolbar_menu.xml" value="0.17685185185185184" />
-        <entry key="..\:/AndroidStudioProjects/1valettest/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.275" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/drawable/ic_round_back_24.xml" value="0.2169230769230769" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/drawable/ic_round_star_24.xml" value="0.2169230769230769" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/drawable/ic_round_star_outline_24.xml" value="0.2169230769230769" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/fragment_device_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/fragment_my_devices.xml" value="0.18717948717948718" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/layout/item_recyclerview_home.xml" value="0.25" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/menu/device_detail_toolbar_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/KotlinAndroidStudioProjects/1ValetTest/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.20416666666666666" />

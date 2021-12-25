@@ -1,6 +1,5 @@
 package com.example.a1valettest.view.fragment
 
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
