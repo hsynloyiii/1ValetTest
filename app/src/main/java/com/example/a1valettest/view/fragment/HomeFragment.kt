@@ -40,6 +40,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // we call the data source just for first launching page (if it is null of empty our data source will be inserted to room db)
+        deviceDatabaseViewModel.getDeviceDataSource()
+
         handleToolbar()
         getDevices()
     }

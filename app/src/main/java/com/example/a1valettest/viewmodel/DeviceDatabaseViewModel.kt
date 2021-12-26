@@ -25,20 +25,18 @@ class DeviceDatabaseViewModel @Inject constructor(
 ) : ViewModel() {
 
     // All Devices
-    init {
-        viewModelScope.launch {
-            // we need cold flow just for insert deviceContentDataSource to our list ( not sharing or data observing )
-            deviceDatabaseRepository.getAllDevices().collect {
-                if (it.isNullOrEmpty()) {
-                    insertToAllDevices(
-                        deviceContentList = DeviceResponse(devices = deviceDatabaseRepository.deviceContentDataSource()).devices
-                    )
-                }
+    fun getDeviceDataSource() = viewModelScope.launch(ioDispatchers) {
+        // we need cold flow just for insert deviceContentDataSource to our list ( not sharing or data observing )
+        deviceDatabaseRepository.getAllDevices().collect {
+            if (it.isNullOrEmpty()) {
+                insertToAllDevices(
+                    deviceContentList = DeviceResponse(devices = deviceDatabaseRepository.deviceContentDataSource()).devices
+                )
             }
         }
     }
 
-    private fun insertToAllDevices(deviceContentList: List<DeviceContent>?) =
+    fun insertToAllDevices(deviceContentList: List<DeviceContent>?) =
         viewModelScope.launch(ioDispatchers) {
             deviceDatabaseRepository.insertAllDevices(deviceContentList = deviceContentList)
         }
