@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.a1valettest.R
@@ -20,18 +19,21 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
 import androidx.core.view.forEach
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.a1valettest.utils.BaseFragment
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private lateinit var homeAdapter: HomeAdapter
+    @Inject
+    lateinit var homeAdapter: HomeAdapter
 
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 
@@ -48,7 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun getDevices() {
-        homeAdapter = HomeAdapter {
+        homeAdapter.setOnItemClickListener {
             val action = HomeFragmentDirections
                 .actionHomeFragmentToDeviceDetailFragment(deviceContent = it)
 
@@ -64,6 +66,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
             )
         }
+
 
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter

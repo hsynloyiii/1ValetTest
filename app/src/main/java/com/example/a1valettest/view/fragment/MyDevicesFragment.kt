@@ -3,20 +3,18 @@ package com.example.a1valettest.view.fragment
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.forEach
-import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
 import com.example.a1valettest.model.MyDeviceContent
@@ -24,7 +22,7 @@ import com.example.a1valettest.utils.BaseFragment
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -47,6 +45,24 @@ class MyDevicesFragment : BaseFragment<FragmentMyDevicesBinding>(R.layout.fragme
     }
 
     private fun getMyDevices() {
+
+        myDevicesAdapter.setOnItemClickListener {
+            val action = MyDevicesFragmentDirections
+                .actionMyDevicesFragmentToDeviceDetailFragment(deviceContent = it)
+
+            findNavController().navigate(
+                action,
+                navOptions {
+                    anim {
+                        enter = R.anim.slide_in_right
+                        exit = R.anim.scale_out
+                        popEnter = R.anim.scale_in
+                        popExit = R.anim.slide_out_right
+                    }
+                }
+            )
+        }
+
         binding.recyclerViewFragmentMyDevices.apply {
             adapter = myDevicesAdapter
         }
@@ -54,7 +70,7 @@ class MyDevicesFragment : BaseFragment<FragmentMyDevicesBinding>(R.layout.fragme
         viewLifecycleOwner.lifecycleScope.launch {
             deviceDatabaseViewModel.getDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-                .collect {
+                .collectLatest {
                     newMyDeviceContentList = it.toMutableList()
                     myDevicesAdapter.differMyDeviceContent.apply {
                         submitList(newMyDeviceContentList)

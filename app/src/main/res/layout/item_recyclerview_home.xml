@@ -8,14 +8,9 @@
             name="deviceContent"
             type="com.example.a1valettest.model.DeviceContent" />
 
-        <variable
-            name="onClick"
-            type="com.example.a1valettest.utils.interfaces.OnClick.HomeAdapter" />
-
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialContainerAllDevices"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

@@ -8,9 +8,6 @@
             name="deviceContent"
             type="com.example.a1valettest.model.DeviceContent" />
 
-        <variable
-            name="onClick"
-            type="com.example.a1valettest.utils.interfaces.OnClick.MyDeviceAdapter" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -19,8 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="@{(v)->onClick.navigateToDetail(v,deviceContent)}">
+        android:layout_marginBottom="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

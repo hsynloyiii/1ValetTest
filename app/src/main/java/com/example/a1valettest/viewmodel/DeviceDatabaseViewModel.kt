@@ -5,14 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.DeviceResponse
 import com.example.a1valettest.model.MyDeviceContent
-import com.example.a1valettest.repository.DeviceDatabaseRepository
 import com.example.a1valettest.repository.Repository
 import com.example.a1valettest.utils.di.IODispatchers
-import com.example.a1valettest.utils.di.MainDispatchers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch

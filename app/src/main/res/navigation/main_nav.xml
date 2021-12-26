@@ -13,13 +13,6 @@
         <action
             android:id="@+id/action_homeFragment_to_deviceDetailFragment"
             app:destination="@id/deviceDetailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_myDevicesFragment"
-            app:destination="@id/myDevicesFragment"
-            app:enterAnim="@anim/scale_in"
-            app:exitAnim="@anim/scale_in"
-            app:popExitAnim="@anim/scale_in"
-            app:popEnterAnim="@anim/scale_in"/>
     </fragment>
     <fragment
         android:id="@+id/myDevicesFragment"
@@ -29,13 +22,6 @@
         <action
             android:id="@+id/action_myDevicesFragment_to_deviceDetailFragment"
             app:destination="@id/deviceDetailFragment" />
-        <action
-            android:id="@+id/action_myDevicesFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/scale_in"
-            app:exitAnim="@anim/scale_in"
-            app:popExitAnim="@anim/scale_in"
-            app:popEnterAnim="@anim/scale_in"/>
     </fragment>
     <fragment
         android:id="@+id/settingFragment"

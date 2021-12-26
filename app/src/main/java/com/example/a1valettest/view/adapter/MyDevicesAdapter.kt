@@ -1,11 +1,8 @@
 package com.example.a1valettest.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,12 +11,10 @@ import com.example.a1valettest.databinding.ItemRecyclerviewMyDevicesBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.convertToDeviceContent
-import com.example.a1valettest.utils.interfaces.OnClick
-import com.example.a1valettest.view.fragment.MyDevicesFragmentDirections
 import javax.inject.Inject
 
 class MyDevicesAdapter @Inject constructor() :
-    RecyclerView.Adapter<MyDevicesAdapter.ViewHolder>(), OnClick.MyDeviceAdapter {
+    RecyclerView.Adapter<MyDevicesAdapter.ViewHolder>() {
 
     private val differCallBack = object : DiffUtil.ItemCallback<MyDeviceContent>() {
         override fun areItemsTheSame(oldItem: MyDeviceContent, newItem: MyDeviceContent): Boolean =
@@ -46,32 +41,27 @@ class MyDevicesAdapter @Inject constructor() :
         )
     )
 
+    private var onItemClickListener: ((DeviceContent) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (DeviceContent) -> Unit) {
+        onItemClickListener = listener
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.apply {
+        holder.apply {
 
             val myDeviceContent = differMyDeviceContent.currentList[position]
 
-            deviceContent = myDeviceContent.convertToDeviceContent()
-            onClick = this@MyDevicesAdapter
+            binding.deviceContent = myDeviceContent.convertToDeviceContent()
+
+            itemView.setOnClickListener {
+                onItemClickListener?.let {
+                    it(myDeviceContent.convertToDeviceContent())
+                }
+            }
         }
     }
 
     override fun getItemCount(): Int = differMyDeviceContent.currentList.size
 
-    override fun navigateToDetail(view: View, deviceContent: DeviceContent) {
-        val action = MyDevicesFragmentDirections
-            .actionMyDevicesFragmentToDeviceDetailFragment(deviceContent = deviceContent)
-
-        findNavController(view).navigate(
-            action,
-            navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.scale_out
-                    popEnter = R.anim.scale_in
-                    popExit = R.anim.slide_out_right
-                }
-            }
-        )
-    }
 }

@@ -3,14 +3,9 @@ package com.example.a1valettest.repository
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
-import org.junit.Assert.*
 
-import org.junit.Test
-import java.util.function.UnaryOperator
-
-// As we can't use Hilt for Unit Tests, We create fake classes that don't need any constrcutor
+// As is not necessary to use Hilt for Unit Tests, We create fake classes that don't need any constructor
 class FakeDeviceDatabaseRepository : Repository.DeviceDataBaseRepository {
 
     private val myDeviceContentsList = mutableListOf<MyDeviceContent>()
