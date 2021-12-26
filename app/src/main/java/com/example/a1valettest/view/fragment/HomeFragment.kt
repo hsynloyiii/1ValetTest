@@ -29,6 +29,7 @@ import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
 import androidx.core.view.forEach
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.a1valettest.utils.BaseFragment
 import kotlinx.coroutines.flow.collect
 
@@ -36,24 +37,38 @@ import kotlinx.coroutines.flow.collect
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    @Inject
+    //    @Inject
     lateinit var homeAdapter: HomeAdapter
 
     private val homeViewModel by viewModels<HomeViewModel>()
 
     private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
-    override fun FragmentHomeBinding.initialize(savedInstanceState: Bundle?) {
-        getDevices()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-//        getDevices()
+        getDevices()
     }
 
     private fun getDevices() {
+        homeAdapter = HomeAdapter {
+            val action = HomeFragmentDirections
+                .actionHomeFragmentToDeviceDetailFragment(deviceContent = it)
+
+            findNavController().navigate(
+                action,
+                navOptions {
+                    anim {
+                        enter = R.anim.slide_in_right
+                        exit = R.anim.scale_out
+                        popEnter = R.anim.scale_in
+                        popExit = R.anim.slide_out_right
+                    }
+                }
+            )
+        }
+
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter
         }

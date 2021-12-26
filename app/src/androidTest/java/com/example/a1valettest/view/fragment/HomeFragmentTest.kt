@@ -64,13 +64,13 @@ class HomeFragmentTest {
         }
 
 
-        onView(withId(R.id.recyclerViewFragmentHome))
-            .perform(
-                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                    0,
-                    click()
-                )
-            )
+//        onView(withId(R.id.recyclerViewFragmentHome))
+//            .perform(
+//                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+//                    0,
+//                    click()
+//                )
+//            )
 
         val deviceContent = DeviceContent(
             id = "1",

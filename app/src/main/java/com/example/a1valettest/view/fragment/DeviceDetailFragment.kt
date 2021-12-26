@@ -28,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.fragment_device_detail) {
 
     private val args by navArgs<DeviceDetailFragmentArgs>()
+
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 
     private lateinit var deviceContent: DeviceContent

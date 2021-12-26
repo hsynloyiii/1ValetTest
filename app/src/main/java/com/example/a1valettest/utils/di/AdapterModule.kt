@@ -12,9 +12,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AdapterModule {
 
-    @Singleton
-    @Provides
-    fun provideHomeAdapter() = HomeAdapter()
+//    @Singleton
+//    @Provides
+//    fun provideHomeAdapter() = HomeAdapter()
 
     @Singleton
     @Provides

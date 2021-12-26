@@ -16,8 +16,10 @@ import com.example.a1valettest.utils.interfaces.OnClick
 import com.example.a1valettest.view.fragment.HomeFragmentDirections
 import javax.inject.Inject
 
-class HomeAdapter @Inject constructor():
-    RecyclerView.Adapter<HomeAdapter.ViewHolder>(), OnClick.HomeAdapter {
+class HomeAdapter(
+    private val onItemClick: (DeviceContent) -> Unit
+) :
+    RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     private val differCallBack = object : DiffUtil.ItemCallback<DeviceContent>() {
         override fun areItemsTheSame(oldItem: DeviceContent, newItem: DeviceContent): Boolean =
@@ -45,32 +47,34 @@ class HomeAdapter @Inject constructor():
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
             deviceContent = differDeviceContent.currentList[position]
-            onClick = this@HomeAdapter
+
+            materialContainerAllDevices.setOnClickListener {
+                onItemClick(differDeviceContent.currentList[position])
+            }
         }
     }
 
     override fun getItemCount(): Int = differDeviceContent.currentList.size
 
-    override fun navigateToDetail(
-        view: View,
-        deviceContent: DeviceContent
-    ) {
-        val action = HomeFragmentDirections
-            .actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent)
-
-        findNavController(view).navigate(
-            action,
-            navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.scale_out
-                    popEnter = R.anim.scale_in
-                    popExit = R.anim.slide_out_right
-                }
-            }
-        )
-    }
-
+//    override fun navigateToDetail(
+//        view: View,
+//        deviceContent: DeviceContent
+//    ) {
+//        val action = HomeFragmentDirections
+//            .actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent)
+//
+//        findNavController(view).navigate(
+//            action,
+//            navOptions {
+//                anim {
+//                    enter = R.anim.slide_in_right
+//                    exit = R.anim.scale_out
+//                    popEnter = R.anim.scale_in
+//                    popExit = R.anim.slide_out_right
+//                }
+//            }
+//        )
+//    }
 
 
 }
