@@ -16,6 +16,3 @@ class HiltTestRunner : AndroidJUnitRunner() {
     }
 
 }
-
-//@CustomTestApplication(ValetApplication::class)
-//interface CustomTest

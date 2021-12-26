@@ -2,45 +2,38 @@ package com.example.a1valettest.view.fragment
 
 import android.animation.ValueAnimator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.WindowCompat
-import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.a1valettest.R
 import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
-import com.example.a1valettest.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
-import javax.inject.Inject
 import android.annotation.SuppressLint
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
 import androidx.core.view.forEach
+import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.a1valettest.utils.BaseFragment
-import kotlinx.coroutines.flow.collect
+import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    //    @Inject
-    lateinit var homeAdapter: HomeAdapter
+    private lateinit var homeAdapter: HomeAdapter
 
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 
     private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
@@ -75,9 +68,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            homeViewModel.getAllDevices
+            deviceDatabaseViewModel.getAllDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-                .collect {
+                .collectLatest {
                     newDeviceContentList = it.toMutableList()
                     homeAdapter.differDeviceContent.submitList(newDeviceContentList)
                 }

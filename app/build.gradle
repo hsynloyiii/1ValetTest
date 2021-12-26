@@ -104,7 +104,7 @@ dependencies {
     androidTestImplementation("androidx.navigation:navigation-testing:2.3.5")
 
     // Coroutine Test
-    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0-RC3'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
 
     // fragment testing
     debugImplementation("androidx.fragment:fragment-testing:1.4.0")
@@ -126,7 +126,7 @@ dependencies {
     // Fragment Test
     debugImplementation("androidx.fragment:fragment-testing:1.4.0")
     // Coroutine Test
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0-RC3'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
 
 
 //    // For Robolectric tests.

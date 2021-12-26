@@ -1,17 +1,11 @@
 package com.example.a1valettest.view.fragment
 
 import android.widget.TextView
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.setViewNavController
 import androidx.navigation.navOptions
-import androidx.navigation.testing.TestNavHostController
-import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import com.example.a1valettest.R
@@ -25,7 +19,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.hamcrest.core.IsInstanceOf.instanceOf
-import org.junit.Assert.assertEquals
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 

@@ -1,22 +1,16 @@
 package com.example.a1valettest.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentDeviceDetailBinding
 import com.example.a1valettest.model.DeviceContent
-import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.BaseFragment
 import com.example.a1valettest.utils.alert
 import com.example.a1valettest.utils.convertToMyDeviceContent
