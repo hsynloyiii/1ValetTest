@@ -52,16 +52,16 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 //        return this.root
 //    }
 
-    override fun FragmentDeviceDetailBinding.initialize(savedInstanceState: Bundle?) {
-        args.deviceContent?.let {
-            deviceContent = it
-        }
-        this.deviceContent = deviceContent
-    }
+//    override fun FragmentDeviceDetailBinding.initialize(savedInstanceState: Bundle?) {
+//    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        args.deviceContent?.let {
+            deviceContent = it
+        }
+        binding.deviceContent = deviceContent
 
         handleToolbar()
     }
@@ -87,7 +87,7 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 
                             updateDeviceContent(deviceContent = deviceContent)
 
-                            binding.root.snackBar(msg = "It successfully added to your list")
+                            view?.snackBar(msg = "It successfully added to your list")
 
 
                             changeFavoriteIcon(
@@ -110,7 +110,7 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
                                         myDeviceContent = deviceContent.convertToMyDeviceContent()
                                     )
 
-                                    binding.root.snackBar(msg = "It successfully removed from your list")
+                                    view?.snackBar(msg = "It successfully removed from your list")
 
                                     changeFavoriteIcon(
                                         item = favoriteDevice,

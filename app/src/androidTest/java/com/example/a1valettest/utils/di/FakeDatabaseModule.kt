@@ -1,27 +1,35 @@
 package com.example.a1valettest.utils.di
 
 import android.content.Context
+import androidx.room.Room
 import com.example.a1valettest.utils.database.DeviceDao
 import com.example.a1valettest.utils.database.DeviceDataBase
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-object DatabaseModule {
-
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [DatabaseModule::class]
+)
+object FakeDatabaseModule {
 
     @Singleton
     @Provides
-    fun provideDeviceDatabase(@ApplicationContext context: Context): DeviceDataBase =
-        DeviceDataBase.getDatabase(context = context)
+    fun provideInMemoryDb(@ApplicationContext context: Context) = Room.inMemoryDatabaseBuilder(
+        context,
+        DeviceDataBase::class.java
+    )
+        .allowMainThreadQueries()
+        .build()
 
     @Singleton
     @Provides
     fun provideDeviceDao(deviceDataBase: DeviceDataBase): DeviceDao = deviceDataBase.deviceDao()
+
 
 }

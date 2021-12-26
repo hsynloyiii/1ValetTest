@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 
 @InstallIn(SingletonComponent::class)
 @Module
-class CoroutineDispatchersModule {
+object CoroutineDispatchersModule {
 
     @DefaultDispatchers
     @Provides
@@ -26,6 +26,5 @@ class CoroutineDispatchersModule {
     @MainImmediateDispatchers
     @Provides
     fun provideMainImmediateDispatchers(): CoroutineDispatcher = Dispatchers.Main.immediate
-
 
 }
