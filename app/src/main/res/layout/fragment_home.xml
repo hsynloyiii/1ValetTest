@@ -9,7 +9,6 @@
         android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
-        android:id="@+id/coordinatorContainer"
         tools:context=".view.fragment.HomeFragment">
 
         <com.google.android.material.appbar.AppBarLayout

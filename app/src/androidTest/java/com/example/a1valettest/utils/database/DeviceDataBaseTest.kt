@@ -6,7 +6,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
-import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,6 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -64,7 +64,7 @@ class DeviceDataBaseTest {
         )
         dao.insertToMyDevice(myDeviceContent = myDeviceContent)
         val myDevices = dao.getAllMyDevices(isFavorite = true).first()
-        assertThat(myDevices.contains(myDeviceContent)).isTrue()
+        assertTrue(myDevices.contains(myDeviceContent))
     }
 
     @Test

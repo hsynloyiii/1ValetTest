@@ -1,10 +1,8 @@
-package com.example.a1valettest.utils.di
+package com.example.a1valettest
 
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
-import com.example.a1valettest.utils.ValetApplication
-import dagger.hilt.android.testing.CustomTestApplication
 import dagger.hilt.android.testing.HiltTestApplication
 
 class HiltTestRunner : AndroidJUnitRunner() {
@@ -14,10 +12,10 @@ class HiltTestRunner : AndroidJUnitRunner() {
         className: String?,
         context: Context?
     ): Application {
-        return super.newApplication(cl, CustomTest::class.java.name, context)
+            return super.newApplication(cl, HiltTestApplication::class.java.name, context)
     }
 
 }
 
-@CustomTestApplication(ValetApplication::class)
-interface CustomTest
+//@CustomTestApplication(ValetApplication::class)
+//interface CustomTest

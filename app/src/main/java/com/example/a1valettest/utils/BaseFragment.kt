@@ -33,6 +33,8 @@ abstract class BaseFragment<DBI : ViewDataBinding>(
             false
         )
 
+        binding.lifecycleOwner = viewLifecycleOwner
+
         binding.initialize(savedInstanceState = savedInstanceState)
 
         return _binding.root

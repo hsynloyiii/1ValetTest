@@ -28,6 +28,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
 import androidx.core.view.forEach
+import androidx.navigation.fragment.findNavController
 import com.example.a1valettest.utils.BaseFragment
 import kotlinx.coroutines.flow.collect
 
@@ -42,10 +43,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
+    override fun FragmentHomeBinding.initialize(savedInstanceState: Bundle?) {
+        getDevices()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
-        getDevices()
+//        getDevices()
     }
 
     private fun getDevices() {

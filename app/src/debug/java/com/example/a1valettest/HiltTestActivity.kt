@@ -8,6 +8,4 @@ As we can't use hilt with empty activity which doesn't annotated with @AndroidEn
 hand
  */
 @AndroidEntryPoint
-class HiltTestActivity: AppCompatActivity() {
-
-}
+class HiltTestActivity: AppCompatActivity()

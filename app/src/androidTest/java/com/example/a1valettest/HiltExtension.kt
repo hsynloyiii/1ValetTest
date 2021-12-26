@@ -1,4 +1,4 @@
-package com.example.a1valettest.utils.di
+package com.example.a1valettest
 
 import android.content.ComponentName
 import android.content.Intent
@@ -6,11 +6,8 @@ import android.os.Bundle
 import androidx.core.util.Preconditions
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import androidx.fragment.app.testing.FragmentScenario
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import com.example.a1valettest.HiltTestActivity
-import com.example.a1valettest.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
