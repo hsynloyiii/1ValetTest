@@ -2,15 +2,12 @@ package com.example.a1valettest.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 import androidx.core.view.WindowCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.setupWithNavController
 import com.example.a1valettest.utils.di.MainFragmentFactoryEntryPoint
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory

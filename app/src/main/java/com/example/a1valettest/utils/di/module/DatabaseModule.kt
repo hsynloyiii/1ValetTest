@@ -1,4 +1,4 @@
-package com.example.a1valettest.utils.di
+package com.example.a1valettest.utils.di.module
 
 import android.content.Context
 import com.example.a1valettest.utils.database.DeviceDao

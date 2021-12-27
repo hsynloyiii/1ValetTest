@@ -1,4 +1,4 @@
-package com.example.a1valettest.utils.di
+package com.example.a1valettest.utils.di.module
 
 import com.example.a1valettest.repository.DeviceDatabaseRepository
 import com.example.a1valettest.repository.Repository
@@ -13,21 +13,17 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+object RepositoryModule {
 
-    companion object {
-
-        @Singleton
-        @Provides
-        fun provideDeviceDatabaseRepository(
-            deviceDao: DeviceDao,
-            deviceDataBase: DeviceDataBase
-        ) =
-            DeviceDatabaseRepository(
-                deviceDao = deviceDao,
-                deviceDataBase = deviceDataBase
-            ) as Repository.DeviceDataBaseRepository
-
-    }
+    @Singleton
+    @Provides
+    fun provideDeviceDatabaseRepository(
+        deviceDao: DeviceDao,
+        deviceDataBase: DeviceDataBase
+    ) =
+        DeviceDatabaseRepository(
+            deviceDao = deviceDao,
+            deviceDataBase = deviceDataBase
+        ) as Repository.DeviceDataBaseRepository
 
 }

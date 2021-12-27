@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.a1valettest.utils.database.DeviceDao
 import com.example.a1valettest.utils.database.DeviceDataBase
+import com.example.a1valettest.utils.di.module.DatabaseModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
