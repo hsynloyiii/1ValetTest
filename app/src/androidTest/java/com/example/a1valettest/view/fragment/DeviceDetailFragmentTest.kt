@@ -76,7 +76,6 @@ class DeviceDetailFragmentTest {
         ).perform(click())
 
         verify(navController).popBackStack()
-
     }
 
 }
