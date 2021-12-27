@@ -52,7 +52,7 @@ class MyDevicesAdapter @Inject constructor() :
 
             val myDeviceContent = differMyDeviceContent.currentList[position]
 
-            binding.deviceContent = myDeviceContent.convertToDeviceContent()
+            binding.myDeviceContent = myDeviceContent
 
             itemView.setOnClickListener {
                 onItemClickListener?.let {

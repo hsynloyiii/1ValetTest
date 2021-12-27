@@ -71,7 +71,7 @@ class MyDevicesFragment @Inject constructor(
                 .collectLatest {
                     newMyDeviceContentList = it.toMutableList()
                     myDevicesAdapter.differMyDeviceContent.apply {
-                        submitList(newMyDeviceContentList)
+                        submitList(newMyDeviceContentList.reversed())
 
                         if (newMyDeviceContentList.isEmpty())
                             binding.textEmptyMyDeviceList.visibility = VISIBLE

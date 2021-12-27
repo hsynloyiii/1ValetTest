@@ -5,6 +5,7 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 
+// it is for accessing point outside of our graph so we can set our fragmentFactory before onCreate of activity
 @EntryPoint
 @InstallIn(ActivityComponent::class)
 interface MainFragmentFactoryEntryPoint {

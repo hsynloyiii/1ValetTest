@@ -39,8 +39,8 @@ class DeviceDetailFragmentTest {
 
         }
 
-        Espresso.onView(ViewMatchers.withId(R.id.materialContainerAllDevices))
-            .perform(ViewActions.click())
+//        Espresso.onView(ViewMatchers.withId(R.id.materialContainerAllDevices))
+//            .perform(ViewActions.click())
 
 
     }
