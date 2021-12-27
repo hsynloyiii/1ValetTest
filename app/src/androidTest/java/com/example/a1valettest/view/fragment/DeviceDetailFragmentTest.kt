@@ -55,7 +55,7 @@ class DeviceDetailFragmentTest {
     }
 
     @Test
-    fun testNavigationToHomeFragment() {
+    fun testNavigationTPopBackStack() {
 
 
         val navController = mock(NavController::class.java)
@@ -67,8 +67,6 @@ class DeviceDetailFragmentTest {
             Navigation.setViewNavController(requireView(), navController)
         }
 
-//        Espresso.onView(ViewMatchers.withId(R.id.materialContainerAllDevices))
-//            .perform(ViewActions.click())
 
         Espresso.onView(
             AllOf.allOf(

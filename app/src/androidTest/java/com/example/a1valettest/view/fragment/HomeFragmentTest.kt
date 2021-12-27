@@ -2,15 +2,12 @@ package com.example.a1valettest.view.fragment
 
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.navOptions
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -27,7 +24,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.hamcrest.core.IsInstanceOf.instanceOf
-import org.junit.Assert.assertTrue
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import javax.inject.Inject
