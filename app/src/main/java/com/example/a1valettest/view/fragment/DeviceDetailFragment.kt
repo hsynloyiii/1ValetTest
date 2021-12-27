@@ -71,7 +71,7 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
                             context?.alert(
                                 title = "Are you sure ?",
                                 message = "this action will remove the current device from your favorite devices",
-                                positiveButtonText = "Remove",
+                                positiveButtonText = resources.getString(R.string.remove),
                                 positiveButtonAction = { dialog ->
 
                                     deviceContent.isFavorite = false

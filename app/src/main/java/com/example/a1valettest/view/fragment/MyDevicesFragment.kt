@@ -24,17 +24,16 @@ import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MyDevicesFragment @Inject constructor(
-    private val myDevicesAdapter: MyDevicesAdapter
+    val myDevicesAdapter: MyDevicesAdapter
 ) : BaseFragment<FragmentMyDevicesBinding>(R.layout.fragment_my_devices) {
 
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 
-    private lateinit var newMyDeviceContentList: MutableList<MyDeviceContent>
+    lateinit var newMyDeviceContentList: MutableList<MyDeviceContent>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,7 +79,6 @@ class MyDevicesFragment @Inject constructor(
                 }
         }
     }
-
 
     private fun handleToolbar() {
         binding.toolbarFragmentMyDevices.apply {

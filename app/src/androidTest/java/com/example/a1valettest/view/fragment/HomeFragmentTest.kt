@@ -1,13 +1,13 @@
 package com.example.a1valettest.view.fragment
 
 import android.widget.AutoCompleteTextView
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.navOptions
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.PerformException
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -36,7 +36,6 @@ import javax.inject.Inject
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
 class HomeFragmentTest {
-
 
     @Inject
     lateinit var fragmentFactory: MainFragmentFactory
@@ -126,6 +125,19 @@ class HomeFragmentTest {
         onView(isAssignableFrom(AutoCompleteTextView::class.java))
             .perform(typeText("This item is not in the list"))
         onView(withId(R.id.textNoResult)).check(matches(withText(R.string.noResult)))
+
+        Espresso.closeSoftKeyboard()
+
+        // at the end press back and close searchView
+        onView(
+            allOf(
+                instanceOf(ImageButton::class.java),
+                withParent(withId(R.id.toolbarFragmentHome))
+            )
+        ).perform(click())
+
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .check(doesNotExist())
     }
 
     @Test
@@ -138,6 +150,19 @@ class HomeFragmentTest {
             .perform(typeText("Xiaomi Mi 11 Ultra"))
 
         onView(withId(R.id.linearNoResult)).check(doesNotExist())
+
+        Espresso.closeSoftKeyboard()
+
+        // at the end press back and close searchView
+        onView(
+            allOf(
+                instanceOf(ImageButton::class.java),
+                withParent(withId(R.id.toolbarFragmentHome))
+            )
+        ).perform(click())
+
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .check(doesNotExist())
     }
 
 }

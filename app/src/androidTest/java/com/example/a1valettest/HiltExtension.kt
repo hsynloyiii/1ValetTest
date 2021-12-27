@@ -33,7 +33,6 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     // here we launch our HiltTestActivity and called activity scenario and attach above activityIntent to it
     // and create our actual fragment and attach it
     ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
-        // here attach our fragment to its activity
         fragmentFactory?.let {
             activity.supportFragmentManager.fragmentFactory = it
         }

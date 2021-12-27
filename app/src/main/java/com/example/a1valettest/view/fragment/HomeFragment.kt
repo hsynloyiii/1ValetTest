@@ -25,6 +25,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.a1valettest.utils.BaseFragment
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -72,7 +73,6 @@ class HomeFragment @Inject constructor(
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-
             deviceDatabaseViewModel.getAllDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collectLatest {
