@@ -1,6 +1,5 @@
 package com.example.a1valettest.viewmodel
 
-import android.util.Log
 import com.example.a1valettest.MainCoroutineRule
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
@@ -8,9 +7,7 @@ import com.example.a1valettest.repository.FakeDeviceDatabaseRepository
 import com.example.a1valettest.utils.convertToDeviceContent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*

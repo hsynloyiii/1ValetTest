@@ -146,7 +146,7 @@ class HomeFragment @Inject constructor(
 
         val newList = mutableListOf<DeviceContent>()
         newDeviceContentList.forEach {
-            if (it.title.lowercase(Locale.getDefault()).contains(text, ignoreCase = true))
+            if (it.title.contains(text, ignoreCase = true))
                 newList.add(it)
         }
         bindingNoResult.linearNoResult.apply {

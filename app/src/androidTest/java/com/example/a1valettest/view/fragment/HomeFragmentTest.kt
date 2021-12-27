@@ -10,10 +10,11 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.PerformException
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.filters.LargeTest
+import androidx.test.filters.MediumTest
 import com.example.a1valettest.R
 import com.example.a1valettest.launchFragmentInHiltContainer
 import com.example.a1valettest.model.DeviceContent
@@ -31,12 +32,11 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import javax.inject.Inject
 
-@LargeTest
+@MediumTest
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
 class HomeFragmentTest {
 
-//    private lateinit var navController: NavController
 
     @Inject
     lateinit var fragmentFactory: MainFragmentFactory
@@ -63,7 +63,6 @@ class HomeFragmentTest {
 
     @Test
     fun testIsListAllDeviceVisible() {
-        // check scrolling in recyclerview
         onView(withId(R.id.recyclerViewFragmentHome))
             .check(matches(isDisplayed()))
     }
@@ -129,7 +128,7 @@ class HomeFragmentTest {
         onView(withId(R.id.textNoResult)).check(matches(withText(R.string.noResult)))
     }
 
-    @Test(expected = PerformException::class)
+    @Test
     fun testSearchViewWithResult() {
         onView(
             withId(R.id.search)
@@ -138,14 +137,7 @@ class HomeFragmentTest {
         onView(isAssignableFrom(AutoCompleteTextView::class.java))
             .perform(typeText("Xiaomi Mi 11 Ultra"))
 
-        Espresso.closeSoftKeyboard()
-
-        onView(withId(R.id.recyclerViewFragmentHome))
-            .perform(
-                RecyclerViewActions.scrollTo<HomeAdapter.ViewHolder>(
-                    hasDescendant(withText("niewnf bwib iadif sg"))
-                )
-            )
+        onView(withId(R.id.linearNoResult)).check(doesNotExist())
     }
 
 }

@@ -3,7 +3,6 @@ package com.example.a1valettest.view.fragment
 import android.widget.ImageButton
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers
@@ -15,9 +14,7 @@ import com.example.a1valettest.model.DeviceContent
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.hamcrest.core.AllOf
 import org.hamcrest.core.AllOf.allOf
-import org.hamcrest.core.IsInstanceOf
 import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.Before
 import org.junit.Rule
@@ -55,7 +52,7 @@ class DeviceDetailFragmentTest {
     }
 
     @Test
-    fun testNavigationTPopBackStack() {
+    fun testNavigationPopBackStack() {
 
 
         val navController = mock(NavController::class.java)
