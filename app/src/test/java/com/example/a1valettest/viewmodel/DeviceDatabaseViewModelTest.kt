@@ -62,7 +62,7 @@ class DeviceDatabaseViewModelTest {
 
             viewModel.deleteDevice(myDeviceContent = myDeviceContent)
 
-            val getMyDevices = viewModel.getDevices.first()
+            val getMyDevices = viewModel.getMyDevices.first()
 
             assertEquals(emptyList<MyDeviceContent>(), getMyDevices)
         }
@@ -73,7 +73,7 @@ class DeviceDatabaseViewModelTest {
         scope.runTest {
             viewModel.insertToMyDevice(myDeviceContent = myDeviceContent)
 
-            val getMyDevices = viewModel.getDevices.first()
+            val getMyDevices = viewModel.getMyDevices.first()
 
             assertTrue(
                 "True if myDeviceContent is in the myDeviceList",

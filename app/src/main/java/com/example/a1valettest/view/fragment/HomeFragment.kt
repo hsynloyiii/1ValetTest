@@ -31,7 +31,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment @Inject constructor(
-    val homeAdapter: HomeAdapter
+    private val homeAdapter: HomeAdapter
 ) : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
@@ -79,6 +79,13 @@ class HomeFragment @Inject constructor(
                     newDeviceContentList = it.toMutableList()
                     homeAdapter.differDeviceContent.submitList(newDeviceContentList)
                 }
+
+//                .observe(viewLifecycleOwner) {
+//                    newDeviceContentList = it.toMutableList()
+//                    homeAdapter.differDeviceContent.submitList(newDeviceContentList)
+//                }
+
+
         }
     }
 
@@ -139,7 +146,7 @@ class HomeFragment @Inject constructor(
 
         val newList = mutableListOf<DeviceContent>()
         newDeviceContentList.forEach {
-            if (it.title.lowercase(Locale.getDefault()).contains(text))
+            if (it.title.lowercase(Locale.getDefault()).contains(text, ignoreCase = true))
                 newList.add(it)
         }
         bindingNoResult.linearNoResult.apply {

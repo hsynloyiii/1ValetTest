@@ -66,7 +66,7 @@ class MyDevicesFragment @Inject constructor(
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            deviceDatabaseViewModel.getDevices
+            deviceDatabaseViewModel.getMyDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collectLatest {
                     newMyDeviceContentList = it.toMutableList()
@@ -133,7 +133,7 @@ class MyDevicesFragment @Inject constructor(
 
         val newList = mutableListOf<MyDeviceContent>()
         newMyDeviceContentList.forEach {
-            if (it.title.lowercase(Locale.getDefault()).contains(text))
+            if (it.title.contains(text, ignoreCase = true))
                 newList.add(it)
         }
 

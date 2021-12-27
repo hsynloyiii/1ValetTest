@@ -1,6 +1,7 @@
 package com.example.a1valettest.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.DeviceResponse
@@ -39,6 +40,7 @@ class DeviceDatabaseViewModel @Inject constructor(
         }
 
     val getAllDevices = deviceDatabaseRepository.getAllDevices()
+//        .asLiveData(ioDispatchers)
         .shareIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
@@ -54,7 +56,7 @@ class DeviceDatabaseViewModel @Inject constructor(
         deviceDatabaseRepository.insertToMyDevice(myDeviceContent = myDeviceContent)
     }
 
-    val getDevices = deviceDatabaseRepository.getMyDevices(isFavorite = true)
+    val getMyDevices = deviceDatabaseRepository.getMyDevices(isFavorite = true)
         .shareIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),

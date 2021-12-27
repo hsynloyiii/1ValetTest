@@ -1,12 +1,15 @@
 package com.example.a1valettest.view.fragment
 
-import android.widget.ImageButton
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.navOptions
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.PerformException
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -44,11 +47,11 @@ class HomeFragmentTest {
     @Before
     fun setUp() {
         hiltRule.inject()
+        launchFragmentInHiltContainer<HomeFragment>(fragmentFactory = fragmentFactory)
     }
 
     @Test
     fun testHomeToolbarTitle() {
-        launchFragmentInHiltContainer<HomeFragment>(fragmentFactory = fragmentFactory)
         onView(
             allOf(
                 instanceOf(TextView::class.java),
@@ -59,20 +62,14 @@ class HomeFragmentTest {
     }
 
     @Test
-    fun testOpenDrawer() {
-        launchFragmentInHiltContainer<HomeFragment>(fragmentFactory = fragmentFactory)
-        onView(
-            allOf(
-                instanceOf(ImageButton::class.java),
-                withParent(withId(R.id.toolbarFragmentHome))
-            )
-        )
-            .perform(click())
-
+    fun testIsListAllDeviceVisible() {
+        // check scrolling in recyclerview
+        onView(withId(R.id.recyclerViewFragmentHome))
+            .check(matches(isDisplayed()))
     }
 
     @Test
-    fun testNavigationToDeviceDetailFragment() {
+    fun testNavigationToDeviceDetailFragmentInItemRecyclerView() {
 
         val deviceContent = DeviceContent(
             id = "1",
@@ -118,6 +115,37 @@ class HomeFragmentTest {
                 }
             }
         )
+    }
+
+
+    @Test
+    fun testSearchViewNoResult() {
+        onView(
+            withId(R.id.search)
+        ).perform(click())
+
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .perform(typeText("This item is not in the list"))
+        onView(withId(R.id.textNoResult)).check(matches(withText(R.string.noResult)))
+    }
+
+    @Test(expected = PerformException::class)
+    fun testSearchViewWithResult() {
+        onView(
+            withId(R.id.search)
+        ).perform(click())
+
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .perform(typeText("Xiaomi Mi 11 Ultra"))
+
+        Espresso.closeSoftKeyboard()
+
+        onView(withId(R.id.recyclerViewFragmentHome))
+            .perform(
+                RecyclerViewActions.scrollTo<HomeAdapter.ViewHolder>(
+                    hasDescendant(withText("niewnf bwib iadif sg"))
+                )
+            )
     }
 
 }
