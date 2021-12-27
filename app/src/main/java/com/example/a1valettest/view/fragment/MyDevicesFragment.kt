@@ -28,13 +28,11 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MyDevicesFragment : BaseFragment<FragmentMyDevicesBinding>(R.layout.fragment_my_devices) {
-
+class MyDevicesFragment @Inject constructor(
+    private val myDevicesAdapter: MyDevicesAdapter
+) : BaseFragment<FragmentMyDevicesBinding>(R.layout.fragment_my_devices) {
 
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
-
-    @Inject
-    lateinit var myDevicesAdapter: MyDevicesAdapter
 
     private lateinit var newMyDeviceContentList: MutableList<MyDeviceContent>
 

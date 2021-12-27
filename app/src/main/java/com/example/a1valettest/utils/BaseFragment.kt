@@ -19,7 +19,6 @@ abstract class BaseFragment<DBI : ViewDataBinding>(
     val binding: DBI
         get() = _binding
 
-    open fun DBI.initialize(savedInstanceState: Bundle?){}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +33,6 @@ abstract class BaseFragment<DBI : ViewDataBinding>(
         )
 
         binding.lifecycleOwner = viewLifecycleOwner
-
-        binding.initialize(savedInstanceState = savedInstanceState)
 
         return _binding.root
     }

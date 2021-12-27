@@ -30,10 +30,9 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-
-    @Inject
-    lateinit var homeAdapter: HomeAdapter
+class HomeFragment @Inject constructor(
+    private val homeAdapter: HomeAdapter
+) : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val deviceDatabaseViewModel by viewModels<DeviceDatabaseViewModel>()
 

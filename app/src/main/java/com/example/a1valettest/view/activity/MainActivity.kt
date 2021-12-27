@@ -12,6 +12,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.view.WindowCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.setupWithNavController
+import com.example.a1valettest.utils.di.MainFragmentFactoryEntryPoint
+import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
+import dagger.hilt.android.EntryPointAccessors
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -21,7 +25,17 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navHostFragment: NavHostFragment
 
+    @Inject
+    lateinit var mainFragmentFactory: MainFragmentFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val entryPoint = EntryPointAccessors.fromActivity(
+            this,
+            MainFragmentFactoryEntryPoint::class.java
+        )
+
+        supportFragmentManager.fragmentFactory = entryPoint.getMainFragmentFactory()
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
