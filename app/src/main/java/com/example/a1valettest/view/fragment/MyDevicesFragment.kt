@@ -70,8 +70,8 @@ class MyDevicesFragment @Inject constructor(
             deviceDatabaseViewModel.getMyDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collectLatest {
-                    newMyDeviceContentList = it.toMutableList()
-                    myDevicesAdapter.submitList(newMyDeviceContentList.reversed())
+                    newMyDeviceContentList = it.reversed().toMutableList()
+                    myDevicesAdapter.submitList(newMyDeviceContentList)
                     EspressoIdlingResource.decrement()
 
                     if (newMyDeviceContentList.isEmpty())

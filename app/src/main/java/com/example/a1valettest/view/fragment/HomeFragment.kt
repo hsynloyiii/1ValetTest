@@ -17,6 +17,7 @@ import android.annotation.SuppressLint
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -67,9 +68,7 @@ class HomeFragment @Inject constructor(
         }
 
 
-        binding.recyclerViewFragmentHome.apply {
-            adapter = homeAdapter
-        }
+        binding.recyclerViewFragmentHome.adapter = homeAdapter
 
         EspressoIdlingResource.increment()
         viewLifecycleOwner.lifecycleScope.launch {
