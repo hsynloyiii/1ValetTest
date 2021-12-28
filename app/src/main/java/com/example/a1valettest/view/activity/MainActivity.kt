@@ -11,6 +11,7 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.view.WindowCompat
+import androidx.core.view.forEach
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
