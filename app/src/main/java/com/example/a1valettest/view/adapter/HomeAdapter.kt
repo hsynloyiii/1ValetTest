@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewHomeBinding
 import com.example.a1valettest.model.DeviceContent
-import com.example.a1valettest.utils.EspressoIdlingResource
+import com.example.a1valettest.EspressoIdlingResource
 import javax.inject.Inject
 
 class HomeAdapter @Inject constructor() :

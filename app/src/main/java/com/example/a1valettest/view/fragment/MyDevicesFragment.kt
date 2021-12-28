@@ -19,6 +19,7 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
 import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.BaseFragment
+import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,17 +65,18 @@ class MyDevicesFragment @Inject constructor(
             adapter = myDevicesAdapter
         }
 
+        EspressoIdlingResource.increment()
         viewLifecycleOwner.lifecycleScope.launch {
             deviceDatabaseViewModel.getMyDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collectLatest {
                     newMyDeviceContentList = it.toMutableList()
-                    myDevicesAdapter.differMyDeviceContent.apply {
-                        submitList(newMyDeviceContentList.reversed())
+                    myDevicesAdapter.submitList(newMyDeviceContentList.reversed())
+                    EspressoIdlingResource.decrement()
 
-                        if (newMyDeviceContentList.isEmpty())
-                            binding.textEmptyMyDeviceList.visibility = VISIBLE
-                    }
+                    if (newMyDeviceContentList.isEmpty())
+                        binding.textEmptyMyDeviceList.visibility = VISIBLE
+
                     Log.i("TestMyDeviceFragment", it.toString())
                 }
         }

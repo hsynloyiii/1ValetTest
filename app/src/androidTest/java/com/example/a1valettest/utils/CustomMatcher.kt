@@ -1,4 +1,4 @@
-package com.example.a1valettest
+package com.example.a1valettest.utils
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -13,6 +13,7 @@ import androidx.test.espresso.matcher.BoundedMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 
+// Matcher for icons
 fun withActionIconDrawable(@DrawableRes resourceId: Int): Matcher<View?> {
     return object : BoundedMatcher<View?, ActionMenuItemView>(ActionMenuItemView::class.java) {
         override fun describeTo(description: Description) {

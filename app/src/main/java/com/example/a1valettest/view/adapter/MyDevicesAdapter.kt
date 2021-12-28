@@ -10,6 +10,7 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewMyDevicesBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
+import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.utils.convertToDeviceContent
 import javax.inject.Inject
 
@@ -45,6 +46,14 @@ class MyDevicesAdapter @Inject constructor() :
 
     fun setOnItemClickListener(listener: (DeviceContent) -> Unit) {
         onItemClickListener = listener
+    }
+
+    fun submitList(list: List<MyDeviceContent>) {
+        EspressoIdlingResource.increment()
+        val dataCommitCallback = Runnable {
+            EspressoIdlingResource.decrement()
+        }
+        differMyDeviceContent.submitList(list, dataCommitCallback)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

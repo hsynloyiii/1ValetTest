@@ -13,11 +13,12 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
 import com.example.a1valettest.R
 import com.example.a1valettest.view.adapter.HomeAdapter
-import com.example.a1valettest.withActionIconDrawable
+import com.example.a1valettest.utils.withActionIconDrawable
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.Matchers.allOf
+import org.hamcrest.core.AllOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -149,7 +150,12 @@ class MainActivityTest {
             )
         ).perform(click())
 
-        onView(withText(R.string.successfullyAdded)).check(matches(isDisplayed()))
+        onView(
+            AllOf.allOf(
+                withId(com.google.android.material.R.id.snackbar_text),
+                withText(R.string.successfullyAdded)
+            )
+        ).check(matches(isDisplayed()))
 
         onView(withActionIconDrawable(R.drawable.ic_round_star_24)).check(matches(isDisplayed()))
 
@@ -197,7 +203,12 @@ class MainActivityTest {
         onView(withText(R.string.remove)).check(matches(isDisplayed())).perform(click())
             .check(doesNotExist())
 
-        onView(withText(R.string.successfullyRemoved)).check(matches(isDisplayed()))
+        onView(
+            allOf(
+                withId(com.google.android.material.R.id.snackbar_text),
+                withText(R.string.successfullyRemoved)
+            )
+        ).check(matches(isDisplayed()))
 
         onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).check(
             matches(

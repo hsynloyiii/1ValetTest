@@ -9,7 +9,7 @@ import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.filters.MediumTest
 import com.example.a1valettest.R
-import com.example.a1valettest.launchFragmentInHiltContainer
+import com.example.a1valettest.utils.launchFragmentInHiltContainer
 import com.example.a1valettest.model.DeviceContent
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -21,8 +21,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.*
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.example.a1valettest.withActionIconDrawable
-import org.hamcrest.core.IsNot.not
+import com.example.a1valettest.utils.withActionIconDrawable
 
 
 @MediumTest
@@ -106,8 +105,13 @@ class DeviceDetailFragmentTest {
             )
         ).perform(click())
 
-        // check for snackbar
-        onView(withText(R.string.successfullyAdded)).check(matches(isDisplayed()))
+        // check for snackbar added
+        onView(
+            allOf(
+                withId(com.google.android.material.R.id.snackbar_text),
+                withText(R.string.successfullyAdded)
+            )
+        ).check(matches(isDisplayed()))
 
         onView(withActionIconDrawable(R.drawable.ic_round_star_24)).check(matches(isDisplayed()))
             .perform(click())
@@ -115,7 +119,13 @@ class DeviceDetailFragmentTest {
         onView(withText(R.string.remove)).check(matches(isDisplayed())).perform(click())
             .check(doesNotExist())
 
-        onView(withText(R.string.successfullyRemoved)).check(matches(isDisplayed()))
+        // check for snackbar removed
+        onView(
+            allOf(
+                withId(com.google.android.material.R.id.snackbar_text),
+                withText(R.string.successfullyRemoved)
+            )
+        ).check(matches(isDisplayed()))
 
         onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).check(
             matches(

@@ -1,4 +1,4 @@
-package com.example.a1valettest
+package com.example.a1valettest.utils
 
 import android.app.Application
 import android.content.Context

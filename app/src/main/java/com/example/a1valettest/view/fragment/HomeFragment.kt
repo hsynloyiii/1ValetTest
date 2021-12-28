@@ -23,9 +23,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.a1valettest.utils.BaseFragment
-import com.example.a1valettest.utils.EspressoIdlingResource
+import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -74,7 +73,6 @@ class HomeFragment @Inject constructor(
 
         EspressoIdlingResource.increment()
         viewLifecycleOwner.lifecycleScope.launch {
-            delay(1000)
             deviceDatabaseViewModel.getAllDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collectLatest {
