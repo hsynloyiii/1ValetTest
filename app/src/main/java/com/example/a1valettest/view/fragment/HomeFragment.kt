@@ -13,7 +13,6 @@ import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.*
 import android.annotation.SuppressLint
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -24,6 +23,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.a1valettest.utils.BaseFragment
+import com.example.a1valettest.utils.EspressoIdlingResource
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -72,20 +72,16 @@ class HomeFragment @Inject constructor(
             adapter = homeAdapter
         }
 
+        EspressoIdlingResource.increment()
         viewLifecycleOwner.lifecycleScope.launch {
+            delay(1000)
             deviceDatabaseViewModel.getAllDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collectLatest {
                     newDeviceContentList = it.toMutableList()
-                    homeAdapter.differDeviceContent.submitList(newDeviceContentList)
+                    homeAdapter.submitList(newDeviceContentList)
+                    EspressoIdlingResource.decrement()
                 }
-
-//                .observe(viewLifecycleOwner) {
-//                    newDeviceContentList = it.toMutableList()
-//                    homeAdapter.differDeviceContent.submitList(newDeviceContentList)
-//                }
-
-
         }
     }
 
@@ -164,6 +160,6 @@ class HomeFragment @Inject constructor(
             } else
                 visibility = GONE
         }
-        homeAdapter.differDeviceContent.submitList(newList)
+        homeAdapter.submitList(newList)
     }
 }

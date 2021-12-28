@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewHomeBinding
 import com.example.a1valettest.model.DeviceContent
+import com.example.a1valettest.utils.EspressoIdlingResource
 import javax.inject.Inject
 
 class HomeAdapter @Inject constructor() :
@@ -22,7 +23,15 @@ class HomeAdapter @Inject constructor() :
             oldItem == newItem
     }
 
-    val differDeviceContent = AsyncListDiffer(this, differCallBack)
+    private val differDeviceContent = AsyncListDiffer(this, differCallBack)
+
+    fun submitList(list: List<DeviceContent>) {
+        EspressoIdlingResource.increment()
+        val dataCommitCallback = Runnable {
+            EspressoIdlingResource.decrement()
+        }
+        differDeviceContent.submitList(list, dataCommitCallback)
+    }
 
     inner class ViewHolder(val binding: ItemRecyclerviewHomeBinding) :
         RecyclerView.ViewHolder(binding.root)
