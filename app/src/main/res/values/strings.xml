@@ -18,4 +18,6 @@
     <string name="os">OS</string>
     <string name="remove">Remove</string>
 
+    <string name="successfullyAdded">It successfully added to your list</string>
+    <string name="successfullyRemoved">It successfully removed from your list</string>
 </resources>

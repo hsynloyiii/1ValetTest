@@ -104,13 +104,19 @@ class DeviceDetailFragmentTest {
             matches(
                 isDisplayed()
             )
-        )
-        onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).perform(click())
+        ).perform(click())
+
+        // check for snackbar
+        onView(withText(R.string.successfullyAdded)).check(matches(isDisplayed()))
+
         onView(withActionIconDrawable(R.drawable.ic_round_star_24)).check(matches(isDisplayed()))
-        onView(withActionIconDrawable(R.drawable.ic_round_star_24)).perform(click())
-        onView(withText(R.string.remove)).check(matches(isDisplayed()))
-        onView(withText(R.string.remove)).perform(click())
-        onView(withText(R.string.remove)).check(doesNotExist())
+            .perform(click())
+
+        onView(withText(R.string.remove)).check(matches(isDisplayed())).perform(click())
+            .check(doesNotExist())
+
+        onView(withText(R.string.successfullyRemoved)).check(matches(isDisplayed()))
+
         onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).check(
             matches(
                 isDisplayed()

@@ -59,7 +59,7 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 
                             updateDeviceContent(deviceContent = deviceContent)
 
-                            view?.snackBar(msg = "It successfully added to your list")
+                            view?.snackBar(msg = resources.getString(R.string.successfullyAdded))
 
 
                             changeFavoriteIcon(
@@ -82,7 +82,7 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
                                         myDeviceContent = deviceContent.convertToMyDeviceContent()
                                     )
 
-                                    view?.snackBar(msg = "It successfully removed from your list")
+                                    view?.snackBar(msg = resources.getString(R.string.successfullyRemoved))
 
                                     changeFavoriteIcon(
                                         item = favoriteDevice,

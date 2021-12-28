@@ -8,14 +8,13 @@ import androidx.navigation.Navigation
 import androidx.navigation.navOptions
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withParent
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.MediumTest
 import com.example.a1valettest.R
 import com.example.a1valettest.launchFragmentInHiltContainer
@@ -30,6 +29,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.core.AllOf.allOf
 import org.hamcrest.core.IsInstanceOf.instanceOf
+import org.hamcrest.core.IsNot.not
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -65,7 +65,7 @@ class MyDevicesFragmentTest {
                 withParent(withId(R.id.toolbarFragmentMyDevices))
             )
         )
-            .check(matches(ViewMatchers.withText(R.string.my_devices)))
+            .check(matches(withText(R.string.my_devices)))
     }
 
     @Test
@@ -73,7 +73,7 @@ class MyDevicesFragmentTest {
         launchFragmentInHiltContainer<MyDevicesFragment>(fragmentFactory = fragmentFactory)
         // Recycler must be in the UI, there is no need that have specific data or not
         onView(withId(R.id.recyclerViewFragmentMyDevices))
-            .check(matches(ViewMatchers.isDisplayed()))
+            .check(matches(isDisplayed()))
     }
 
     @Test
@@ -153,10 +153,10 @@ class MyDevicesFragmentTest {
             withId(R.id.search)
         ).perform(click())
 
-        onView(ViewMatchers.isAssignableFrom(AutoCompleteTextView::class.java))
-            .perform(ViewActions.typeText("This item is not in my device list"))
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .perform(typeText("This item is not in my device list"))
         onView(withId(R.id.textNoResult))
-            .check(matches(ViewMatchers.withText(R.string.noResult)))
+            .check(matches(withText(R.string.noResult)))
 
         Espresso.closeSoftKeyboard()
 
@@ -168,8 +168,8 @@ class MyDevicesFragmentTest {
             )
         ).perform(click())
 
-        onView(ViewMatchers.isAssignableFrom(AutoCompleteTextView::class.java))
-            .check(ViewAssertions.doesNotExist())
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .check(doesNotExist())
     }
 
     @Test
@@ -196,11 +196,11 @@ class MyDevicesFragmentTest {
             withId(R.id.search)
         ).perform(click())
 
-        onView(ViewMatchers.isAssignableFrom(AutoCompleteTextView::class.java))
-            .perform(ViewActions.typeText("Samsung Galaxy S21"))
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .perform(typeText("Samsung Galaxy S21"))
 
         onView(withId(R.id.linearNoResult))
-            .check(ViewAssertions.doesNotExist())
+            .check(doesNotExist())
 
         Espresso.closeSoftKeyboard()
 
@@ -212,8 +212,31 @@ class MyDevicesFragmentTest {
             )
         ).perform(click())
 
-        onView(ViewMatchers.isAssignableFrom(AutoCompleteTextView::class.java))
-            .check(ViewAssertions.doesNotExist())
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .check(doesNotExist())
+    }
+
+    @Test
+    fun testSearchWithNoListExist() {
+        launchFragmentInHiltContainer<MyDevicesFragment>(fragmentFactory = fragmentFactory)
+
+        onView(withId(R.id.search)).perform(click())
+
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .perform(typeText("Samsung Galaxy S21"))
+
+        onView(withId(R.id.textEmptyMyDeviceList)).check(matches(isDisplayed()))
+
+        // at the end press back and close searchView
+        onView(
+            allOf(
+                instanceOf(ImageButton::class.java),
+                withParent(withId(R.id.toolbarFragmentMyDevices))
+            )
+        ).perform(click())
+
+        onView(isAssignableFrom(AutoCompleteTextView::class.java))
+            .check(doesNotExist())
     }
 
 }
