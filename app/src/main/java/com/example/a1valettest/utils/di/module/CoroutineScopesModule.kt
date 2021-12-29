@@ -1,7 +1,6 @@
 package com.example.a1valettest.utils.di.module
 
 import com.example.a1valettest.utils.di.ApplicationScope
-import com.example.a1valettest.utils.di.IODispatchers
 import com.example.a1valettest.utils.di.MainDispatchers
 import dagger.Module
 import dagger.Provides
@@ -20,7 +19,7 @@ object CoroutineScopesModule {
     @ApplicationScope
     @Provides
     fun provideCoroutineScope(
-        @IODispatchers mainDispatchers: CoroutineDispatcher
+        @MainDispatchers mainDispatchers: CoroutineDispatcher
     ): CoroutineScope = CoroutineScope(SupervisorJob() + mainDispatchers)
 
 }

@@ -1,6 +1,7 @@
 package com.example.a1valettest.model
 
+// position = 0 = light, position = 1 = night , position = 2 = follow system night/light
 data class ThemeUIState(
-    var isNight: Boolean? = true,
-    var selectedThemeItemPosition: Int = 2
+    var nightModeByPosition: Int,
+    var selectedThemeItemPosition: Int
 )
