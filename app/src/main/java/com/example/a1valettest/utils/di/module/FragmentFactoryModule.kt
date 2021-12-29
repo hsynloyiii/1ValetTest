@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.example.a1valettest.utils.di.FragmentKey
 import com.example.a1valettest.view.fragment.HomeFragment
 import com.example.a1valettest.view.fragment.MyDevicesFragment
+import com.example.a1valettest.view.fragment.SettingFragment
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -24,4 +25,8 @@ abstract class FragmentFactoryModule {
     @FragmentKey(MyDevicesFragment::class)
     abstract fun bindDeviceFragment(fragment: MyDevicesFragment): Fragment
 
+    @Binds
+    @IntoMap
+    @FragmentKey(SettingFragment::class)
+    abstract fun bindSettingFragment(fragment: SettingFragment): Fragment
 }

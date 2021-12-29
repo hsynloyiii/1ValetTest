@@ -7,7 +7,7 @@
         android:id="@+id/coordinatorContainerFragmentMyDevices"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="?attr/backgroundColor"
         tools:context=".view.fragment.MyDevicesFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
@@ -37,7 +37,6 @@
             android:id="@+id/textEmptyMyDeviceList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray"
             android:textSize="14sp"
             android:layout_gravity="center"
             android:visibility="gone"

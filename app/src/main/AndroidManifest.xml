@@ -16,7 +16,6 @@
         tools:ignore="AllowBackup">
         <activity
             android:name=".view.activity.MainActivity"
-            android:configChanges="orientation|screenSize|uiMode"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

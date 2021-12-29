@@ -2,7 +2,7 @@
     <string name="app_name">1ValetTest</string>
     <string name="main">Main</string>
     <string name="home">Home</string>
-    <string name="setting">Setting</string>
+    <string name="setting">Settings</string>
     <string name="my_devices">My Devices</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -20,4 +20,11 @@
 
     <string name="successfullyAdded">It successfully added to your list</string>
     <string name="successfullyRemoved">It successfully removed from your list</string>
+    <string name="chooseThemeMode">Choose theme mode</string>
+    
+    <string-array name="theme_item">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System default</item>
+    </string-array>
 </resources>

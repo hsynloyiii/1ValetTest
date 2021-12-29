@@ -13,7 +13,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="?attr/backgroundColor"
         tools:context=".view.fragment.DeviceDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -23,9 +23,6 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbarFragmentDeviceDetail"
                 style="@style/Base.Widget.Material3.Toolbar"
-                android:background="@color/white"
-                android:elevation="4dp"
-                android:transitionName="device_name"
                 app:menu="@menu/device_detail_toolbar_menu"
                 app:navigationIcon="@drawable/ic_round_back_24" />
 
@@ -52,7 +49,6 @@
                 android:layout_marginStart="16dp"
                 android:gravity="center"
                 android:text="@{deviceContent.company,default=None}"
-                android:textColor="@color/gray"
                 android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -64,7 +60,6 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="start"
                 android:text="@{deviceContent.title,default=PhoneName}"
-                android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -78,14 +73,13 @@
                 android:gravity="start"
                 android:lineSpacingExtra="4dp"
                 android:text="@{deviceContent.description,default=PhoneDescription}"
-                android:textColor="@color/gray"
                 android:textSize="16sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="16dp"
-                android:background="@color/graySplit" />
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -98,7 +92,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/price"
-                    android:textColor="@color/gray"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +102,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:textColor="@color/black"
                     android:textSize="22sp"
                     app:customPrice="@{deviceContent.price}"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -123,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="16dp"
-                android:background="@color/graySplit" />
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -136,7 +128,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/status"
-                    android:textColor="@color/gray"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +139,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@{deviceContent.status,default=None}"
-                    android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="16dp"
-                android:background="@color/graySplit" />
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -173,7 +163,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/os"
-                    android:textColor="@color/gray"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +174,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@{deviceContent.os,default=X}"
-                    android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

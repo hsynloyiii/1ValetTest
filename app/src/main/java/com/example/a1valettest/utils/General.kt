@@ -41,6 +41,18 @@ fun Context.alert(
         .setCancelable(false)
         .show()
 
+fun Context.singleChoiceAlert(
+    title: String,
+    listItems: Array<out CharSequence>,
+    checkedItem: Int,
+    onItemClickListener: (DialogInterface, Int) -> Unit
+): AlertDialog = MaterialAlertDialogBuilder(this, R.style.Base_Widget_Material3_MaterialAlertDialog)
+    .setTitle(title)
+    .setSingleChoiceItems(listItems, checkedItem) { dialog, which ->
+        onItemClickListener(dialog, which)
+    }
+    .show()
+
 
 fun DeviceContent.convertToMyDeviceContent() = MyDeviceContent(
     this.id,

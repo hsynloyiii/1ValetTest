@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -101,22 +103,20 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 
             menu.findItem(R.id.favoriteDevice).icon =
                 if (args.deviceContent?.isFavorite!!)
-                    ResourcesCompat.getDrawable(resources, R.drawable.ic_round_star_24, null)
+                    ContextCompat.getDrawable(context, R.drawable.ic_round_star_24)
                 else
-                    ResourcesCompat.getDrawable(
-                        resources,
+                    ContextCompat.getDrawable(
+                        context,
                         R.drawable.ic_round_star_outline_24,
-                        null
                     )
 
         }
     }
 
     private fun changeFavoriteIcon(item: MenuItem, @DrawableRes id: Int) =
-        ResourcesCompat.getDrawable(
-            resources,
+        ContextCompat.getDrawable(
+            context!!,
             id,
-            null
         ).also { item.icon = it }
 
     private fun updateDeviceContent(deviceContent: DeviceContent) =

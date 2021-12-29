@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout

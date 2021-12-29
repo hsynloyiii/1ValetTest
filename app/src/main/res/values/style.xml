@@ -6,7 +6,7 @@
     <style name="Base.Widget.Material3.NavigationView" parent="Widget.Material3.NavigationView">
         <!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NavigationView</item>-->
         <item name="menu">@menu/navigation_drawer_menu</item>
-        <item name="android:background">@color/white</item>
+<!--        <item name="android:background">@color/white</item>-->
         <item name="itemIconTint">@color/navigation_item_color</item>
         <item name="itemTextColor">@color/navigation_item_color</item>
         <item name="drawerLayoutCornerSize">0dp</item>
@@ -17,13 +17,13 @@
         <item name="itemShapeAppearance">
             @style/Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
         </item>
-        <item name="itemBackground">@drawable/navigation_drawer_background</item>
+<!--        <item name="itemBackground">@drawable/navigation_drawer_background</item>-->
         <item name="itemShapeInsetStart">0dp</item>
         <item name="itemVerticalPadding">12dp</item>
         <item name="android:overScrollMode">never</item>
         <item name="itemIconPadding">22dp</item>
         <item name="itemIconSize">26dp</item>
-        <item name="subheaderColor">@color/gray</item>
+<!--        <item name="subheaderColor">@color/gray</item>-->
     </style>
 
     <style name="Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator" parent="">
@@ -55,10 +55,10 @@
         </item>
         <item name="shapeAppearanceOverlay">@style/Base.ShapeAppearanceOverlay.Material3.CardView
         </item>
-        <item name="cardElevation">@dimen/m3_sys_elevation_level2</item>
-        <item name="cardForegroundColor">@null</item>
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="rippleColor">@color/card_ripple_color</item>
+        <item name="cardElevation">@dimen/m3_sys_elevation_level1 </item>
+<!--        <item name="cardForegroundColor">@null</item>-->
+<!--        <item name="cardBackgroundColor">@color/white</item>-->
+<!--        <item name="rippleColor">@color/card_ripple_color</item>-->
         <item name="strokeColor">@color/m3_card_stroke_color</item>
         <item name="strokeWidth">0dp</item>
         <item name="checkedIconTint">@color/black</item>
@@ -74,13 +74,14 @@
 
     <!-- Collapsing Toolbar -->
     <style name="Base.Widget.Material3.CollapsingToolbar" parent="Widget.Material3.CollapsingToolbar">
+        <item name="enforceMaterialTheme">true</item>
         <item name="collapsedTitleTextAppearance">@style/collapsedTitleTextAppearance</item>
         <item name="collapsedTitleGravity">center</item>
         <item name="expandedTitleTextAppearance">@style/expandedTitleTextAppearance</item>
         <item name="expandedTitleMarginStart">@dimen/m3_appbar_expanded_title_margin_horizontal
         </item>
         <item name="elevation">@dimen/m3_sys_elevation_level4</item>
-        <item name="android:background">@color/primary99</item>
+        <item name="android:background">?attr/colorSurface</item>
         <item name="expandedTitleMarginEnd">@dimen/m3_appbar_expanded_title_margin_horizontal</item>
         <item name="expandedTitleMarginBottom">@dimen/m3_appbar_expanded_title_margin_bottom</item>
         <item name="extraMultilineHeightEnabled">true</item>
@@ -93,34 +94,35 @@
     </style>
 
     <style name="collapsedTitleTextAppearance">
-        <item name="android:textColor">@color/black</item>
+<!--        <item name="android:textColor">@color/black</item>-->
     </style>
 
     <style name="expandedTitleTextAppearance">
-        <item name="android:textColor">@color/black</item>
+<!--        <item name="android:textColor">@color/black</item>-->
         <item name="android:textSize">30sp</item>
     </style>
 
     <!-- AppBarLayout -->
     <style name="Base.Widget.Material3.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+        <item name="enforceMaterialTheme">true</item>
         <item name="liftOnScroll">true</item>
-        <item name="android:background">@color/primary99</item>
+        <item name="android:background">?attr/colorSurface</item>
         <!--        <item name="elevation">8dp</item>-->
         <!--        <item name="android:elevation">8dp</item>-->
         <!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
     </style>
 
     <!-- MaterialToolbar -->
-    <style name="Base.Widget.Material3.Toolbar" parent="Widget.Material3.Toolbar">
+    <style name="Base.Widget.Material3.Toolbar" parent="Widget.Material3.Toolbar.Surface">
+        <item name="enforceMaterialTheme">true</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:background">@color/primary99</item>
     </style>
 
 
     <!-- Material AlertDialog -->
     <style name="Base.Widget.Material3.MaterialAlertDialog" parent="MaterialAlertDialog.Material3">
-        <item name="android:background">@color/white</item>
+<!--        <item name="android:background">@color/white</item>-->
         <item name="shapeAppearanceOverlay">
             @style/ShapeAppearanceOverlay.MaterialAlertDialog.Material3
         </item>
@@ -143,19 +145,19 @@
     </style>
 
     <style name="Base.MaterialAlertDialog.Material3.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
-        <item name="android:textColor">@color/black</item>
+<!--        <item name="android:textColor">@color/black</item>-->
         <item name="android:textSize">22sp</item>
     </style>
 
     <style name="Base.MaterialAlertDialog.Material3.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
-        <item name="android:textColor">@color/gray</item>
+<!--        <item name="android:textColor">@color/gray</item>-->
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Base.MaterialAlertDialog.Material3.PositiveButton" parent="Widget.Material3.Button.TextButton.Dialog">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/red</item>
-        <item name="rippleColor">@color/redRipple</item>
+<!--        <item name="android:textColor">@color/red</item>-->
+<!--        <item name="rippleColor">@color/redRipple</item>-->
         <item name="android:paddingRight">4dp</item>
         <item name="android:paddingBottom">4dp</item>
         <item name="android:paddingTop">4dp</item>
@@ -167,8 +169,8 @@
 
     <style name="Base.MaterialAlertDialog.Material3.NegativeButton" parent="Widget.Material3.Button.TextButton.Dialog">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="rippleColor">@color/grayRipple</item>
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--        <item name="rippleColor">@color/grayRipple</item>-->
         <item name="android:paddingRight">4dp</item>
         <item name="android:paddingBottom">4dp</item>
         <item name="android:paddingTop">4dp</item>
@@ -182,8 +184,8 @@
     <!-- SearchView Style -->
     <style name="Base.Widget.SearchView" parent="Widget.AppCompat.SearchView">
         <item name="android:maxWidth">10000dp</item>
-        <item name="queryBackground">@color/primary99</item>
-        <item name="submitBackground">@color/primary99</item>
+        <item name="queryBackground">?attr/colorSurface</item>
+        <item name="submitBackground">?attr/colorSurface</item>
         <item name="searchHintIcon">@null</item>
     </style>
     <style name="Custom.Widget.AppCompat.AutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">

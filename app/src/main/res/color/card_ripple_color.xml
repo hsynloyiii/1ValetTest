@@ -3,16 +3,16 @@
 
 
     <!-- Checked. -->
-    <item android:alpha="@dimen/m3_ripple_selectable_pressed_alpha" android:color="@color/gray" android:state_checked="true" android:state_pressed="true" />
-    <item android:alpha="@dimen/m3_ripple_focused_alpha" android:color="@color/gray" android:state_checked="true" android:state_focused="true" />
-    <item android:alpha="@dimen/m3_ripple_hovered_alpha" android:color="@color/gray" android:state_checked="true" android:state_hovered="true" />
-    <item android:alpha="@dimen/m3_ripple_default_alpha" android:color="@color/gray" android:state_checked="true" />
+<!--    <item android:alpha="@dimen/m3_ripple_selectable_pressed_alpha" android:color="@color/gray" android:state_checked="true" android:state_pressed="true" />-->
+<!--    <item android:alpha="@dimen/m3_ripple_focused_alpha" android:color="@color/gray" android:state_checked="true" android:state_focused="true" />-->
+<!--    <item android:alpha="@dimen/m3_ripple_hovered_alpha" android:color="@color/gray" android:state_checked="true" android:state_hovered="true" />-->
+<!--    <item android:alpha="@dimen/m3_ripple_default_alpha" android:color="@color/gray" android:state_checked="true" />-->
 
-    <!-- Unchecked. -->
-    <item android:alpha="@dimen/m3_ripple_selectable_pressed_alpha" android:color="@color/gray" android:state_checkable="true" android:state_pressed="true" />
-    <item android:alpha="@dimen/m3_ripple_pressed_alpha" android:color="@color/gray" android:state_checkable="false" android:state_pressed="true" />
-    <item android:alpha="@dimen/m3_ripple_focused_alpha" android:color="@color/gray" android:state_focused="true" />
-    <item android:alpha="@dimen/m3_ripple_hovered_alpha" android:color="@color/gray" android:state_hovered="true" />
-    <item android:alpha="@dimen/m3_ripple_default_alpha" android:color="@color/gray" />
+<!--    &lt;!&ndash; Unchecked. &ndash;&gt;-->
+<!--    <item android:alpha="@dimen/m3_ripple_selectable_pressed_alpha" android:color="@color/gray" android:state_checkable="true" android:state_pressed="true" />-->
+<!--    <item android:alpha="@dimen/m3_ripple_pressed_alpha" android:color="@color/gray" android:state_checkable="false" android:state_pressed="true" />-->
+<!--    <item android:alpha="@dimen/m3_ripple_focused_alpha" android:color="@color/gray" android:state_focused="true" />-->
+<!--    <item android:alpha="@dimen/m3_ripple_hovered_alpha" android:color="@color/gray" android:state_hovered="true" />-->
+<!--    <item android:alpha="@dimen/m3_ripple_default_alpha" android:color="@color/gray" />-->
 
 </selector>

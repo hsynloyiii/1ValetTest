@@ -1,6 +1,5 @@
 package com.example.a1valettest.view.activity
 
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -16,12 +15,13 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.navOptions
+import com.example.a1valettest.repository.DataStoreManager
 import com.example.a1valettest.utils.di.MainFragmentFactoryEntryPoint
-import com.example.a1valettest.utils.toast
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,25 +35,33 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     @Inject
+    lateinit var dataStoreManager: DataStoreManager
+
+    @Inject
     lateinit var mainFragmentFactory: MainFragmentFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         val entryPoint = EntryPointAccessors.fromActivity(
             this,
             MainFragmentFactoryEntryPoint::class.java
         )
-
         supportFragmentManager.fragmentFactory = entryPoint.getMainFragmentFactory()
-
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setContentView(binding.root)
 
-        setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-
         binding.lifecycleOwner = this
+
+        lifecycleScope.launch {
+            dataStoreManager.readFromDataStore().collect {
+                when (it.isNight) {
+                    true -> setDefaultNightMode(MODE_NIGHT_YES)
+                    false -> setDefaultNightMode(MODE_NIGHT_NO)
+                    null -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                }
+            }
+        }
 
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -140,17 +148,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun closeDrawer() = binding.mainDrawerLayout.closeDrawer(GravityCompat.START, true)
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        when (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> {
-                setDefaultNightMode(MODE_NIGHT_YES)
-                this.toast("NGIHT")
-            }
-            Configuration.UI_MODE_NIGHT_NO -> {
-                setDefaultNightMode(MODE_NIGHT_NO)
-                this.toast("LIGHT")
-            }
-        }
-    }
+//    @RequiresApi(Build.VERSION_CODES.R)
+//    override fun onConfigurationChanged(newConfig: Configuration) {
+//        super.onConfigurationChanged(newConfig)
+//        when (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+//            Configuration.UI_MODE_NIGHT_YES -> {
+////                setDefaultNightMode(MODE_NIGHT_YES)
+//                window.insetsController?.setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS)
+//            }
+//            Configuration.UI_MODE_NIGHT_NO -> {
+////                setDefaultNightMode(MODE_NIGHT_NO)
+//            }
+//        }
+//    }
 }
