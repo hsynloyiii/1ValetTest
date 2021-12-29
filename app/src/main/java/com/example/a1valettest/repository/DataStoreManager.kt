@@ -22,8 +22,8 @@ class DataStoreManager(val context: Context) {
 
     fun readFromDataStore() = context.dataStoreTheme.data.map {
         ThemeUIState(
-            nightModeByPosition = it[NIGHT_BY_POSITION]!!,
-            selectedThemeItemPosition = it[SELECTED_ITEM_POSITION]!!
+            nightModeByPosition = it[NIGHT_BY_POSITION] ?: 2,
+            selectedThemeItemPosition = it[SELECTED_ITEM_POSITION] ?: 2
         )
     }
 }

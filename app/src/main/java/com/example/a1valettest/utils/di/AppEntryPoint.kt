@@ -11,5 +11,5 @@ import dagger.hilt.android.components.ActivityComponent
 @InstallIn(ActivityComponent::class)
 interface AppEntryPoint {
     fun getMainFragmentFactory(): MainFragmentFactory
-    fun getDataStoreManager(): DataStoreManager
+//    fun getDataStoreManager(): DataStoreManager
 }

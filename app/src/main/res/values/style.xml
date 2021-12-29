@@ -4,11 +4,9 @@
 
     <!-- Navigation View-->
     <style name="Base.Widget.Material3.NavigationView" parent="Widget.Material3.NavigationView">
-        <!--        <item name="materialThemeOverlay">@style/ThemeOverlay.App.NavigationView</item>-->
         <item name="menu">@menu/navigation_drawer_menu</item>
-<!--        <item name="android:background">@color/white</item>-->
-        <item name="itemIconTint">@color/navigation_item_color</item>
-        <item name="itemTextColor">@color/navigation_item_color</item>
+        <item name="itemIconTint">@color/m3_navigation_item_icon_tint</item>
+        <item name="itemTextColor">@color/m3_navigation_item_text_color</item>
         <item name="drawerLayoutCornerSize">0dp</item>
         <item name="android:maxWidth">320dp</item>
         <item name="itemShapeAppearanceOverlay">
@@ -17,13 +15,12 @@
         <item name="itemShapeAppearance">
             @style/Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
         </item>
-<!--        <item name="itemBackground">@drawable/navigation_drawer_background</item>-->
+        <item name="itemBackground">@drawable/navigation_drawer_background</item>
         <item name="itemShapeInsetStart">0dp</item>
         <item name="itemVerticalPadding">12dp</item>
         <item name="android:overScrollMode">never</item>
         <item name="itemIconPadding">22dp</item>
         <item name="itemIconSize">26dp</item>
-<!--        <item name="subheaderColor">@color/gray</item>-->
     </style>
 
     <style name="Base.ShapeAppearance.Material3.NavigationBarView.ActiveIndicator" parent="">
@@ -35,18 +32,6 @@
         <item name="android:colorControlHighlight">@android:color/transparent</item>
     </style>
 
-    <!--    <style name="ThemeOverlay.App.NavigationView" parent="">-->
-    <!--        <item name="colorSecondaryContainer">@color/secondary</item>-->
-    <!--        <item name="colorOnSecondaryContainer">@color/secondary</item>-->
-    <!--        <item name="colorTertiaryContainer">@color/secondary</item>-->
-    <!--        <item name="colorOnTertiaryContainer">@color/secondary</item>-->
-    <!--        <item name="colorSurface">@color/secondary</item>-->
-    <!--        <item name="colorOnSurface">@color/secondary</item>-->
-    <!--        <item name="colorOnSurfaceVariant">@color/secondary</item>-->
-    <!--        <item name="colorOutline">@color/secondary</item>-->
-    <!--    </style>-->
-
-
     <!-- Card View-->
     <style name="Base.Widget.Material3.CardView" parent="Widget.Material3.CardView.Filled">
         <item name="enforceMaterialTheme">true</item>
@@ -56,9 +41,7 @@
         <item name="shapeAppearanceOverlay">@style/Base.ShapeAppearanceOverlay.Material3.CardView
         </item>
         <item name="cardElevation">@dimen/m3_sys_elevation_level1 </item>
-<!--        <item name="cardForegroundColor">@null</item>-->
-<!--        <item name="cardBackgroundColor">@color/white</item>-->
-<!--        <item name="rippleColor">@color/card_ripple_color</item>-->
+        <item name="rippleColor">@color/m3_card_ripple_color</item>
         <item name="strokeColor">@color/m3_card_stroke_color</item>
         <item name="strokeWidth">0dp</item>
         <item name="checkedIconTint">@color/black</item>
@@ -94,11 +77,9 @@
     </style>
 
     <style name="collapsedTitleTextAppearance">
-<!--        <item name="android:textColor">@color/black</item>-->
     </style>
 
     <style name="expandedTitleTextAppearance">
-<!--        <item name="android:textColor">@color/black</item>-->
         <item name="android:textSize">30sp</item>
     </style>
 
@@ -122,7 +103,6 @@
 
     <!-- Material AlertDialog -->
     <style name="Base.Widget.Material3.MaterialAlertDialog" parent="MaterialAlertDialog.Material3">
-<!--        <item name="android:background">@color/white</item>-->
         <item name="shapeAppearanceOverlay">
             @style/ShapeAppearanceOverlay.MaterialAlertDialog.Material3
         </item>
@@ -145,19 +125,15 @@
     </style>
 
     <style name="Base.MaterialAlertDialog.Material3.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
-<!--        <item name="android:textColor">@color/black</item>-->
         <item name="android:textSize">22sp</item>
     </style>
 
     <style name="Base.MaterialAlertDialog.Material3.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
-<!--        <item name="android:textColor">@color/gray</item>-->
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Base.MaterialAlertDialog.Material3.PositiveButton" parent="Widget.Material3.Button.TextButton.Dialog">
         <item name="android:textSize">14sp</item>
-<!--        <item name="android:textColor">@color/red</item>-->
-<!--        <item name="rippleColor">@color/redRipple</item>-->
         <item name="android:paddingRight">4dp</item>
         <item name="android:paddingBottom">4dp</item>
         <item name="android:paddingTop">4dp</item>
@@ -169,8 +145,6 @@
 
     <style name="Base.MaterialAlertDialog.Material3.NegativeButton" parent="Widget.Material3.Button.TextButton.Dialog">
         <item name="android:textSize">14sp</item>
-<!--        <item name="android:textColor">@color/black</item>-->
-<!--        <item name="rippleColor">@color/grayRipple</item>-->
         <item name="android:paddingRight">4dp</item>
         <item name="android:paddingBottom">4dp</item>
         <item name="android:paddingTop">4dp</item>
