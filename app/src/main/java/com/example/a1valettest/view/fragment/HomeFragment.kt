@@ -17,6 +17,7 @@ import android.annotation.SuppressLint
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
 import androidx.fragment.app.viewModels

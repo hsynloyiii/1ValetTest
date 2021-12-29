@@ -19,12 +19,12 @@
 
 
         <!-- Customize our theme here. -->
-        <item name="navigationViewStyle">@style/Base.Widget.Material3.NavigationView</item>
-        <item name="cardViewStyle">@style/Base.Widget.Material3.CardView</item>
-        <item name="collapsingToolbarLayoutStyle">@style/Base.Widget.Material3.CollapsingToolbar</item>
-        <item name="appBarLayoutStyle">@style/Base.Widget.Material3.AppBarLayout</item>
-        <item name="searchViewStyle">@style/Base.Widget.SearchView</item>
-        <item name="autoCompleteTextViewStyle">@style/Custom.Widget.AppCompat.AutoCompleteTextView</item>
+            <item name="navigationViewStyle">@style/Base.Widget.Material3.NavigationView</item>
+            <item name="cardViewStyle">@style/Base.Widget.Material3.CardView</item>
+            <item name="collapsingToolbarLayoutStyle">@style/Base.Widget.Material3.CollapsingToolbar</item>
+            <item name="appBarLayoutStyle">@style/Base.Widget.Material3.AppBarLayout</item>
+            <item name="searchViewStyle">@style/Base.Widget.SearchView</item>
+            <item name="autoCompleteTextViewStyle">@style/Custom.Widget.AppCompat.AutoCompleteTextView</item>
 
     </style>
 

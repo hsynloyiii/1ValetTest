@@ -1,9 +1,11 @@
 package com.example.a1valettest.view.activity
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
@@ -11,13 +13,11 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.view.WindowCompat
-import androidx.core.view.forEach
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.navOptions
-import androidx.navigation.ui.setupWithNavController
 import com.example.a1valettest.utils.di.MainFragmentFactoryEntryPoint
+import com.example.a1valettest.utils.toast
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.EntryPointAccessors
@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setContentView(binding.root)
+
+        setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
 
         binding.lifecycleOwner = this
 
@@ -138,4 +140,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun closeDrawer() = binding.mainDrawerLayout.closeDrawer(GravityCompat.START, true)
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        when (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                setDefaultNightMode(MODE_NIGHT_YES)
+                this.toast("NGIHT")
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                setDefaultNightMode(MODE_NIGHT_NO)
+                this.toast("LIGHT")
+            }
+        }
+    }
 }

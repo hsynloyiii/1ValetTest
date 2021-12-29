@@ -11,11 +11,19 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+<!--        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
 
         <!-- Navigation bar color. -->
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <!--        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>-->
         <!-- Customize your theme here. -->
+
+        <item name="navigationViewStyle">@style/Base.Widget.Material3.NavigationView</item>
+        <item name="cardViewStyle">@style/Base.Widget.Material3.CardView</item>
+        <item name="collapsingToolbarLayoutStyle">@style/Base.Widget.Material3.CollapsingToolbar</item>
+        <item name="appBarLayoutStyle">@style/Base.Widget.Material3.AppBarLayout</item>
+        <item name="searchViewStyle">@style/Base.Widget.SearchView</item>
+        <item name="autoCompleteTextViewStyle">@style/Custom.Widget.AppCompat.AutoCompleteTextView</item>
+
     </style>
 </resources>
