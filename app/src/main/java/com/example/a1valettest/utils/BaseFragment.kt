@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.android.material.transition.platform.MaterialContainerTransform
 
 
 abstract class BaseFragment<DBI : ViewDataBinding>(
@@ -19,6 +20,7 @@ abstract class BaseFragment<DBI : ViewDataBinding>(
     val binding: DBI
         get() = _binding
 
+    open fun DBI.initialize(){}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +33,8 @@ abstract class BaseFragment<DBI : ViewDataBinding>(
             container,
             false
         )
+
+        binding.initialize()
 
         binding.lifecycleOwner = viewLifecycleOwner
 

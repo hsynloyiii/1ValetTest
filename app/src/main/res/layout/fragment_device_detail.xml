@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/backgroundColor"
-        android:transitionName="coordinatorContainer"
         tools:context=".view.fragment.DeviceDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -36,11 +35,10 @@
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewDevice"
+                android:id="@+id/imageViewDeviceFragmentDeviceDetail"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="16dp"
-                android:transitionName="device_image"
                 app:imageFromUrl="@{deviceContent.imageUrl}" />
 
             <androidx.appcompat.widget.AppCompatTextView
