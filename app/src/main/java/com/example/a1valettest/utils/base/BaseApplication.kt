@@ -1,11 +1,12 @@
-package com.example.a1valettest.utils
+package com.example.a1valettest.utils.base
 
 import android.app.Application
+import com.example.a1valettest.utils.ApplicationContainer
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 @HiltAndroidApp
-class ValetApplication: Application() {
+class BaseApplication: Application() {
 
     @Inject
     lateinit var applicationContainer: ApplicationContainer

@@ -6,23 +6,24 @@ import android.util.Log
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentMyDevicesBinding
 import com.example.a1valettest.model.MyDeviceContent
-import com.example.a1valettest.utils.BaseFragment
+import com.example.a1valettest.utils.base.BaseFragment
 import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
+import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -37,6 +38,12 @@ class MyDevicesFragment @Inject constructor(
 
     lateinit var newMyDeviceContentList: MutableList<MyDeviceContent>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = MaterialElevationScale(false)
+        enterTransition = MaterialElevationScale(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
@@ -45,25 +52,24 @@ class MyDevicesFragment @Inject constructor(
 
     private fun getMyDevices() {
 
-        myDevicesAdapter.setOnItemClickListener {
+        myDevicesAdapter.setOnItemClickListener { deviceContent, view ->
+            val extras =
+                FragmentNavigatorExtras(view to deviceContent.title)
             val action = MyDevicesFragmentDirections
-                .actionMyDevicesFragmentToDeviceDetailFragment(deviceContent = it)
+                .actionMyDevicesFragmentToDeviceDetailFragment(deviceContent = deviceContent)
 
             findNavController().navigate(
                 action,
-                navOptions {
-                    anim {
-                        enter = R.anim.slide_in_right
-                        exit = R.anim.scale_out
-                        popEnter = R.anim.scale_in
-                        popExit = R.anim.slide_out_right
-                    }
-                }
+                extras
             )
         }
 
         binding.recyclerViewFragmentMyDevices.apply {
             adapter = myDevicesAdapter
+            postponeEnterTransition()
+            doOnPreDraw {
+                startPostponedEnterTransition()
+            }
         }
 
         EspressoIdlingResource.increment()

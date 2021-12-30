@@ -16,7 +16,6 @@ import androidx.customview.widget.Openable
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.navOptions
-import androidx.navigation.ui.setupWithNavController
 import com.example.a1valettest.utils.di.AppEntryPoint
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import com.google.android.material.navigation.NavigationView

@@ -1,4 +1,4 @@
-package com.example.a1valettest.utils
+package com.example.a1valettest.utils.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.google.android.material.transition.platform.MaterialContainerTransform
 
 
 abstract class BaseFragment<DBI : ViewDataBinding>(

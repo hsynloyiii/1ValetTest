@@ -5,6 +5,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.navOptions
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
@@ -108,14 +109,7 @@ class HomeFragmentTest {
         // now verify the navigate function of navController was actually called with right parameter
         verify(navController).navigate(
             HomeFragmentDirections.actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent),
-            navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.scale_out
-                    popEnter = R.anim.scale_in
-                    popExit = R.anim.slide_out_right
-                }
-            }
+            FragmentNavigatorExtras()
         )
     }
 

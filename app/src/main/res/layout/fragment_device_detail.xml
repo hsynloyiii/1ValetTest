@@ -11,9 +11,11 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/mainCoordinatorFragmentDeviceDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/backgroundColor"
+        android:transitionName="@{deviceContent.title}"
         tools:context=".view.fragment.DeviceDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -77,8 +79,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="16dp"
-                />
+                android:layout_margin="16dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -113,8 +114,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="16dp"
-                />
+                android:layout_margin="16dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -148,8 +148,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="16dp"
-                />
+                android:layout_margin="16dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

@@ -39,7 +39,6 @@ class DeviceDatabaseViewModel @Inject constructor(
         }
 
     val getAllDevices = deviceDatabaseRepository.getAllDevices()
-//        .asLiveData(ioDispatchers)
         .shareIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),

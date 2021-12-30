@@ -13,14 +13,12 @@ class ApplicationContainer @Inject constructor(
     private val dataStoreManager: DataStoreManager
 ) {
 
-    fun setAppTheme() {
-        applicationScope.launch {
-            dataStoreManager.readFromDataStore().collect {
-                when (it.nightModeByPosition) {
-                    0 -> setDefaultNightMode(MODE_NIGHT_NO)
-                    1 -> setDefaultNightMode(MODE_NIGHT_YES)
-                    2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-                }
+    fun setAppTheme() = applicationScope.launch {
+        dataStoreManager.readFromDataStore().collect {
+            when (it.nightModeByPosition) {
+                0 -> setDefaultNightMode(MODE_NIGHT_NO)
+                1 -> setDefaultNightMode(MODE_NIGHT_YES)
+                2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
             }
         }
     }

@@ -4,18 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentSettingBinding
-import com.example.a1valettest.model.ThemeUIState
 import com.example.a1valettest.repository.DataStoreManager
-import com.example.a1valettest.utils.BaseFragment
+import com.example.a1valettest.utils.base.BaseFragment
 import com.example.a1valettest.utils.singleChoiceAlert
 import com.example.a1valettest.viewmodel.ThemeViewModel
-import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -25,6 +21,12 @@ class SettingFragment @Inject constructor(
 ) : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
     private val themeViewModel by viewModels<ThemeViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = MaterialElevationScale(false)
+        enterTransition = MaterialElevationScale(true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,7 +41,7 @@ class SettingFragment @Inject constructor(
     }
 
     private fun handleChangeTheme() {
-        binding.textThemeModeFragmentSetting.setOnClickListener {
+        binding.linearThemeModeFragmentSetting.setOnClickListener {
             context?.singleChoiceAlert(
                 title = "Choose theme",
                 listItems = resources.getStringArray(R.array.theme_item),

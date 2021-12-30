@@ -18,6 +18,5 @@ annotation class MainDispatchers
 @Qualifier
 annotation class MainImmediateDispatchers
 
-
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ApplicationScope

@@ -14,24 +14,19 @@ import com.example.a1valettest.model.DeviceContent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import android.annotation.SuppressLint
-import android.transition.TransitionInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.SharedElementCallback
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
-import com.example.a1valettest.utils.BaseFragment
+import com.example.a1valettest.utils.base.BaseFragment
 import com.example.a1valettest.EspressoIdlingResource
-import com.example.a1valettest.view.activity.MainActivity
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
+import com.google.android.material.transition.platform.MaterialElevationScale
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -45,13 +40,15 @@ class HomeFragment @Inject constructor(
 
     private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
-    override fun FragmentHomeBinding.initialize() {
-        sharedElementReturnTransition = TransitionInflater.from(context!!).inflateTransition(android.R.transition.move)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = MaterialElevationScale(false)
+        enterTransition = MaterialElevationScale(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // we call the data source just for first launching page (if it is null of empty our data source will be inserted to room db)
+        // call the data source just for first launching page (if it is null of empty our data source will be inserted to room db)
         deviceDatabaseViewModel.getDeviceDataSource()
 
         handleToolbar()
@@ -61,7 +58,7 @@ class HomeFragment @Inject constructor(
     private fun getDevices() {
         homeAdapter.setOnItemClickListener { deviceContent, view ->
             val extras =
-                FragmentNavigatorExtras(view to deviceContent.imageUrl)
+                FragmentNavigatorExtras(view to deviceContent.title)
             val action = HomeFragmentDirections
                 .actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent)
 
@@ -70,15 +67,6 @@ class HomeFragment @Inject constructor(
                 extras
             )
         }
-
-//        navOptions {
-//            anim {
-//                enter = R.anim.slide_in_right
-//                exit = R.anim.scale_out
-//                popEnter = R.anim.scale_in
-//                popExit = R.anim.slide_out_right
-//            }
-//        }
 
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter

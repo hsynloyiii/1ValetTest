@@ -1,6 +1,7 @@
 package com.example.a1valettest.view.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -42,9 +43,9 @@ class MyDevicesAdapter @Inject constructor() :
         )
     )
 
-    private var onItemClickListener: ((DeviceContent) -> Unit)? = null
+    private var onItemClickListener: ((DeviceContent, View) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (DeviceContent) -> Unit) {
+    fun setOnItemClickListener(listener: (DeviceContent, View) -> Unit) {
         onItemClickListener = listener
     }
 
@@ -65,7 +66,7 @@ class MyDevicesAdapter @Inject constructor() :
 
             itemView.setOnClickListener {
                 onItemClickListener?.let {
-                    it(myDeviceContent.convertToDeviceContent())
+                    it(myDeviceContent.convertToDeviceContent(), binding.cardViewItemRecyclerViewMyDevices)
                 }
             }
         }

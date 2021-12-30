@@ -3,7 +3,6 @@ package com.example.a1valettest.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -48,9 +47,9 @@ class HomeAdapter @Inject constructor() :
             )
         )
 
-    private var onItemClickListener: ((DeviceContent, AppCompatImageView) -> Unit)? = null
+    private var onItemClickListener: ((DeviceContent, View) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (DeviceContent, AppCompatImageView) -> Unit) {
+    fun setOnItemClickListener(listener: (DeviceContent, View) -> Unit) {
         onItemClickListener = listener
     }
 
@@ -58,10 +57,9 @@ class HomeAdapter @Inject constructor() :
         holder.apply {
             val deviceContent = differDeviceContent.currentList[position]
             binding.deviceContent = deviceContent
-            binding.imageViewDeviceItemRecyclerViewHome.transitionName = deviceContent.imageUrl
             itemView.setOnClickListener { view ->
                 onItemClickListener?.let {
-                    it(deviceContent, binding.imageViewDeviceItemRecyclerViewHome)
+                    it(deviceContent, binding.cardViewItemRecyclerViewHome)
                 }
             }
         }

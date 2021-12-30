@@ -4,18 +4,14 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.SharedElementCallback
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.transition.TransitionInflater
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentDeviceDetailBinding
 import com.example.a1valettest.model.DeviceContent
-import com.example.a1valettest.utils.BaseFragment
+import com.example.a1valettest.utils.base.BaseFragment
 import com.example.a1valettest.utils.alert
 import com.example.a1valettest.utils.convertToMyDeviceContent
 import com.example.a1valettest.utils.snackBar
@@ -34,7 +30,7 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
     private lateinit var deviceContent: DeviceContent
 
     override fun FragmentDeviceDetailBinding.initialize() {
-        sharedElementEnterTransition = TransitionInflater.from(context!!).inflateTransition(R.transition.item_shared_element)
+        sharedElementEnterTransition = MaterialContainerTransform()
         postponeEnterTransition(250, TimeUnit.MILLISECONDS)
     }
 
@@ -44,8 +40,6 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
             deviceContent = it
         }
         binding.deviceContent = deviceContent
-
-        binding.imageViewDeviceFragmentDeviceDetail.transitionName = deviceContent.imageUrl
 
         handleToolbar()
     }

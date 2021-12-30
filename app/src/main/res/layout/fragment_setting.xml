@@ -34,24 +34,40 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textThemeModeFragmentSetting"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearThemeModeFragmentSetting"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginTop="16dp"
-                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="@string/chooseThemeMode"
-                android:textSize="18sp"
-                android:background="?attr/selectableItemBackground"
-                android:transitionName="device_name"
-                app:layout_constraintStart_toEndOf="@id/imageViewDevice"
-                app:layout_constraintTop_toTopOf="@id/imageViewDevice" />
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/chooseThemeMode"
+                    app:srcCompat="@drawable/ic_baseline_nights_24"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/chooseThemeMode"
+                    android:textSize="18sp"
+                    android:transitionName="device_name"
+                    app:layout_constraintStart_toEndOf="@id/imageViewDevice"
+                    app:layout_constraintTop_toTopOf="@id/imageViewDevice" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
