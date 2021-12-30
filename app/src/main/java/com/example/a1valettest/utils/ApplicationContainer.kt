@@ -1,28 +1,23 @@
 package com.example.a1valettest.utils
 
-import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate.*
-import com.example.a1valettest.repository.DataStoreManager
-import com.example.a1valettest.utils.di.ApplicationScope
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class ApplicationContainer @Inject constructor(
-    @ApplicationScope private val applicationScope: CoroutineScope,
-    private val dataStoreManager: DataStoreManager
+    @ApplicationContext private val context: Context
 ) {
 
-//    fun setAppTheme() = applicationScope.launch {
-//        dataStoreManager.readFromDataStore().collect {
-//            when (it.nightModeByPosition) {
-//                0 -> setDefaultNightMode(MODE_NIGHT_NO)
-//                1 -> setDefaultNightMode(MODE_NIGHT_YES)
-//                2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-//            }
-//            Log.i("TestingThemeMode", "${it.nightModeByPosition} Container")
-//        }
-//    }
+    fun setAppTheme() {
+        val nightModeByPosition =
+            context.getSharedPreferences("NightTheme", Context.MODE_PRIVATE)
+                .getInt("nightModeByPosition", 2)
+        when (nightModeByPosition) {
+            0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            2 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+    }
 
 }

@@ -38,14 +38,12 @@ class MyDevicesFragment @Inject constructor(
 
     lateinit var newMyDeviceContentList: MutableList<MyDeviceContent>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        exitTransition = MaterialElevationScale(false)
-        enterTransition = MaterialElevationScale(true)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        exitTransition = MaterialElevationScale(false)
+        enterTransition = MaterialElevationScale(true)
+
         handleToolbar()
         getMyDevices()
     }

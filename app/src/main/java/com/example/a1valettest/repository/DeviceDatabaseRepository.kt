@@ -13,7 +13,7 @@ class DeviceDatabaseRepository @Inject constructor(
     private val deviceDao: DeviceDao
 ) : Repository.DeviceDataBaseRepository {
 
-    /* We guess that we are fetching from internet and save it to local DB
+    /* Guess that we are fetching from internet and save it to local DB
      and handle all this with Coroutine/Flow for multi-threading and collecting items
     */
     // All Devices
@@ -160,7 +160,6 @@ class DeviceDatabaseRepository @Inject constructor(
                 )
             )
         }
-
 
     override suspend fun insertAllDevices(deviceContentList: List<DeviceContent>?) =
         deviceDao.insertAllDevices(deviceContentList = deviceContentList)

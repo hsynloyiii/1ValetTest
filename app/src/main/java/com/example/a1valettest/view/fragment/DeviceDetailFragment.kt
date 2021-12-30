@@ -1,6 +1,8 @@
 package com.example.a1valettest.view.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
@@ -21,7 +23,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.fragment_device_detail) {
+class DeviceDetailFragment :
+    BaseFragment<FragmentDeviceDetailBinding>(R.layout.fragment_device_detail) {
 
     private val args by navArgs<DeviceDetailFragmentArgs>()
 
@@ -29,14 +32,13 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 
     private lateinit var deviceContent: DeviceContent
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = MaterialContainerTransform()
-        postponeEnterTransition(250, TimeUnit.MILLISECONDS)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedElementEnterTransition = TransitionInflater.from(context!!).inflateTransition(R.transition.shared_element)
+        sharedElementReturnTransition = MaterialContainerTransform()
+        postponeEnterTransition(300, TimeUnit.MILLISECONDS)
+
         args.deviceContent?.let {
             deviceContent = it
         }
@@ -45,6 +47,7 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
         handleToolbar()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun handleToolbar() {
         binding.toolbarFragmentDeviceDetail.apply {
 
@@ -108,7 +111,11 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 
             menu.findItem(R.id.favoriteDevice).icon =
                 if (args.deviceContent?.isFavorite!!)
-                    ResourcesCompat.getDrawable(resources, R.drawable.ic_round_star_24, context?.theme)
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.ic_round_star_24,
+                        context?.theme
+                    )
                 else
                     ResourcesCompat.getDrawable(
                         resources,

@@ -5,31 +5,24 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.edit
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.viewModels
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentSettingBinding
-import com.example.a1valettest.repository.DataStoreManager
 import com.example.a1valettest.utils.base.BaseFragment
 import com.example.a1valettest.utils.singleChoiceAlert
-import com.example.a1valettest.viewmodel.ThemeViewModel
 import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import androidx.appcompat.app.AppCompatDelegate.*
 
 
 @AndroidEntryPoint
 class SettingFragment @Inject constructor() :
     BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
-    private val themeViewModel by viewModels<ThemeViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         exitTransition = MaterialElevationScale(false)
         enterTransition = MaterialElevationScale(true)
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
         handleChangeTheme()
@@ -42,35 +35,29 @@ class SettingFragment @Inject constructor() :
     }
 
     /**
-     * As app must change the theme mode synchronously as soon as app launches, we don't wanna
+     * As app must change the theme mode synchronously as soon as it launches, we don't wanna
      * waste any time to collect from dataStore so I change the UI synchronously with sharedPreferences
      * There is no need to use DataStore here :)
      */
     private fun handleChangeTheme() {
+        val themeSharedPreferences = context?.getSharedPreferences("NightTheme", MODE_PRIVATE)
         binding.linearThemeModeFragmentSetting.setOnClickListener {
             context?.singleChoiceAlert(
                 title = resources.getString(R.string.chooseTheme),
                 listItems = resources.getStringArray(R.array.theme_item),
-                checkedItem = themeViewModel.readItemPosition(),
+                checkedItem = themeSharedPreferences?.getInt("nightModeByPosition", 2) ?: 2,
                 onItemClickListener = { dialogInterface, i ->
-//                    themeViewModel.writeToThemeDataStore(
-//                        nightModeByPosition = nightWithItemSelect(selectedItemPosition = i),
-//                        selectedThemeItemPosition = i
-//                    )
-
-                    context?.getSharedPreferences("NightTheme", MODE_PRIVATE)?.edit {
-                        putInt("nightModeByPosition", nightWithItemSelect(selectedItemPosition = i))
+                    when (i) {
+                        0 -> setDefaultNightMode(MODE_NIGHT_NO)
+                        1 -> setDefaultNightMode(MODE_NIGHT_YES)
+                        2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                    }
+                    themeSharedPreferences?.edit {
+                        putInt("nightModeByPosition", i)
                     }
                     dialogInterface.dismiss()
                 }
             )
         }
-    }
-
-    private fun nightWithItemSelect(selectedItemPosition: Int): Int = when (selectedItemPosition) {
-        0 -> 0
-        1 -> 1
-        2 -> 2
-        else -> 2
     }
 }

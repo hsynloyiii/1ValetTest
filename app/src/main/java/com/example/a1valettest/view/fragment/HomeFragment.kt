@@ -28,6 +28,7 @@ import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import com.google.android.material.transition.platform.MaterialElevationScale
 import kotlinx.coroutines.flow.collectLatest
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -40,14 +41,11 @@ class HomeFragment @Inject constructor(
 
     private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        exitTransition = MaterialElevationScale(false)
-        enterTransition = MaterialElevationScale(true)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        exitTransition = MaterialElevationScale(false)
+        enterTransition = MaterialElevationScale(true)
+
         // call the data source just for first launching page (if it is null of empty our data source will be inserted to room db)
         deviceDatabaseViewModel.getDeviceDataSource()
 
@@ -70,7 +68,7 @@ class HomeFragment @Inject constructor(
 
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter
-            postponeEnterTransition()
+            postponeEnterTransition(300, TimeUnit.MILLISECONDS)
             doOnPreDraw {
                 startPostponedEnterTransition()
             }
