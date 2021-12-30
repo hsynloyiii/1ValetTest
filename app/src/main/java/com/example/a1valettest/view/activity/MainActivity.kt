@@ -2,6 +2,7 @@ package com.example.a1valettest.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatDelegate.*
@@ -16,11 +17,13 @@ import androidx.customview.widget.Openable
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.navOptions
+import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.utils.di.AppEntryPoint
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -43,15 +46,16 @@ class MainActivity : AppCompatActivity() {
             AppEntryPoint::class.java
         )
         supportFragmentManager.fragmentFactory = entryPoint.getMainFragmentFactory()
-        lifecycleScope.launch {
-            entryPoint.getDataStoreManager().readFromDataStore().collectLatest {
-                when (it.nightModeByPosition) {
-                    0 -> setDefaultNightMode(MODE_NIGHT_NO)
-                    1 -> setDefaultNightMode(MODE_NIGHT_YES)
-                    2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-                }
-            }
-        }
+//        lifecycleScope.launch {
+//            entryPoint.getDataStoreManager().readFromDataStore().collect {
+//                when (it.nightModeByPosition) {
+//                    0 -> setDefaultNightMode(MODE_NIGHT_NO)
+//                    1 -> setDefaultNightMode(MODE_NIGHT_YES)
+//                    2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+//                }
+//                Log.i("TestingThemeMode", "${it.nightModeByPosition} Activity")
+//            }
+//        }
 
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -116,8 +120,7 @@ class MainActivity : AppCompatActivity() {
     ): Boolean {
         val parent = navView.parent
         if (item.isChecked) {
-            if (parent is Openable)
-                parent.close()
+            closeDrawer()
         } else {
             navigate(resId = resId)
             navView.setCheckedItem(resId)
@@ -139,9 +142,11 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+        EspressoIdlingResource.increment()
         lifecycleScope.launch {
             delay(300)
             closeDrawer()
+            EspressoIdlingResource.decrement()
         }
     }
 

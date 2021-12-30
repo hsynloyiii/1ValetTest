@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -29,7 +29,8 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 
     private lateinit var deviceContent: DeviceContent
 
-    override fun FragmentDeviceDetailBinding.initialize() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         sharedElementEnterTransition = MaterialContainerTransform()
         postponeEnterTransition(250, TimeUnit.MILLISECONDS)
     }
@@ -107,20 +108,22 @@ class DeviceDetailFragment: BaseFragment<FragmentDeviceDetailBinding>(R.layout.f
 
             menu.findItem(R.id.favoriteDevice).icon =
                 if (args.deviceContent?.isFavorite!!)
-                    ContextCompat.getDrawable(context, R.drawable.ic_round_star_24)
+                    ResourcesCompat.getDrawable(resources, R.drawable.ic_round_star_24, context?.theme)
                 else
-                    ContextCompat.getDrawable(
-                        context,
+                    ResourcesCompat.getDrawable(
+                        resources,
                         R.drawable.ic_round_star_outline_24,
+                        context?.theme
                     )
 
         }
     }
 
     private fun changeFavoriteIcon(item: MenuItem, @DrawableRes id: Int) =
-        ContextCompat.getDrawable(
-            context!!,
+        ResourcesCompat.getDrawable(
+            resources,
             id,
+            context?.theme
         ).also { item.icon = it }
 
     private fun updateDeviceContent(deviceContent: DeviceContent) =

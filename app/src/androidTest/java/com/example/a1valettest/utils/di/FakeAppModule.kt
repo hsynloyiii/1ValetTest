@@ -24,7 +24,7 @@ import javax.inject.Singleton
     components = [SingletonComponent::class],
     replaces = [AppModule::class]
 )
-class FakeAppModule {
+object FakeAppModule {
 
     //----------------------------------------- Database ------------------------------------------>
     @Singleton

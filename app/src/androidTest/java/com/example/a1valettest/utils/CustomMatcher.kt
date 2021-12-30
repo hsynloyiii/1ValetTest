@@ -12,6 +12,12 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.test.espresso.matcher.BoundedMatcher
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import android.graphics.drawable.ColorDrawable
+
+import android.widget.LinearLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.test.internal.util.Checks
+
 
 // Matcher for icons
 fun withActionIconDrawable(@DrawableRes resourceId: Int): Matcher<View?> {
@@ -32,19 +38,34 @@ fun withActionIconDrawable(@DrawableRes resourceId: Int): Matcher<View?> {
 }
 
 
+// Matcher for color
+fun withBgColor(color: Int): Matcher<View?> {
+    Checks.checkNotNull(color)
+    return object : BoundedMatcher<View?, CoordinatorLayout>(CoordinatorLayout::class.java) {
+        override fun matchesSafely(row: CoordinatorLayout): Boolean {
+            return color == (row.background as ColorDrawable).color
+        }
+
+        override fun describeTo(description: Description) {
+            description.appendText("with text color: ")
+        }
+    }
+}
+
+
 private fun sameBitmap(
     context: Context,
     drawable: Drawable?,
     resourceId: Int,
     view: View
 ): Boolean {
-    var drawable = drawable
+    var newDrawable = drawable
     val otherDrawable: Drawable? = ResourcesCompat.getDrawable(context.resources, resourceId, null)
-    if (drawable == null || otherDrawable == null) {
+    if (newDrawable == null || otherDrawable == null) {
         return false
     }
 
-    if (drawable is StateListDrawable) {
+    if (newDrawable is StateListDrawable) {
         val getStateDrawableIndex =
             StateListDrawable::class.java.getMethod(
                 "getStateDrawableIndex",
@@ -55,11 +76,11 @@ private fun sameBitmap(
                 "getStateDrawable",
                 Int::class.javaPrimitiveType
             )
-        val index = getStateDrawableIndex.invoke(drawable, view.drawableState)
-        drawable = getStateDrawable.invoke(drawable, index) as Drawable
+        val index = getStateDrawableIndex.invoke(newDrawable, view.drawableState)
+        newDrawable = getStateDrawable.invoke(newDrawable, index) as Drawable
     }
 
-    val bitmap = getBitmapFromDrawable(drawable)
+    val bitmap = getBitmapFromDrawable(newDrawable)
     val otherBitmap = getBitmapFromDrawable(otherDrawable)
     return bitmap.sameAs(otherBitmap)
 }

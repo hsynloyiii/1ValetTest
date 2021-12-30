@@ -2,6 +2,7 @@ package com.example.a1valettest.utils.database
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
@@ -16,11 +17,15 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import java.io.IOException
 import javax.inject.Inject
+import kotlin.jvm.Throws
 
 @ExperimentalCoroutinesApi
 @HiltAndroidTest
 @SmallTest
+@RunWith(AndroidJUnit4::class)
 class DeviceDataBaseTest {
 
     // As already created conversion for each data classes no need to define them separately
@@ -57,11 +62,13 @@ class DeviceDataBaseTest {
     }
 
     @After
+    @Throws(IOException::class)
     fun tearDown() {
-        db.close()
+        db.clearAllTables()
     }
 
     @Test
+    @Throws(Exception::class)
     fun insertToMyDevices() = runTest {
         dao.insertToMyDevice(myDeviceContent = myDeviceContent)
 
@@ -71,6 +78,7 @@ class DeviceDataBaseTest {
     }
 
     @Test
+    @Throws(Exception::class)
     fun insertToAllDevices() = runTest {
         val deviceContents = listOf(myDeviceContent.convertToDeviceContent())
 
@@ -81,6 +89,7 @@ class DeviceDataBaseTest {
     }
 
     @Test
+    @Throws(Exception::class)
     fun deleteMyDevice() = runTest {
         dao.insertToMyDevice(myDeviceContent = myDeviceContent)
         dao.deleteDevice(myDeviceContent = myDeviceContent)
@@ -91,6 +100,7 @@ class DeviceDataBaseTest {
     }
 
     @Test
+    @Throws(Exception::class)
     fun updateDevice() = runTest {
         val deviceContents = listOf(myDeviceContent.convertToDeviceContent())
 

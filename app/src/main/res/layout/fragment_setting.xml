@@ -50,6 +50,7 @@
                 android:paddingEnd="16dp">
 
                 <ImageView
+                    android:id="@+id/imageViewNightLightModeFragmentSetting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -57,15 +58,14 @@
                     app:srcCompat="@drawable/ic_baseline_nights_24"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewChooseThemeFragmentSetting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="8dp"
                     android:text="@string/chooseThemeMode"
                     android:textSize="18sp"
-                    android:transitionName="device_name"
-                    app:layout_constraintStart_toEndOf="@id/imageViewDevice"
-                    app:layout_constraintTop_toTopOf="@id/imageViewDevice" />
+                    android:transitionName="device_name" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

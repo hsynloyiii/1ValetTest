@@ -1,6 +1,7 @@
 package com.example.a1valettest.view.activity
 
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -12,6 +13,8 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
 import com.example.a1valettest.R
+import com.example.a1valettest.utils.database.DeviceDataBase
+import com.example.a1valettest.utils.rule.EspressoIdlingResourceRule
 import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.utils.withActionIconDrawable
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -19,9 +22,12 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.core.AllOf
+import org.hamcrest.core.IsInstanceOf
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import javax.inject.Inject
 
 /*
 This test class is for host ( whole fragments ) which can we see the interaction between navigation that could show the detail or
@@ -38,9 +44,21 @@ class MainActivityTest {
     @get:Rule(order = 1)
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
+    @get:Rule(order = 2)
+    val idlingResourceRule = EspressoIdlingResourceRule()
+
+    @Inject
+    lateinit var db: DeviceDataBase
+
     @Before
     fun setUp() {
         hiltRule.inject()
+        db.clearAllTables()
+    }
+
+    @After
+    fun tearDown() {
+        db.clearAllTables()
     }
 
     @Test
@@ -78,7 +96,10 @@ class MainActivityTest {
         onView(withId(R.id.containerFragmentSetting)).check(matches(isDisplayed()))
 
         onView(
-            withId(R.id.containerFragmentSetting)
+            allOf(
+                instanceOf(ImageButton::class.java),
+                withParent(withId(R.id.toolbarFragmentSetting))
+            )
         )
             .perform(click())
 
@@ -86,9 +107,9 @@ class MainActivityTest {
 
         onView(withId(R.id.homeFragment)).perform(click())
 
-        onView(withId(R.id.mainDrawerLayout)).check(matches(isClosed()))
-
         onView(withId(R.id.coordinatorContainerFragmentHome)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.mainDrawerLayout)).check(matches(isClosed()))
     }
 
     @Test
@@ -144,7 +165,7 @@ class MainActivityTest {
         onView(withId(R.id.textViewDeviceNameFragmentDeviceDetail)).check(matches(withText("Samsung Galaxy S21")))
 
         // add device to myDevice and check it successfully added
-        onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).check(
+        onView(withId(R.id.favoriteDevice)).check(
             matches(
                 isDisplayed()
             )
@@ -157,7 +178,7 @@ class MainActivityTest {
             )
         ).check(matches(isDisplayed()))
 
-        onView(withActionIconDrawable(R.drawable.ic_round_star_24)).check(matches(isDisplayed()))
+        onView(withId(R.id.favoriteDevice)).check(matches(isDisplayed()))
 
         // get back to homeFragment and check recyclerView is on the screen
         onView(
@@ -195,7 +216,7 @@ class MainActivityTest {
                 )
             )
 
-        onView(withActionIconDrawable(R.drawable.ic_round_star_24)).check(matches(isDisplayed()))
+        onView(withId(R.id.favoriteDevice)).check(matches(isDisplayed()))
             .perform(
                 click()
             )
@@ -210,7 +231,7 @@ class MainActivityTest {
             )
         ).check(matches(isDisplayed()))
 
-        onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).check(
+        onView(withId(R.id.favoriteDevice)).check(
             matches(
                 isDisplayed()
             )

@@ -8,8 +8,11 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.a1valettest.model.ThemeUIState
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class DataStoreManager(val context: Context) {
+@Singleton
+class DataStoreManager @Inject constructor (val context: Context) {
     private val Context.dataStoreTheme: DataStore<Preferences> by preferencesDataStore(name = "ThemeUIState")
 
     private val NIGHT_BY_POSITION = intPreferencesKey(name = "nightMode")

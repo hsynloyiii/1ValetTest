@@ -21,6 +21,7 @@
     <string name="successfullyAdded">It successfully added to your list</string>
     <string name="successfullyRemoved">It successfully removed from your list</string>
     <string name="chooseThemeMode">Choose theme mode</string>
+    <string name="chooseTheme">Choose theme</string>
     
     <string-array name="theme_item">
         <item>Light</item>

@@ -57,7 +57,7 @@ class HomeAdapter @Inject constructor() :
         holder.apply {
             val deviceContent = differDeviceContent.currentList[position]
             binding.deviceContent = deviceContent
-            itemView.setOnClickListener { view ->
+            itemView.setOnClickListener {
                 onItemClickListener?.let {
                     it(deviceContent, binding.cardViewItemRecyclerViewHome)
                 }

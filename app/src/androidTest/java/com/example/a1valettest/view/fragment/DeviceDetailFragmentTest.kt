@@ -21,7 +21,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.*
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.example.a1valettest.utils.withActionIconDrawable
 
 
 @MediumTest
@@ -59,7 +58,7 @@ class DeviceDetailFragmentTest {
             fragmentArgs = bundle
         )
 
-        onView(withId(R.id.imageViewDevice)).check(matches(isDisplayed()))
+        onView(withId(R.id.imageViewDeviceFragmentDeviceDetail)).check(matches(isDisplayed()))
         onView(withId(R.id.textViewCompanyFragmentDeviceDetail)).check(matches(isDisplayed()))
         onView(withId(R.id.textViewDeviceNameFragmentDeviceDetail)).check(matches(isDisplayed()))
         onView(withId(R.id.textViewDeviceDescriptionFragmentDeviceDetail)).check(matches(isDisplayed()))
@@ -99,11 +98,9 @@ class DeviceDetailFragmentTest {
             fragmentArgs = bundle
         )
 
-        onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).check(
-            matches(
-                isDisplayed()
-            )
-        ).perform(click())
+        onView(
+            withId(R.id.favoriteDevice)
+        ).check(matches(isDisplayed())).perform(click())
 
         // check for snackbar added
         onView(
@@ -113,8 +110,9 @@ class DeviceDetailFragmentTest {
             )
         ).check(matches(isDisplayed()))
 
-        onView(withActionIconDrawable(R.drawable.ic_round_star_24)).check(matches(isDisplayed()))
-            .perform(click())
+        onView(
+            withId(R.id.favoriteDevice)
+        ).check(matches(isDisplayed())).perform(click())
 
         onView(withText(R.string.remove)).check(matches(isDisplayed())).perform(click())
             .check(doesNotExist())
@@ -127,11 +125,9 @@ class DeviceDetailFragmentTest {
             )
         ).check(matches(isDisplayed()))
 
-        onView(withActionIconDrawable(R.drawable.ic_round_star_outline_24)).check(
-            matches(
-                isDisplayed()
-            )
-        )
+        onView(
+            withId(R.id.favoriteDevice)
+        ).check(matches(isDisplayed())).perform(click())
 
     }
 

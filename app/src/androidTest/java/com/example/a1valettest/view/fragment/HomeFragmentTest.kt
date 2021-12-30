@@ -6,9 +6,8 @@ import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.navOptions
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.Espresso.onView
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -22,6 +21,7 @@ import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.utils.rule.EspressoIdlingResourceRule
 import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
+import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -105,11 +105,10 @@ class HomeFragmentTest {
                 )
             )
 
-
         // now verify the navigate function of navController was actually called with right parameter
         verify(navController).navigate(
             HomeFragmentDirections.actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent),
-            FragmentNavigatorExtras()
+            FragmentNavigatorExtras(MaterialCardView(ApplicationProvider.getApplicationContext()) to deviceContent.title)
         )
     }
 
@@ -124,7 +123,7 @@ class HomeFragmentTest {
             .perform(typeText("This item is not in the list"))
         onView(withId(R.id.textNoResult)).check(matches(withText(R.string.noResult)))
 
-        Espresso.closeSoftKeyboard()
+        closeSoftKeyboard()
 
         // at the end press back and close searchView
         onView(
@@ -149,7 +148,7 @@ class HomeFragmentTest {
 
         onView(withId(R.id.linearNoResult)).check(doesNotExist())
 
-        Espresso.closeSoftKeyboard()
+        closeSoftKeyboard()
 
         // at the end press back and close searchView
         onView(
