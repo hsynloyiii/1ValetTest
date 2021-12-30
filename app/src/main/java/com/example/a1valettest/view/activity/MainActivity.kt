@@ -12,13 +12,14 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.view.WindowCompat
+import androidx.customview.widget.Openable
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.navOptions
+import androidx.navigation.ui.setupWithNavController
 import com.example.a1valettest.utils.di.AppEntryPoint
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.transition.platform.MaterialFadeThrough
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -43,16 +44,15 @@ class MainActivity : AppCompatActivity() {
             AppEntryPoint::class.java
         )
         supportFragmentManager.fragmentFactory = entryPoint.getMainFragmentFactory()
-
-//        lifecycleScope.launch {
-//            entryPoint.getDataStoreManager().readFromDataStore().collectLatest {
-//                when (it.nightModeByPosition) {
-//                    0 -> setDefaultNightMode(MODE_NIGHT_NO)
-//                    1 -> setDefaultNightMode(MODE_NIGHT_YES)
-//                    2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-//                }
-//            }
-//        }
+        lifecycleScope.launch {
+            entryPoint.getDataStoreManager().readFromDataStore().collectLatest {
+                when (it.nightModeByPosition) {
+                    0 -> setDefaultNightMode(MODE_NIGHT_NO)
+                    1 -> setDefaultNightMode(MODE_NIGHT_YES)
+                    2 -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                }
+            }
+        }
 
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -115,9 +115,11 @@ class MainActivity : AppCompatActivity() {
         @IdRes resId: Int,
         navView: NavigationView
     ): Boolean {
-        if (item.isChecked)
-            closeDrawer()
-        else {
+        val parent = navView.parent
+        if (item.isChecked) {
+            if (parent is Openable)
+                parent.close()
+        } else {
             navigate(resId = resId)
             navView.setCheckedItem(resId)
         }

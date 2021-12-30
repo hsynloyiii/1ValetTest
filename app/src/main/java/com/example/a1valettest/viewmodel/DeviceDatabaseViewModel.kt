@@ -1,7 +1,6 @@
 package com.example.a1valettest.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.DeviceResponse

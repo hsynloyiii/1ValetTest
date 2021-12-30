@@ -2,6 +2,8 @@ package com.example.a1valettest.repository
 
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
+import com.example.a1valettest.model.ThemeUIState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
@@ -26,4 +28,10 @@ interface Repository {
         suspend fun deleteDevice(myDeviceContent: MyDeviceContent?)
     }
 
+
+    interface ThemeRepository {
+        suspend fun writeToThemeDataStore(themeUIState: ThemeUIState)
+
+        fun readItemSelectedPositionFromThemeDataStore(externalScope: CoroutineScope): Int
+    }
 }
