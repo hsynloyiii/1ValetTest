@@ -9,10 +9,10 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentSettingBinding
 import com.example.a1valettest.utils.base.BaseFragment
 import com.example.a1valettest.utils.singleChoiceAlert
-import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import androidx.appcompat.app.AppCompatDelegate.*
+import com.google.android.material.transition.platform.MaterialElevationScale
 
 
 @AndroidEntryPoint
@@ -35,7 +35,7 @@ class SettingFragment @Inject constructor() :
     }
 
     /**
-     * As app must change the theme mode synchronously as soon as it launches, we don't wanna
+     * As app must change the theme mode as soon as it launches synchronously, don't wanna
      * waste any time to collect from dataStore so I change the UI synchronously with sharedPreferences
      * There is no need to use DataStore here :)
      */
@@ -60,4 +60,5 @@ class SettingFragment @Inject constructor() :
             )
         }
     }
+
 }

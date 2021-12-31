@@ -1,7 +1,10 @@
 package com.example.a1valettest.view.activity
 
+import android.content.Context
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -43,6 +46,7 @@ class MainActivityTest {
 
     @get:Rule(order = 1)
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+
 
     @get:Rule(order = 2)
     val idlingResourceRule = EspressoIdlingResourceRule()
@@ -249,5 +253,34 @@ class MainActivityTest {
         onView(withText("Samsung Galaxy S21")).check(doesNotExist())
 
         onView(withId(R.id.textEmptyMyDeviceList)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testNightAndLightMode() {
+//        val themeArray = ApplicationProvider.getApplicationContext<Context>().getString(R.array.theme_item)
+//        val size = themeArray.length
+//
+//        for (i in 0 until size) {
+//            onView(withId())
+//        }
+
+        onView(
+            allOf(
+                instanceOf(ImageButton::class.java),
+                withParent(withId(R.id.toolbarFragmentHome))
+            )
+        )
+            .perform(click())
+
+        onView(withId(R.id.mainDrawerLayout)).check(matches(isOpen()))
+
+        onView(withId(R.id.settingFragment)).perform(click())
+
+        onView(withId(R.id.mainDrawerLayout)).check(matches(isClosed()))
+
+        onView(withId(R.id.containerFragmentSetting)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.linearThemeModeFragmentSetting)).perform(click())
+
     }
 }
