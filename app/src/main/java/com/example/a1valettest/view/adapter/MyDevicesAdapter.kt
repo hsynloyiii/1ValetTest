@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewMyDevicesBinding
@@ -13,23 +12,13 @@ import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.utils.convertToDeviceContent
+import com.example.a1valettest.utils.differItemCallBack
 import javax.inject.Inject
 
 class MyDevicesAdapter @Inject constructor() :
     RecyclerView.Adapter<MyDevicesAdapter.ViewHolder>() {
 
-    private val differCallBack = object : DiffUtil.ItemCallback<MyDeviceContent>() {
-        override fun areItemsTheSame(oldItem: MyDeviceContent, newItem: MyDeviceContent): Boolean =
-            oldItem.id == newItem.id
-
-        override fun areContentsTheSame(
-            oldItem: MyDeviceContent,
-            newItem: MyDeviceContent
-        ): Boolean =
-            oldItem == newItem
-    }
-
-    val differMyDeviceContent = AsyncListDiffer(this, differCallBack)
+    val differMyDeviceContent = AsyncListDiffer(this, differItemCallBack<MyDeviceContent>())
 
     inner class ViewHolder(val binding: ItemRecyclerviewMyDevicesBinding) :
         RecyclerView.ViewHolder(binding.root)

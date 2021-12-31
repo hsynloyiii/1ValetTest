@@ -24,8 +24,9 @@ import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.view.adapter.MyDevicesAdapter
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import com.google.android.material.transition.platform.MaterialElevationScale
+import com.google.android.material.transition.platform.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,11 +39,19 @@ class MyDevicesFragment @Inject constructor(
 
     lateinit var newMyDeviceContentList: MutableList<MyDeviceContent>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough().apply {
+            duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        exitTransition = MaterialElevationScale(false)
-        enterTransition = MaterialElevationScale(true)
+        postponeEnterTransition()
+        view.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
 
         handleToolbar()
         getMyDevices()
@@ -51,6 +60,13 @@ class MyDevicesFragment @Inject constructor(
     private fun getMyDevices() {
 
         myDevicesAdapter.setOnItemClickListener { deviceContent, view ->
+            exitTransition = MaterialElevationScale(false).apply {
+                duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+            }
+            enterTransition = MaterialElevationScale(true).apply {
+                duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+            }
+
             val extras =
                 FragmentNavigatorExtras(view to deviceContent.title)
             val action = MyDevicesFragmentDirections
@@ -74,7 +90,7 @@ class MyDevicesFragment @Inject constructor(
         viewLifecycleOwner.lifecycleScope.launch {
             deviceDatabaseViewModel.getMyDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-                .collectLatest {
+                .collect {
                     newMyDeviceContentList = it.reversed().toMutableList()
                     myDevicesAdapter.submitList(newMyDeviceContentList)
                     EspressoIdlingResource.decrement()

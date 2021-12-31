@@ -118,18 +118,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_to_homeFragment
             )
         } else {
-            navController.navigate(resId, args = null, navOptions = navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.fade_out
-                    popEnter = R.anim.scale_in
-                    popExit = R.anim.fade_out
-                }
-            })
+            navController.navigate(resId)
         }
         EspressoIdlingResource.increment()
         lifecycleScope.launch {
-            delay(300)
+            delay(resources.getInteger(R.integer.material_motion_duration_short_2).toLong())
             closeDrawer()
             EspressoIdlingResource.decrement()
         }

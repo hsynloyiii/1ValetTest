@@ -27,8 +27,8 @@ import com.example.a1valettest.utils.base.BaseFragment
 import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import com.google.android.material.transition.platform.MaterialElevationScale
-import kotlinx.coroutines.flow.collectLatest
-import java.util.concurrent.TimeUnit
+import com.google.android.material.transition.platform.MaterialFadeThrough
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 
@@ -41,10 +41,19 @@ class HomeFragment @Inject constructor(
 
     private lateinit var newDeviceContentList: MutableList<DeviceContent>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough().apply {
+            duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        exitTransition = MaterialElevationScale(false)
-        enterTransition = MaterialElevationScale(true)
+        postponeEnterTransition()
+        view.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
 
         // call the data source just for first launching page (if it is null of empty our data source will be inserted to room db)
         deviceDatabaseViewModel.getDeviceDataSource()
@@ -55,6 +64,13 @@ class HomeFragment @Inject constructor(
 
     private fun getDevices() {
         homeAdapter.setOnItemClickListener { deviceContent, view ->
+            exitTransition = MaterialElevationScale(false).apply {
+                duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+            }
+            enterTransition = MaterialElevationScale(true).apply {
+                duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+            }
+
             val extras =
                 FragmentNavigatorExtras(view to deviceContent.title)
             val action = HomeFragmentDirections
@@ -68,17 +84,13 @@ class HomeFragment @Inject constructor(
 
         binding.recyclerViewFragmentHome.apply {
             adapter = homeAdapter
-            postponeEnterTransition(300, TimeUnit.MILLISECONDS)
-            doOnPreDraw {
-                startPostponedEnterTransition()
-            }
         }
 
         EspressoIdlingResource.increment()
         viewLifecycleOwner.lifecycleScope.launch {
             deviceDatabaseViewModel.getAllDevices
                 .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-                .collectLatest {
+                .collect {
                     newDeviceContentList = it.toMutableList()
                     homeAdapter.submitList(newDeviceContentList)
                     EspressoIdlingResource.decrement()

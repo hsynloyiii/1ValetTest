@@ -13,16 +13,21 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import androidx.appcompat.app.AppCompatDelegate.*
 import com.google.android.material.transition.platform.MaterialElevationScale
+import com.google.android.material.transition.platform.MaterialFadeThrough
 
 
 @AndroidEntryPoint
 class SettingFragment @Inject constructor() :
     BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        exitTransition = MaterialElevationScale(false)
-        enterTransition = MaterialElevationScale(true)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough().apply {
+            duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+        }
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
         handleChangeTheme()

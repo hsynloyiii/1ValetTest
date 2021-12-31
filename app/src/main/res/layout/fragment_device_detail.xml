@@ -26,7 +26,7 @@
                 android:id="@+id/toolbarFragmentDeviceDetail"
                 style="@style/Base.Widget.Material3.Toolbar"
                 app:menu="@menu/device_detail_toolbar_menu"
-                app:navigationIcon="@drawable/ic_round_back_24" />
+                app:navigationIcon="@drawable/ic_round_down_24" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

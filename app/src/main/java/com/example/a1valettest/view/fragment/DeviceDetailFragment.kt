@@ -1,6 +1,7 @@
 package com.example.a1valettest.view.fragment
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.MenuItem
@@ -32,12 +33,17 @@ class DeviceDetailFragment :
 
     private lateinit var deviceContent: DeviceContent
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.fragmentContainerView
+            duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+            scrimColor = Color.TRANSPARENT
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        sharedElementEnterTransition = TransitionInflater.from(context!!).inflateTransition(R.transition.shared_element)
-        sharedElementReturnTransition = MaterialContainerTransform()
-        postponeEnterTransition(300, TimeUnit.MILLISECONDS)
 
         args.deviceContent?.let {
             deviceContent = it
