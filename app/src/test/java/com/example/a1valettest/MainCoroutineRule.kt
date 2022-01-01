@@ -2,6 +2,7 @@ package com.example.a1valettest
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.test.*
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
@@ -19,6 +20,7 @@ class MainCoroutineRule(
     override fun finished(description: Description?) {
         super.finished(description)
         Dispatchers.resetMain()
+        dispatchers.cancel()
     }
 
 }

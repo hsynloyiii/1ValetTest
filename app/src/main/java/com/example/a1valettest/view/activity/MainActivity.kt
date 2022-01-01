@@ -1,27 +1,35 @@
 package com.example.a1valettest.view.activity
 
+import android.animation.ValueAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
 import androidx.annotation.IdRes
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.core.view.MotionEventCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.view.WindowCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.navOptions
 import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.utils.di.AppEntryPoint
+import com.example.a1valettest.utils.toast
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.acosh
 
 
 @AndroidEntryPoint
@@ -59,58 +67,58 @@ class MainActivity : AppCompatActivity() {
 
 
     // As setUpWithNavController in NavigationView is a little bit laggy, I handled it manually
-    private fun handleNavigationView() {
-        binding.mainNavigationView.apply {
-            setNavigationItemSelectedListener {
-                when (it.itemId) {
-                    R.id.homeFragment -> {
-                        navigationItemClick(
-                            item = it,
-                            resId = R.id.homeFragment,
-                            navView = this
-                        )
-                    }
-                    R.id.myDevicesFragment -> {
-                        navigationItemClick(
-                            item = it,
-                            resId = R.id.myDevicesFragment,
-                            navView = this
-                        )
-                    }
-                    R.id.settingFragment -> {
-                        navigationItemClick(
-                            item = it,
-                            resId = R.id.settingFragment,
-                            navView = this
-                        )
-                    }
-                    else -> false
-                }
-            }
+    private fun handleNavigationView() = binding.mainNavigationView.apply {
 
-            navController.addOnDestinationChangedListener { _, destination, _ ->
-                when (destination.id) {
-                    R.id.homeFragment -> setCheckedItem(R.id.homeFragment)
-                    R.id.myDevicesFragment -> setCheckedItem(R.id.myDevicesFragment)
-                    R.id.settingFragment -> setCheckedItem(R.id.settingFragment)
+        setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.homeFragment -> {
+                    navigationItemClick(
+                        item = it,
+                        resId = R.id.homeFragment,
+                        navView = this
+                    )
                 }
+                R.id.myDevicesFragment -> {
+                    navigationItemClick(
+                        item = it,
+                        resId = R.id.myDevicesFragment,
+                        navView = this
+                    )
+                }
+                R.id.settingFragment -> {
+                    navigationItemClick(
+                        item = it,
+                        resId = R.id.settingFragment,
+                        navView = this
+                    )
+                }
+                else -> false
+            }
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> setCheckedItem(R.id.homeFragment)
+                R.id.myDevicesFragment -> setCheckedItem(R.id.myDevicesFragment)
+                R.id.settingFragment -> setCheckedItem(R.id.settingFragment)
             }
         }
     }
+
 
     private fun navigationItemClick(
         item: MenuItem,
         @IdRes resId: Int,
         navView: NavigationView
-    ): Boolean {
-        if (item.isChecked) {
-            closeDrawer()
-        } else {
-            navigate(resId = resId)
-            navView.setCheckedItem(resId)
-        }
-        return true
+    ): Boolean = if (item.isChecked) {
+        closeDrawer()
+        true
+    } else {
+        navigate(resId = resId)
+        navView.setCheckedItem(resId)
+        true
     }
+
 
     private fun navigate(@IdRes resId: Int) {
         if (resId == R.id.homeFragment) {
@@ -129,4 +137,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun closeDrawer() = binding.mainDrawerLayout.closeDrawer(GravityCompat.START, true)
+
 }

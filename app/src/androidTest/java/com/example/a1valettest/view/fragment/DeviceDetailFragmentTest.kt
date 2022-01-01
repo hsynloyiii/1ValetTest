@@ -114,7 +114,7 @@ class DeviceDetailFragmentTest {
             withId(R.id.favoriteDevice)
         ).check(matches(isDisplayed())).perform(click())
 
-        onView(withText(R.string.remove)).check(matches(isDisplayed())).perform(click())
+        onView(withId(android.R.id.button1)).check(matches(isDisplayed())).perform(click())
             .check(doesNotExist())
 
         // check for snackbar removed
@@ -124,10 +124,6 @@ class DeviceDetailFragmentTest {
                 withText(R.string.successfullyRemoved)
             )
         ).check(matches(isDisplayed()))
-
-        onView(
-            withId(R.id.favoriteDevice)
-        ).check(matches(isDisplayed())).perform(click())
 
     }
 

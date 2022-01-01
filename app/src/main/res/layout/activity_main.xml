@@ -29,9 +29,8 @@
             android:id="@+id/mainNavigationView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:theme="@style/NavigationItemTransparentRipple"
-            />
+            android:layout_gravity="start"       
+            android:theme="@style/NavigationItemTransparentRipple" />
 
 
     </androidx.drawerlayout.widget.DrawerLayout>

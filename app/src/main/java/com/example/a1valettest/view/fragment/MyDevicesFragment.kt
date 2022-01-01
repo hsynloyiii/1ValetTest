@@ -80,10 +80,6 @@ class MyDevicesFragment @Inject constructor(
 
         binding.recyclerViewFragmentMyDevices.apply {
             adapter = myDevicesAdapter
-            postponeEnterTransition()
-            doOnPreDraw {
-                startPostponedEnterTransition()
-            }
         }
 
         EspressoIdlingResource.increment()

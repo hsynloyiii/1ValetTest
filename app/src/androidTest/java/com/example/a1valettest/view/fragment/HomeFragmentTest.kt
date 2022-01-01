@@ -1,5 +1,6 @@
 package com.example.a1valettest.view.fragment
 
+import android.content.Context
 import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
 import android.widget.TextView
@@ -15,10 +16,12 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.MediumTest
+import com.example.a1valettest.HiltTestActivity
 import com.example.a1valettest.R
 import com.example.a1valettest.utils.launchFragmentInHiltContainer
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.utils.rule.EspressoIdlingResourceRule
+import com.example.a1valettest.view.activity.MainActivity
 import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import com.google.android.material.card.MaterialCardView
@@ -88,11 +91,13 @@ class HomeFragmentTest {
 //        )
 //
 //
+//        var activity: HiltTestActivity? = null
 //        val navController = mock(NavController::class.java)
 //        launchFragmentInHiltContainer<HomeFragment>(
 //            fragmentFactory = fragmentFactory
 //        ) {
 //            Navigation.setViewNavController(requireView(), navController)
+//            activity = requireActivity() as HiltTestActivity
 //        }
 //
 //        onView(withText(deviceContent.title)).check(matches(isDisplayed()))
@@ -105,11 +110,11 @@ class HomeFragmentTest {
 //                )
 //            )
 //
-//        val materialCardView = MaterialCardView(ApplicationProvider.getApplicationContext())
+//        val materialCardView = activity?.findViewById<MaterialCardView>(R.id.cardViewItemRecyclerViewHome)
 //        // now verify the navigate function of navController was actually called with right parameter
 //        verify(navController).navigate(
 //            HomeFragmentDirections.actionHomeFragmentToDeviceDetailFragment(deviceContent = deviceContent),
-//            FragmentNavigatorExtras(materialCardView to deviceContent.title)
+//            FragmentNavigatorExtras(materialCardView!! to deviceContent.title)
 //        )
 //    }
 

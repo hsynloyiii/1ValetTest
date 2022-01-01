@@ -1,10 +1,10 @@
 package com.example.a1valettest.view.activity
 
 import android.content.Context
+import android.graphics.Color
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.core.app.launchActivity
+import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -18,14 +18,14 @@ import androidx.test.filters.LargeTest
 import com.example.a1valettest.R
 import com.example.a1valettest.utils.database.DeviceDataBase
 import com.example.a1valettest.utils.rule.EspressoIdlingResourceRule
+import com.example.a1valettest.utils.withBgColor
 import com.example.a1valettest.view.adapter.HomeAdapter
-import com.example.a1valettest.utils.withActionIconDrawable
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.core.AllOf
-import org.hamcrest.core.IsInstanceOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -257,12 +257,6 @@ class MainActivityTest {
 
     @Test
     fun testNightAndLightMode() {
-//        val themeArray = ApplicationProvider.getApplicationContext<Context>().getString(R.array.theme_item)
-//        val size = themeArray.length
-//
-//        for (i in 0 until size) {
-//            onView(withId())
-//        }
 
         onView(
             allOf(
@@ -282,5 +276,16 @@ class MainActivityTest {
 
         onView(withId(R.id.linearThemeModeFragmentSetting)).perform(click())
 
+        onView(withText("Light")).check(matches(isDisplayed())).perform(click())
+
+//        onView(withChild(withId(R.id.containerFragmentSetting))).check(
+//            matches(
+//                withBgColor(
+//                    Color.parseColor(
+//                        "#FDFCF5"
+//                    )
+//                )
+//            )
+//        )
     }
 }

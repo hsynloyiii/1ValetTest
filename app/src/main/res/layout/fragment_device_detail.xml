@@ -30,43 +30,51 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.motion.widget.MotionLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            app:layoutDescription="@xml/fragment_device_detail_scene"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewDeviceFragmentDeviceDetail"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_margin="16dp"
-                app:imageFromUrl="@{deviceContent.imageUrl}" />
+                app:imageFromUrl="@{deviceContent.imageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewCompanyFragmentDeviceDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="@{deviceContent.company,default=None}"
-                android:textSize="16sp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageViewDeviceFragmentDeviceDetail" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDeviceNameFragmentDeviceDetail"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="start"
                 android:text="@{deviceContent.title,default=PhoneName}"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:textAppearance="?attr/textAppearanceHeadlineLarge"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewCompanyFragmentDeviceDetail" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDeviceDescriptionFragmentDeviceDetail"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
@@ -74,25 +82,38 @@
                 android:gravity="start"
                 android:lineSpacingExtra="4dp"
                 android:text="@{deviceContent.description,default=PhoneDescription}"
-                android:textSize="16sp" />
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDeviceNameFragmentDeviceDetail" />
 
             <View
+                android:id="@+id/splitView"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="16dp" />
+                android:layout_margin="16dp"
+                android:alpha="0.08"
+                android:background="?attr/colorOnSurface"
+                app:layout_constraintTop_toBottomOf="@id/textViewDeviceDescriptionFragmentDeviceDetail"
+                tools:layout_editor_absoluteX="16dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:id="@+id/constraintPrice"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/splitView">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/price"
-                    android:textSize="16sp"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -102,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:textSize="22sp"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
                     app:customPrice="@{deviceContent.price}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -112,22 +133,32 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
+                android:id="@+id/splitView2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="16dp" />
+                android:layout_margin="16dp"
+                android:alpha="0.08"
+                android:background="?attr/colorOnSurface"
+                app:layout_constraintTop_toBottomOf="@id/constraintPrice"
+                tools:layout_editor_absoluteX="16dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:id="@+id/constraintStatus"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/splitView2">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/status"
-                    android:textSize="16sp"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -138,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@{deviceContent.status,default=None}"
-                    android:textSize="16sp"
+                    android:textAppearance="?attr/textAppearanceLabelLarge"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -146,22 +177,32 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
+                android:id="@+id/splitView3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="16dp" />
+                android:layout_margin="16dp"
+                android:alpha="0.08"
+                android:background="?attr/colorOnSurface"
+                app:layout_constraintTop_toBottomOf="@id/constraintStatus"
+                tools:layout_editor_absoluteX="16dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:id="@+id/constraintOS"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/splitView3">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/os"
-                    android:textSize="16sp"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -172,15 +213,14 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@{deviceContent.os,default=X}"
-                    android:textSize="16sp"
+                    android:textAppearance="?attr/textAppearanceLabelLarge"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
