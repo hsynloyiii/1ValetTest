@@ -2,26 +2,17 @@ package com.example.a1valettest.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.annotation.IdRes
-import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.ui.setupWithNavController
-import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.utils.di.AppEntryPoint
-import com.example.a1valettest.utils.extensions.customSetupWithNavController
+import com.example.a1valettest.utils.extensions.customSetUpWithNavController
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
-import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.EntryPointAccessors
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -59,10 +50,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // As setUpWithNavController in NavigationView is a little bit laggy, I handled it manually
-    private fun handleNavigationView() = binding.mainNavigationView.customSetupWithNavController(
-        drawerLayout = binding.mainDrawerLayout,
-        navController = navController
+    // I combined setUpWithNavController with my ideas and made it more flexible such as
+    // setting custom animation
+    private fun handleNavigationView() = binding.mainNavigationView.customSetUpWithNavController(
+        navController = navController,
+        enterAnim = R.anim.scale_in,
+        popEnterAnim = R.anim.scale_in
     )
 
 
