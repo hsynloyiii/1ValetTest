@@ -8,6 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "deviceContent")
 data class DeviceContent(
+    @PrimaryKey(autoGenerate = false)
     val id: String,
     val os: String,
     val status: String,
@@ -15,7 +16,6 @@ data class DeviceContent(
     val currency: String,
     var isFavorite: Boolean,
     val imageUrl: String,
-    @PrimaryKey(autoGenerate = false)
     val title: String,
     val description: String,
     val company: String

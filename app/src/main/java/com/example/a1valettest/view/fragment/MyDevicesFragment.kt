@@ -109,14 +109,15 @@ class MyDevicesFragment @Inject constructor(
             val searchView = menuItem.actionView as SearchView
 
             searchView.apply {
-                queryHint = "Search devices"
+                queryHint = "Search my devices"
 
                 binding.apply {
                     setOnSearchClickListener {
                         appBarLayoutFragmentMyDevices.setExpanded(false, true)
 
-                        val anim = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-                        anim.setAnimationListener(null)
+                        val anim = AnimationUtils.loadAnimation(context, R.anim.fade_in).apply {
+                            setAnimationListener(null)
+                        }
                         menu.forEach {
                             it.actionView.startAnimation(anim)
                         }
@@ -137,7 +138,7 @@ class MyDevicesFragment @Inject constructor(
                     override fun onQueryTextSubmit(query: String?): Boolean = false
                     override fun onQueryTextChange(newText: String?): Boolean {
                         if (newMyDeviceContentList.isNotEmpty())
-                            filterDeviceContentList(text = newText!!)
+                            filterMyDeviceContentList(text = newText!!)
                         return false
                     }
                 })
@@ -145,7 +146,7 @@ class MyDevicesFragment @Inject constructor(
         }
     }
 
-    private fun filterDeviceContentList(text: String) {
+    private fun filterMyDeviceContentList(text: String) {
         val bindingNoResult = binding.layoutSearchNoResult
 
         val newList = mutableListOf<MyDeviceContent>()

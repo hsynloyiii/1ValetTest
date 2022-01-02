@@ -11,7 +11,7 @@ import com.example.a1valettest.databinding.ItemRecyclerviewMyDevicesBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.EspressoIdlingResource
-import com.example.a1valettest.utils.convertToDeviceContent
+import com.example.a1valettest.utils.extensions.convertToDeviceContent
 import com.example.a1valettest.utils.differItemCallBack
 import javax.inject.Inject
 

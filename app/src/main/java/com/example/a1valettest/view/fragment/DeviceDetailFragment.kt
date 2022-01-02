@@ -3,7 +3,6 @@ package com.example.a1valettest.view.fragment
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
@@ -15,13 +14,12 @@ import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentDeviceDetailBinding
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.utils.base.BaseFragment
-import com.example.a1valettest.utils.alert
-import com.example.a1valettest.utils.convertToMyDeviceContent
-import com.example.a1valettest.utils.snackBar
+import com.example.a1valettest.utils.extensions.alert
+import com.example.a1valettest.utils.extensions.convertToMyDeviceContent
+import com.example.a1valettest.utils.extensions.snackBar
 import com.example.a1valettest.viewmodel.DeviceDatabaseViewModel
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class DeviceDetailFragment :

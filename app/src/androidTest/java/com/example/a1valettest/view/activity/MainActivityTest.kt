@@ -1,10 +1,9 @@
 package com.example.a1valettest.view.activity
 
 import android.content.Context
-import android.graphics.Color
+import android.content.SharedPreferences
 import android.widget.ImageButton
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -18,18 +17,14 @@ import androidx.test.filters.LargeTest
 import com.example.a1valettest.R
 import com.example.a1valettest.utils.database.DeviceDataBase
 import com.example.a1valettest.utils.rule.EspressoIdlingResourceRule
-import com.example.a1valettest.utils.withBgColor
 import com.example.a1valettest.view.adapter.HomeAdapter
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.hamcrest.CoreMatchers.instanceOf
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.core.AllOf
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
+import org.junit.runners.MethodSorters
 import javax.inject.Inject
 
 /*
@@ -37,6 +32,7 @@ This test class is for host ( whole fragments ) which can we see the interaction
 our popBackPress is working fine and show the corresponding fragment as well with some other testing like DrawerLayout
 The other more detail tests for specific fragment is on their test class file (like searching or some other more detail matching test)
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @LargeTest
 @HiltAndroidTest
 class MainActivityTest {
@@ -47,6 +43,7 @@ class MainActivityTest {
     @get:Rule(order = 1)
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
+    private lateinit var sharedPreferences: SharedPreferences
 
     @get:Rule(order = 2)
     val idlingResourceRule = EspressoIdlingResourceRule()
@@ -58,11 +55,14 @@ class MainActivityTest {
     fun setUp() {
         hiltRule.inject()
         db.clearAllTables()
+        sharedPreferences = ApplicationProvider.getApplicationContext<Context>()
+            .getSharedPreferences("NightTheme", Context.MODE_PRIVATE)
     }
 
     @After
     fun tearDown() {
         db.clearAllTables()
+        sharedPreferences.edit().clear().apply()
     }
 
     @Test
@@ -225,7 +225,7 @@ class MainActivityTest {
                 click()
             )
 
-        onView(withText(R.string.remove)).check(matches(isDisplayed())).perform(click())
+        onView(withId(android.R.id.button1)).check(matches(isDisplayed())).perform(click())
             .check(doesNotExist())
 
         onView(
@@ -255,8 +255,9 @@ class MainActivityTest {
         onView(withId(R.id.textEmptyMyDeviceList)).check(matches(isDisplayed()))
     }
 
+    // first run this fun will change the theme mode to light and the rest testing should show light mode
     @Test
-    fun testNightAndLightMode() {
+    fun a_testNightAndLightMode() {
 
         onView(
             allOf(
@@ -278,14 +279,5 @@ class MainActivityTest {
 
         onView(withText("Light")).check(matches(isDisplayed())).perform(click())
 
-//        onView(withChild(withId(R.id.containerFragmentSetting))).check(
-//            matches(
-//                withBgColor(
-//                    Color.parseColor(
-//                        "#FDFCF5"
-//                    )
-//                )
-//            )
-//        )
     }
 }

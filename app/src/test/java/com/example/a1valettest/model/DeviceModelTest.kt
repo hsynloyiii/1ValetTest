@@ -1,11 +1,11 @@
 package com.example.a1valettest.model
 
-import com.example.a1valettest.utils.convertToDeviceContent
-import com.example.a1valettest.utils.convertToMyDeviceContent
+import com.example.a1valettest.utils.extensions.convertToDeviceContent
+import com.example.a1valettest.utils.extensions.convertToMyDeviceContent
 import org.junit.Assert.*
 import org.junit.Test
 
-// Here we test our data classes conversion with same data
+// Test data classes conversion with same data
 class DeviceModelTest {
 
     private lateinit var deviceContent: DeviceContent

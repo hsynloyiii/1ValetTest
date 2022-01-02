@@ -109,7 +109,7 @@ class HomeFragment @Inject constructor(
             val searchView = menuItem.actionView as SearchView
 
             searchView.apply {
-                queryHint = "Search devices"
+                queryHint = "Search all devices"
 
                 binding.apply {
                     setOnSearchClickListener {

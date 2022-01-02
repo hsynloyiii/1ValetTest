@@ -8,7 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.FragmentSettingBinding
 import com.example.a1valettest.utils.base.BaseFragment
-import com.example.a1valettest.utils.singleChoiceAlert
+import com.example.a1valettest.utils.extensions.singleChoiceAlert
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import androidx.appcompat.app.AppCompatDelegate.*

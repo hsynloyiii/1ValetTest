@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "251307527673",
+    "project_id": "testing-20e92",
+    "storage_bucket": "testing-20e92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251307527673:android:572059047446833b53c128",
+        "android_client_info": {
+          "package_name": "com.example.a1valettest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251307527673-m8rjlb75ea91bb0qpi5oalsfo3v9jsvg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_NuzO0TPIo77nslraBm23VXjVTFbpA-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251307527673-m8rjlb75ea91bb0qpi5oalsfo3v9jsvg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

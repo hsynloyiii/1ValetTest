@@ -3,27 +3,21 @@ package com.example.a1valettest.view.fragment
 import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.navOptions
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.MediumTest
 import com.example.a1valettest.R
 import com.example.a1valettest.utils.launchFragmentInHiltContainer
 import com.example.a1valettest.model.DeviceContent
-import com.example.a1valettest.utils.convertToMyDeviceContent
+import com.example.a1valettest.utils.extensions.convertToMyDeviceContent
 import com.example.a1valettest.utils.database.DeviceDao
 import com.example.a1valettest.utils.database.DeviceDataBase
 import com.example.a1valettest.utils.rule.EspressoIdlingResourceRule
-import com.example.a1valettest.view.adapter.HomeAdapter
 import com.example.a1valettest.view.fragment.factory.MainFragmentFactory
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -32,8 +26,6 @@ import kotlinx.coroutines.test.runTest
 import org.hamcrest.core.AllOf.allOf
 import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.*
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
 import javax.inject.Inject
 
 @MediumTest

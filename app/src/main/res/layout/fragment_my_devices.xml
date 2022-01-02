@@ -37,19 +37,19 @@
             android:id="@+id/textEmptyMyDeviceList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
             android:layout_gravity="center"
-            android:visibility="gone"
-            android:text="@string/emptyMyDeviceListError" />
+            android:text="@string/emptyMyDeviceListError"
+            android:textSize="14sp"
+            android:visibility="gone" />
 
         <include
             android:id="@+id/layoutSearchNoResult"
-            layout="@layout/layout_search_no_result"/>
+            layout="@layout/layout_search_no_result" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFragmentMyDevices"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />

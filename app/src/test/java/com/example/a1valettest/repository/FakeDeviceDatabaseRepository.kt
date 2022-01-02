@@ -11,6 +11,8 @@ class FakeDeviceDatabaseRepository : Repository.DeviceDataBaseRepository {
     private val myDeviceContentsList = mutableListOf<MyDeviceContent>()
     private val allDeviceContentList = mutableListOf<DeviceContent>()
 
+
+
     private var myDeviceContentsFlow = flow {
         emit(myDeviceContentsList)
     }

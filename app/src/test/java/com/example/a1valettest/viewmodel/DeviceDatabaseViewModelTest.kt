@@ -4,7 +4,7 @@ import com.example.a1valettest.MainCoroutineRule
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.repository.FakeDeviceDatabaseRepository
-import com.example.a1valettest.utils.convertToDeviceContent
+import com.example.a1valettest.utils.extensions.convertToDeviceContent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.StandardTestDispatcher
