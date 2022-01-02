@@ -19,8 +19,6 @@ import com.example.a1valettest.R
 import com.google.android.material.navigation.NavigationView
 import java.lang.ref.WeakReference
 
-private fun closeDrawer(drawerLayout: DrawerLayout) =
-    drawerLayout.closeDrawer(GravityCompat.START, true)
 
 fun NavigationView.customSetUpWithNavController(
     navController: NavController,
