@@ -36,13 +36,15 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textDeviceName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
+                android:layout_marginEnd="16dp"
                 android:text="@{myDeviceContent.title,default=DeviceName}"
                 android:textSize="18sp"
                 android:transitionName="device_name"
+                app:layout_constraintEnd_toStartOf="@id/textDevicePrice"
                 app:layout_constraintStart_toEndOf="@id/imageViewDeviceItemRecyclerViewMyDevices"
                 app:layout_constraintTop_toTopOf="@id/imageViewDeviceItemRecyclerViewMyDevices" />
 
@@ -52,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="16dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:customPrice="@{myDeviceContent.price}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/imageViewDeviceItemRecyclerViewMyDevices" />
