@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     // setting custom animation
     private fun handleNavigationView() = binding.mainNavigationView.customSetUpWithNavController(
         navController = navController,
+        closeDrawerLayoutDelay = 150,
         enterAnim = R.anim.scale_in,
         popEnterAnim = R.anim.scale_in
     )

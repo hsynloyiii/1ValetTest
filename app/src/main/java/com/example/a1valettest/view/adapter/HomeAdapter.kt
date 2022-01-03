@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewHomeBinding
@@ -14,17 +15,7 @@ import com.example.a1valettest.utils.differItemCallBack
 import javax.inject.Inject
 
 class HomeAdapter @Inject constructor() :
-    RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
-
-    private val differDeviceContent = AsyncListDiffer(this, differItemCallBack<DeviceContent>())
-
-    fun submitList(list: List<DeviceContent>) {
-        EspressoIdlingResource.increment()
-        val dataCommitCallback = Runnable {
-            EspressoIdlingResource.decrement()
-        }
-        differDeviceContent.submitList(list, dataCommitCallback)
-    }
+    ListAdapter<DeviceContent, HomeAdapter.ViewHolder>(differItemCallBack<DeviceContent>()) {
 
     inner class ViewHolder(val binding: ItemRecyclerviewHomeBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -47,7 +38,7 @@ class HomeAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            val deviceContent = differDeviceContent.currentList[position]
+            val deviceContent = getItem(position)
             binding.deviceContent = deviceContent
             itemView.setOnClickListener {
                 onItemClickListener?.let {
@@ -56,7 +47,5 @@ class HomeAdapter @Inject constructor() :
             }
         }
     }
-
-    override fun getItemCount(): Int = differDeviceContent.currentList.size
 
 }

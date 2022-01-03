@@ -8,9 +8,7 @@ import android.view.MenuItem
 import androidx.annotation.AnimRes
 import androidx.annotation.AnimatorRes
 import androidx.annotation.IdRes
-import androidx.core.view.GravityCompat
 import androidx.customview.widget.Openable
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.*
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -22,6 +20,7 @@ import java.lang.ref.WeakReference
 
 fun NavigationView.customSetUpWithNavController(
     navController: NavController,
+    closeDrawerLayoutDelay: Long = 0,
     @AnimRes @AnimatorRes enterAnim: Int = R.anim.nav_default_enter_anim,
     @AnimRes @AnimatorRes exitAnim: Int = R.anim.nav_default_exit_anim,
     @AnimRes @AnimatorRes popEnterAnim: Int = R.anim.nav_default_pop_enter_anim,
@@ -30,6 +29,7 @@ fun NavigationView.customSetUpWithNavController(
     setUpNavigationWithNavController(
         navigationView = this,
         navController = navController,
+        closeDrawerLayoutDelay = closeDrawerLayoutDelay,
         enterAnim = enterAnim,
         exitAnim = exitAnim,
         popEnterAnim = popEnterAnim,
@@ -40,6 +40,7 @@ fun NavigationView.customSetUpWithNavController(
 private fun setUpNavigationWithNavController(
     navigationView: NavigationView,
     navController: NavController,
+    closeDrawerLayoutDelay: Long,
     @AnimRes @AnimatorRes enterAnim: Int,
     @AnimRes @AnimatorRes exitAnim: Int,
     @AnimRes @AnimatorRes popEnterAnim: Int,
@@ -61,7 +62,7 @@ private fun setUpNavigationWithNavController(
                 Handler(Looper.getMainLooper()).postDelayed({
                     parent.close()
                     EspressoIdlingResource.decrement()
-                }, 150)
+                }, closeDrawerLayoutDelay)
             }
         }
         destinationSelect

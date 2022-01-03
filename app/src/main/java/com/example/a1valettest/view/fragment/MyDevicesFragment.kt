@@ -171,6 +171,6 @@ class MyDevicesFragment @Inject constructor(
                 visibility = View.GONE
         }
 
-        myDevicesAdapter.differMyDeviceContent.submitList(newList)
+        myDevicesAdapter.submitList(newList)
     }
 }
