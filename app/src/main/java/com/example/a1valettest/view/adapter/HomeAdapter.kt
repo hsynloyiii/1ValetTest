@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a1valettest.R
 import com.example.a1valettest.databinding.ItemRecyclerviewHomeBinding
 import com.example.a1valettest.model.DeviceContent
-import com.example.a1valettest.EspressoIdlingResource
 import com.example.a1valettest.utils.differItemCallBack
 import javax.inject.Inject
 
