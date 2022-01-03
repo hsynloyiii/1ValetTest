@@ -36,7 +36,7 @@
 
         <include
             android:id="@+id/layoutSearchNoResult"
-            layout="@layout/layout_search_no_result"/>
+            layout="@layout/layout_search_no_result" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFragmentHome"

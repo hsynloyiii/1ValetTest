@@ -8,7 +8,7 @@
             type="com.example.a1valettest.model.DeviceContent" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardViewItemRecyclerViewHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,6 +59,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </layout>

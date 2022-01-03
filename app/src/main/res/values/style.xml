@@ -38,9 +38,8 @@
         <item name="android:stateListAnimator" tools:ignore="NewApi">
             @animator/m3_card_state_list_anim
         </item>
-        <item name="shapeAppearanceOverlay">@style/Base.ShapeAppearanceOverlay.Material3.CardView
-        </item>
-        <item name="cardElevation">@dimen/m3_sys_elevation_level1 </item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">@dimen/m3_sys_elevation_level1</item>
         <item name="rippleColor">@color/m3_card_ripple_color</item>
         <item name="strokeColor">@color/m3_card_stroke_color</item>
         <item name="strokeWidth">0dp</item>
@@ -50,11 +49,6 @@
         <item name="android:focusable">true</item>
     </style>
 
-    <style name="Base.ShapeAppearanceOverlay.Material3.CardView" parent="">
-        <item name="cornerSize">8dp</item>
-    </style>
-
-
     <!-- Collapsing Toolbar -->
     <style name="Base.Widget.Material3.CollapsingToolbar" parent="Widget.Material3.CollapsingToolbar">
         <item name="enforceMaterialTheme">true</item>
@@ -63,7 +57,7 @@
         <item name="expandedTitleTextAppearance">@style/expandedTitleTextAppearance</item>
         <item name="expandedTitleMarginStart">@dimen/m3_appbar_expanded_title_margin_horizontal
         </item>
-        <item name="elevation">@dimen/m3_sys_elevation_level4</item>
+        <item name="android:elevation">0dp</item>
         <item name="android:background">?attr/colorSurface</item>
         <item name="expandedTitleMarginEnd">@dimen/m3_appbar_expanded_title_margin_horizontal</item>
         <item name="expandedTitleMarginBottom">@dimen/m3_appbar_expanded_title_margin_bottom</item>
@@ -77,6 +71,7 @@
     </style>
 
     <style name="collapsedTitleTextAppearance">
+
     </style>
 
     <style name="expandedTitleTextAppearance">
@@ -89,7 +84,8 @@
         <item name="enforceMaterialTheme">true</item>
         <item name="liftOnScroll">true</item>
         <item name="android:background">?attr/colorSurface</item>
-        <!--        <item name="elevation">8dp</item>-->
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
         <!--        <item name="android:elevation">8dp</item>-->
         <!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
     </style>
@@ -100,6 +96,7 @@
         <item name="enforceMaterialTheme">true</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
 
@@ -164,6 +161,7 @@
         <item name="submitBackground">?attr/colorSurface</item>
         <item name="searchHintIcon">@null</item>
     </style>
+
     <style name="Custom.Widget.AppCompat.AutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
         <item name="android:textCursorDrawable">@drawable/search_cursor</item>
     </style>
