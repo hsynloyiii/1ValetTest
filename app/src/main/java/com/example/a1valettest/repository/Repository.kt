@@ -15,11 +15,11 @@ interface Repository {
 
         fun getAllDevices(): Flow<List<DeviceContent>>
 
-        // Update current favorite state of specific item in AllDevices
+        // Update current favorite state of specific item in AllDevices when favorite button trigger
         suspend fun updateDevice(deviceContent: DeviceContent?)
 
 
-        // My Device
+        // My Devices
         fun getMyDevices(isFavorite: Boolean): Flow<List<MyDeviceContent>>
 
         suspend fun insertToMyDevice(myDeviceContent: MyDeviceContent?)

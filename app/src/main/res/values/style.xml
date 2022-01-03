@@ -83,6 +83,7 @@
         <item name="android:textSize">30sp</item>
     </style>
 
+
     <!-- AppBarLayout -->
     <style name="Base.Widget.Material3.AppBarLayout" parent="Widget.Material3.AppBarLayout">
         <item name="enforceMaterialTheme">true</item>
@@ -92,6 +93,7 @@
         <!--        <item name="android:elevation">8dp</item>-->
         <!--        <item name="android:stateListAnimator">@animator/design_appbar_state_list_animator</item>-->
     </style>
+
 
     <!-- MaterialToolbar -->
     <style name="Base.Widget.Material3.Toolbar" parent="Widget.Material3.Toolbar.Surface">
@@ -164,5 +166,14 @@
     </style>
     <style name="Custom.Widget.AppCompat.AutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
         <item name="android:textCursorDrawable">@drawable/search_cursor</item>
+    </style>
+
+    <!-- Base Recyclerview Style -->
+    <style name="Base.Widget.RecyclerView" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
     </style>
 </resources>

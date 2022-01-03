@@ -13,12 +13,10 @@ import com.example.a1valettest.databinding.FragmentHomeBinding
 import com.example.a1valettest.model.DeviceContent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import android.annotation.SuppressLint
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
 import androidx.core.view.doOnPreDraw
-import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -82,9 +80,7 @@ class HomeFragment @Inject constructor(
             )
         }
 
-        binding.recyclerViewFragmentHome.apply {
-            adapter = homeAdapter
-        }
+        binding.recyclerViewFragmentHome.adapter = homeAdapter
 
         EspressoIdlingResource.increment()
         viewLifecycleOwner.lifecycleScope.launch {
@@ -98,59 +94,49 @@ class HomeFragment @Inject constructor(
         }
     }
 
-    @SuppressLint("SoonBlockedPrivateApi")
-    private fun handleToolbar() {
-        binding.toolbarFragmentHome.apply {
-            setNavigationOnClickListener {
-                activity?.findViewById<DrawerLayout>(R.id.mainDrawerLayout)?.open()
-            }
+    private fun handleToolbar() = binding.toolbarFragmentHome.apply {
+        setNavigationOnClickListener {
+            activity?.findViewById<DrawerLayout>(R.id.mainDrawerLayout)?.open()
+        }
 
-            val menuItem = menu.findItem(R.id.search)
-            val searchView = menuItem.actionView as SearchView
+        val menuItem = menu.findItem(R.id.search)
+        val searchView = menuItem.actionView as SearchView
 
-            searchView.apply {
-                queryHint = "Search all devices"
+        searchView.apply {
+            queryHint = "Search all devices"
 
-                binding.apply {
-                    setOnSearchClickListener {
-                        appBarLayoutFragmentHome.setExpanded(false, true)
-                        //                        val toolbarLayoutParams =
-//                            binding.collapsing.layoutParams as AppBarLayout.LayoutParams
-//                        toolbarLayoutParams.scrollFlags =
-//                            AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
-//                        binding.collapsing.layoutParams = toolbarLayoutParams
-                        val anim = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-                        anim.setAnimationListener(null)
-                        menu.forEach {
-                            it.actionView.startAnimation(anim)
-                        }
-                    }
+            binding.run {
+                setOnSearchClickListener {
+                    appBarLayoutFragmentHome.setExpanded(false, true)
+                    startAnimation(
+                        AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                            .apply { setAnimationListener(null) }
+                    )
+                }
 
-                    setOnQueryTextFocusChangeListener { _, hasFocus ->
-                        val fullyExpanded: Boolean =
-                            (appBarLayoutFragmentHome.height - appBarLayoutFragmentHome.bottom) == 0
-                        if (!hasFocus) {
-                            if (fullyExpanded) {
-                                appBarLayoutFragmentHome.setExpanded(true, true)
-                            }
+                setOnQueryTextFocusChangeListener { _, hasFocus ->
+                    val fullyExpanded: Boolean =
+                        (appBarLayoutFragmentHome.height - appBarLayoutFragmentHome.bottom) == 0
+                    if (!hasFocus) {
+                        if (fullyExpanded) {
+                            appBarLayoutFragmentHome.setExpanded(true, true)
                         }
                     }
                 }
-
-                setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(query: String?): Boolean = false
-
-                    override fun onQueryTextChange(newText: String?): Boolean {
-                        filterDeviceContentList(text = newText!!)
-                        return false
-                    }
-                })
             }
+
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean = false
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    filterDeviceContentList(text = newText!!)
+                    return false
+                }
+            })
         }
     }
 
     private fun filterDeviceContentList(text: String) {
-
         val bindingNoResult = binding.layoutSearchNoResult
 
         val newList = mutableListOf<DeviceContent>()

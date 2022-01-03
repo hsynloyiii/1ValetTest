@@ -55,7 +55,6 @@ object AppModule {
     fun provideMyDeviceAdapter() = MyDevicesAdapter()
 
 
-
     //--------------------------------------- Containers ------------------------------------------>
     @Singleton
     @Provides

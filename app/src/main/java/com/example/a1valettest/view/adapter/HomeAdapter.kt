@@ -28,8 +28,8 @@ class HomeAdapter @Inject constructor() :
             )
         )
 
+    // Item click callback
     private var onItemClickListener: ((DeviceContent, View) -> Unit)? = null
-
     fun setOnItemClickListener(listener: (DeviceContent, View) -> Unit) {
         onItemClickListener = listener
     }

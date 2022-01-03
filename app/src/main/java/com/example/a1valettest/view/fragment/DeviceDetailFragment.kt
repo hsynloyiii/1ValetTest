@@ -1,12 +1,11 @@
 package com.example.a1valettest.view.fragment
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -43,15 +42,12 @@ class DeviceDetailFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        args.deviceContent?.let {
-            deviceContent = it
-        }
+        args.deviceContent?.let { deviceContent = it }
         binding.deviceContent = deviceContent
 
         handleToolbar()
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun handleToolbar() {
         binding.toolbarFragmentDeviceDetail.apply {
 
@@ -66,20 +62,18 @@ class DeviceDetailFragment :
                         if (!deviceContent.isFavorite) {
                             deviceContent.isFavorite = true
 
-
                             deviceDatabaseViewModel.insertToMyDevice(
                                 myDeviceContent = deviceContent.convertToMyDeviceContent()
                             )
 
                             updateDeviceContent(deviceContent = deviceContent)
 
-                            view?.snackBar(msg = resources.getString(R.string.successfullyAdded))
-
-
                             changeFavoriteIcon(
                                 item = favoriteDevice,
                                 id = R.drawable.ic_round_star_24
                             )
+
+                            view?.snackBar(msg = resources.getString(R.string.successfullyAdded))
 
                         } else {
                             context?.alert(
@@ -115,26 +109,23 @@ class DeviceDetailFragment :
 
             menu.findItem(R.id.favoriteDevice).icon =
                 if (args.deviceContent?.isFavorite!!)
-                    ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.ic_round_star_24,
-                        context?.theme
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_round_star_24
                     )
                 else
-                    ResourcesCompat.getDrawable(
-                        resources,
-                        R.drawable.ic_round_star_outline_24,
-                        context?.theme
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_round_star_outline_24
                     )
 
         }
     }
 
     private fun changeFavoriteIcon(item: MenuItem, @DrawableRes id: Int) =
-        ResourcesCompat.getDrawable(
-            resources,
-            id,
-            context?.theme
+        ContextCompat.getDrawable(
+            requireContext(),
+            id
         ).also { item.icon = it }
 
     private fun updateDeviceContent(deviceContent: DeviceContent) =

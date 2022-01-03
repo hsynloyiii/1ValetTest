@@ -4,6 +4,7 @@ package com.example.a1valettest.utils.database
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
+import com.example.a1valettest.AndroidMainCoroutineRule
 import com.example.a1valettest.model.DeviceContent
 import com.example.a1valettest.model.MyDeviceContent
 import com.example.a1valettest.utils.extensions.convertToDeviceContent
@@ -11,6 +12,8 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.*
@@ -31,11 +34,18 @@ class DeviceDataBaseTest {
     // As already created conversion for each data classes no need to define them separately
     private lateinit var myDeviceContent: MyDeviceContent
 
-    @get:Rule
+    private val testDispatcher = StandardTestDispatcher()
+    private val scope = TestScope(testDispatcher)
+
+    @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
 
-    @get:Rule
+    @get:Rule(order = 1)
+    var rule = AndroidMainCoroutineRule(testDispatcher)
+
+    @get:Rule(order = 2)
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+
 
     @Inject
     lateinit var db: DeviceDataBase
@@ -69,7 +79,7 @@ class DeviceDataBaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertToMyDevices() = runTest {
+    fun insertToMyDevices() = scope.runTest {
         dao.insertToMyDevice(myDeviceContent = myDeviceContent)
 
         val myDevices = dao.getAllMyDevices(isFavorite = true).first()
@@ -79,7 +89,7 @@ class DeviceDataBaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertToAllDevices() = runTest {
+    fun insertToAllDevices() = scope.runTest {
         val deviceContents = listOf(myDeviceContent.convertToDeviceContent())
 
         dao.insertAllDevices(deviceContentList = deviceContents)
@@ -90,7 +100,7 @@ class DeviceDataBaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun deleteMyDevice() = runTest {
+    fun deleteMyDevice() = scope.runTest {
         dao.insertToMyDevice(myDeviceContent = myDeviceContent)
         dao.deleteDevice(myDeviceContent = myDeviceContent)
 
@@ -101,7 +111,7 @@ class DeviceDataBaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun updateDevice() = runTest {
+    fun updateDevice() = scope.runTest {
         val deviceContents = listOf(myDeviceContent.convertToDeviceContent())
 
         dao.insertAllDevices(deviceContentList = deviceContents)

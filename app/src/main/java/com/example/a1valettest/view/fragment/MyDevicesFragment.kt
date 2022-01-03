@@ -99,50 +99,45 @@ class MyDevicesFragment @Inject constructor(
         }
     }
 
-    private fun handleToolbar() {
-        binding.toolbarFragmentMyDevices.apply {
-            setNavigationOnClickListener {
-                activity?.findViewById<DrawerLayout>(R.id.mainDrawerLayout)?.open()
-            }
+    private fun handleToolbar() = binding.toolbarFragmentMyDevices.apply {
+        setNavigationOnClickListener {
+            activity?.findViewById<DrawerLayout>(R.id.mainDrawerLayout)?.open()
+        }
 
-            val menuItem = menu.findItem(R.id.search)
-            val searchView = menuItem.actionView as SearchView
+        val menuItem = menu.findItem(R.id.search)
+        val searchView = menuItem.actionView as SearchView
 
-            searchView.apply {
-                queryHint = "Search my devices"
+        searchView.apply {
+            queryHint = "Search my devices"
 
-                binding.apply {
-                    setOnSearchClickListener {
-                        appBarLayoutFragmentMyDevices.setExpanded(false, true)
+            binding.run {
+                setOnSearchClickListener {
+                    appBarLayoutFragmentMyDevices.setExpanded(false, true)
+                    startAnimation(
+                        AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                            .apply { setAnimationListener(null) }
+                    )
+                }
 
-                        val anim = AnimationUtils.loadAnimation(context, R.anim.fade_in).apply {
-                            setAnimationListener(null)
-                        }
-                        menu.forEach {
-                            it.actionView.startAnimation(anim)
-                        }
-                    }
-
-                    setOnQueryTextFocusChangeListener { _, hasFocus ->
-                        val fullyExpanded: Boolean =
-                            (appBarLayoutFragmentMyDevices.height - appBarLayoutFragmentMyDevices.bottom) == 0
-                        if (!hasFocus) {
-                            if (fullyExpanded) {
-                                appBarLayoutFragmentMyDevices.setExpanded(true, true)
-                            }
+                setOnQueryTextFocusChangeListener { _, hasFocus ->
+                    val fullyExpanded: Boolean =
+                        (appBarLayoutFragmentMyDevices.height - appBarLayoutFragmentMyDevices.bottom) == 0
+                    if (!hasFocus) {
+                        if (fullyExpanded) {
+                            appBarLayoutFragmentMyDevices.setExpanded(true, true)
                         }
                     }
                 }
-
-                setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(query: String?): Boolean = false
-                    override fun onQueryTextChange(newText: String?): Boolean {
-                        if (newMyDeviceContentList.isNotEmpty())
-                            filterMyDeviceContentList(text = newText!!)
-                        return false
-                    }
-                })
             }
+
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean = false
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newMyDeviceContentList.isNotEmpty())
+                        filterMyDeviceContentList(text = newText!!)
+                    return false
+                }
+            })
         }
     }
 

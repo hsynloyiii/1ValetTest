@@ -50,14 +50,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // I combined setUpWithNavController with my ideas and made it more flexible such as
-    // setting custom animation
+    // made setUpWithNavController more flexible such as set custom animation
     private fun handleNavigationView() = binding.mainNavigationView.customSetUpWithNavController(
         navController = navController,
         closeDrawerLayoutDelay = 150,
         enterAnim = R.anim.scale_in,
         popEnterAnim = R.anim.scale_in
     )
-
 
 }

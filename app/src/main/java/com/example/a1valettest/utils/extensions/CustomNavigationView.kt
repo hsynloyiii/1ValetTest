@@ -25,19 +25,17 @@ fun NavigationView.customSetUpWithNavController(
     @AnimRes @AnimatorRes exitAnim: Int = R.anim.nav_default_exit_anim,
     @AnimRes @AnimatorRes popEnterAnim: Int = R.anim.nav_default_pop_enter_anim,
     @AnimRes @AnimatorRes popExitAnim: Int = R.anim.nav_default_pop_exit_anim
-) {
-    setUpNavigationWithNavController(
-        navigationView = this,
-        navController = navController,
-        closeDrawerLayoutDelay = closeDrawerLayoutDelay,
-        enterAnim = enterAnim,
-        exitAnim = exitAnim,
-        popEnterAnim = popEnterAnim,
-        popExitAnim = popExitAnim
-    )
-}
+) = setUp(
+    navigationView = this,
+    navController = navController,
+    closeDrawerLayoutDelay = closeDrawerLayoutDelay,
+    enterAnim = enterAnim,
+    exitAnim = exitAnim,
+    popEnterAnim = popEnterAnim,
+    popExitAnim = popExitAnim
+)
 
-private fun setUpNavigationWithNavController(
+private fun setUp(
     navigationView: NavigationView,
     navController: NavController,
     closeDrawerLayoutDelay: Long,

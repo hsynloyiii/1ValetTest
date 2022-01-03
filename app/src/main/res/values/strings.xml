@@ -6,9 +6,9 @@
     <string name="my_devices">My Devices</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="devices">Devices</string>
     <string name="search">search</string>
-
     <string name="generic_price">Price is $</string>
     <string name="favorite">favorite</string>
     <string name="emptyMyDeviceListError">You don\'t have any favorite device yet</string>

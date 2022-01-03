@@ -30,8 +30,8 @@ class MyDevicesAdapter @Inject constructor() :
         )
     )
 
+    // Item click callback
     private var onItemClickListener: ((DeviceContent, View) -> Unit)? = null
-
     fun setOnItemClickListener(listener: (DeviceContent, View) -> Unit) {
         onItemClickListener = listener
     }
@@ -53,6 +53,5 @@ class MyDevicesAdapter @Inject constructor() :
             }
         }
     }
-
 
 }
