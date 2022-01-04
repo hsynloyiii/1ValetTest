@@ -60,13 +60,11 @@ class DeviceDetailFragment :
                     R.id.favoriteDevice -> {
                         val favoriteDevice = menu.findItem(R.id.favoriteDevice)
                         if (!deviceContent.isFavorite) {
-                            deviceContent.isFavorite = true
+                            updateDeviceContent(setFavorite = true, deviceContent = deviceContent)
 
                             deviceDatabaseViewModel.insertToMyDevice(
                                 myDeviceContent = deviceContent.convertToMyDeviceContent()
                             )
-
-                            updateDeviceContent(deviceContent = deviceContent)
 
                             changeFavoriteIcon(
                                 item = favoriteDevice,
@@ -82,9 +80,10 @@ class DeviceDetailFragment :
                                 positiveButtonText = resources.getString(R.string.remove),
                                 positiveButtonAction = { dialog ->
 
-                                    deviceContent.isFavorite = false
-
-                                    updateDeviceContent(deviceContent = deviceContent)
+                                    updateDeviceContent(
+                                        setFavorite = false,
+                                        deviceContent = deviceContent
+                                    )
 
                                     deviceDatabaseViewModel.deleteDevice(
                                         myDeviceContent = deviceContent.convertToMyDeviceContent()
@@ -128,8 +127,10 @@ class DeviceDetailFragment :
             id
         ).also { item.icon = it }
 
-    private fun updateDeviceContent(deviceContent: DeviceContent) =
+    private fun updateDeviceContent(setFavorite: Boolean, deviceContent: DeviceContent) {
+        deviceContent.isFavorite = setFavorite
         deviceDatabaseViewModel.updateDeviceContent(deviceContent = deviceContent)
+    }
 
 }
 

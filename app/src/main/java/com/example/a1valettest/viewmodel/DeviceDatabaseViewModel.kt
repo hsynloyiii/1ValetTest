@@ -9,9 +9,7 @@ import com.example.a1valettest.repository.Repository
 import com.example.a1valettest.utils.di.IODispatchers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -44,6 +42,7 @@ class DeviceDatabaseViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5000),
             replay = 1
         )
+
 
     fun updateDeviceContent(deviceContent: DeviceContent?) = viewModelScope.launch(ioDispatchers) {
         deviceDatabaseRepository.updateDevice(deviceContent = deviceContent)
