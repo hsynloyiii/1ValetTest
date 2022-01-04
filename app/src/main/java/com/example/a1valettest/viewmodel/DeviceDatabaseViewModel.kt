@@ -23,7 +23,7 @@ class DeviceDatabaseViewModel @Inject constructor(
 
     // All Devices
     fun getDeviceDataSource() = viewModelScope.launch(ioDispatchers) {
-        // we need cold flow just for insert deviceContentDataSource to our list ( not sharing or data observing )
+        // need cold flow just for just insert deviceContentDataSource to our list ( not sharing or data observing )
         deviceDatabaseRepository.getAllDevices().collect {
             if (it.isNullOrEmpty()) {
                 insertToAllDevices(

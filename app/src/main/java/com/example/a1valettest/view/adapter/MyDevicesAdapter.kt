@@ -43,7 +43,7 @@ class MyDevicesAdapter @Inject constructor() :
 
             binding.myDeviceContent = myDeviceContent
 
-            itemView.setOnClickListener {
+            binding.constraintItemRecyclerViewMyDevices.setOnClickListener {
                 onItemClickListener?.let {
                     it(
                         myDeviceContent.convertToDeviceContent(),

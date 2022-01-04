@@ -38,7 +38,7 @@ class HomeAdapter @Inject constructor() :
         holder.apply {
             val deviceContent = getItem(position)
             binding.deviceContent = deviceContent
-            itemView.setOnClickListener {
+            binding.constraintItemRecyclerViewHome.setOnClickListener {
                 onItemClickListener?.let {
                     it(deviceContent, binding.cardViewItemRecyclerViewHome)
                 }

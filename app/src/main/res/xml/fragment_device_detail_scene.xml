@@ -6,6 +6,14 @@
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start"
         app:duration="1000">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="100"
+                app:motionTarget="@+id/imageViewDeviceFragmentDeviceDetail" />
+        </KeyFrameSet>
+
         <OnSwipe
             app:dragDirection="dragUp"
             app:touchAnchorId="@id/imageViewDeviceFragmentDeviceDetail"
@@ -20,10 +28,11 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@id/imageViewDeviceFragmentDeviceDetail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </ConstraintSet>
 

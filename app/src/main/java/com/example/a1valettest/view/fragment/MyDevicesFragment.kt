@@ -2,13 +2,11 @@ package com.example.a1valettest.view.fragment
 
 import android.animation.ValueAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.doOnPreDraw
-import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -89,12 +87,13 @@ class MyDevicesFragment @Inject constructor(
                 .collect {
                     newMyDeviceContentList = it.reversed().toMutableList()
                     myDevicesAdapter.submitList(newMyDeviceContentList)
-                    EspressoIdlingResource.decrement()
 
-                    if (newMyDeviceContentList.isEmpty())
+                    if (newMyDeviceContentList.isEmpty() ||
+                        newMyDeviceContentList == emptyList<MyDeviceContent>()
+                    )
                         binding.textEmptyMyDeviceList.visibility = VISIBLE
 
-                    Log.i("TestMyDeviceFragment", it.toString())
+                    EspressoIdlingResource.decrement()
                 }
         }
     }

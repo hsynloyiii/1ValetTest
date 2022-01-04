@@ -1,8 +1,6 @@
 package com.example.a1valettest.utils.base
 
 import android.app.Application
-import android.content.Context
-import androidx.appcompat.app.AppCompatDelegate.*
 import com.example.a1valettest.utils.ApplicationContainer
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
